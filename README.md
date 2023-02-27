@@ -3,4 +3,4 @@
 
 # Сервисы для работы
 * [Miro](https://miro.com/app/board/uXjVPk_a2SE=/) 
-* [MeisterTask]https://www.meistertask.com/app/project/OszZUyCg/tp)
+* [MeisterTask](https://www.meistertask.com/app/project/OszZUyCg/tp)
