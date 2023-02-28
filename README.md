@@ -1,4 +1,4 @@
-# OnlineFoodMarket
+# BiathlonStats
 * [Тимошинов Иван](https://github.com/Grurbag)
 * [Беликова Дина](https://github.com/PaperPrincess)
 
