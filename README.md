@@ -9,3 +9,4 @@
 
 # Документация
 * [Курсовой проект](https://docs.google.com/document/d/12EhSa630I4dyiS4o0AYc0Kp94NosXKsD/edit?usp=sharing&ouid=116459297014166780957&rtpof=true&sd=true) 
+* [Диаграммы] (https://github.com/Grurbag/BiathlonStats/tree/main/documentation/diagrams)
