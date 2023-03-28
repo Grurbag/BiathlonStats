@@ -3,8 +3,7 @@
 * [Беликова Дина](https://github.com/PaperPrincess)
 
 # Сервисы для работы
-* [Miro](https://miro.com/app/board/uXjVPk_a2SE=/) 
-* [MeisterTask](https://www.meistertask.com/app/project/OszZUyCg/tp)
+* [Miro](https://miro.com/app/board/uXjVPk_a2SE=/)
 * [Git Hub Issues](https://github.com/Grurbag/BiathlonStats/issues)
 
 # Документация
