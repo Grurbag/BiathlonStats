@@ -8,6 +8,7 @@
 # Сервисы для работы
 * [Miro](https://miro.com/app/board/uXjVPk_a2SE=/)
 * [Git Hub Issues](https://github.com/Grurbag/BiathlonStats/issues)
+* [Figma](https://www.figma.com/file/6jjn4yHXqwCrMwPtinbXnl/BiathlonStats?node-id=0-1&t=NabksYupbscgGAbf-0)
 
 # Документация
 * [Курсовой проект](https://docs.google.com/document/d/12EhSa630I4dyiS4o0AYc0Kp94NosXKsD/edit?usp=sharing&ouid=116459297014166780957&rtpof=true&sd=true) 
