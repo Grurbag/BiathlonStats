@@ -33,10 +33,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="a1700814-8d11-457e-82f2-52fe550b918b" object-ref="schemas/biathlonstats/tables/institution" />
-      <object connection-id="a1700814-8d11-457e-82f2-52fe550b918b" object-ref="schemas/biathlonstats/tables/sportsman" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a1700814-8d11-457e-82f2-52fe550b918b" />

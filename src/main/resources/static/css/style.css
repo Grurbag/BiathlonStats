@@ -41,7 +41,7 @@ display: flex;
 align-items: flex-start;
 }
 .about-gallery-pricin {
-width: 18%;
+width: 16.5%;
 color: var(--black);
 text-transform: uppercase;
 margin-top: 8px;
@@ -120,7 +120,7 @@ margin-top: 1px;
 .table {
 display: flex;
 flex-direction: column;
-height: 800px;
+height: 756px;
 width: 1500px;
 align-items: center;
 justify-content: space-evenly;
@@ -130,7 +130,6 @@ flex-wrap: wrap;
 }
 
 .td {
-width: calc(24.93% - 224.36px);
 padding: 15px 207.36px 14.95px 17px;
 display: flex;
 align-items: center;
@@ -165,9 +164,9 @@ align-self: stretch;
 border: 1px solid var(--neutral-2);
 }
 .flex-wrapper-two {
-margin-bottom: 0.96px;
 display: flex;
 align-items: flex-start;
+flex-direction: row;
 }
 .frame-2 {
 display: flex;
@@ -181,7 +180,7 @@ align-items: center;
 .input {
 display:flex;
 margin-bottom: 3px;
-padding: 15px 207.36px 30.95px 90px;
+padding: 15px 0px 30.95px 0px;
 align-self: center;
 flex-direction: row;
 justify-content: center;
@@ -189,14 +188,13 @@ align-items: baseline;
 }
 .dots {
 width: 80px;
-height: 8.3px;
-margin-left: 180px;
+height: 50px;
 }
 .regiony {
 font-family: "Rubik";
 font-size: 36px;
 font-weight: 500;
-line-height: 43px;
+line-height: 90px;
 color: var(--text);
 align-self: center;
 text-align: center;
@@ -210,6 +208,7 @@ font-weight: var(--rubik-16-regular-weight);
 line-height: var(--rubik-16-regular-line-height);
 margin-left: 50%;
 flex-direction:row;
+justify-content: center;
 }
 .dropdown {
 height:30px;
@@ -217,6 +216,7 @@ display:flex;
 flex-direction:row;
 align-items: baseline;
 margin-right:30%;
+justify-content: center;
 }
 
 .dropdown-content {

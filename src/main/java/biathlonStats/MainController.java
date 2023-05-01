@@ -23,6 +23,11 @@ public class MainController {
     return "greeting";
   }
 
+  @GetMapping("/institution")
+  public String institution() {
+    return "institution";
+  }
+
   @GetMapping
   public String main(Map<String, Object> model) {
    /* Iterable<Sportsman> sportsmanStat = biathlonstats.findAll();
@@ -31,5 +36,15 @@ public class MainController {
     }
     model.put("biathlonStats", sportsmanStat);*/
     return "main";
+  }
+
+  @GetMapping(value = "/institutionRedirect")
+  public String institutionRedirect() {
+    return "redirect:/institution";
+  }
+
+  @GetMapping(value = "/mainRedirect")
+  public String mainRedirect() {
+    return "redirect:/main";
   }
 }
