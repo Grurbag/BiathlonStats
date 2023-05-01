@@ -5,13 +5,13 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "sportsman")
+@Table(name = "sportsman", schema = "biathlonstats")
 public class Sportsman {
 
   @Id
   @GenericGenerator(name = "increment", strategy = "increment")
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private int idSportsman;
+  private long idsportsman;
   private String name;
   private String surname;
   private String sex;
@@ -24,7 +24,7 @@ public class Sportsman {
   }
 
   public Sportsman(int idSportsman, String name, String surname, String sex, String region, String institution, String rank, String birthDate) {
-    this.idSportsman = idSportsman;
+    this.idsportsman = idSportsman;
     this.name = name;
     this.surname = surname;
     this.sex = sex;
@@ -34,8 +34,8 @@ public class Sportsman {
     this.birthdate = birthDate;
   }
 
-  public int getIdSportsman() {
-    return idSportsman;
+  public long getId_sportsman() {
+    return idsportsman;
   }
 
   public String getName() {
@@ -66,8 +66,8 @@ public class Sportsman {
     return birthdate;
   }
 
-  public void setIdSportsman(int idSportsman) {
-    this.idSportsman = idSportsman;
+  public void setId_sportsman(int id_sportsman) {
+    this.idsportsman = id_sportsman;
   }
 
   public void setName(String name) {

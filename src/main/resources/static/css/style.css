@@ -1,0 +1,308 @@
+:root {
+/* Colors */
+--background: rgba(255, 255, 255, 1);
+--black: rgba(0, 0, 0, 1);
+--neutral-2: rgba(225, 229, 238, 1);
+--neutral-4: rgba(149, 161, 187, 1);
+--text: rgba(54, 57, 64, 1);
+
+/* Typographies */
+/* h4 */
+--h4-family: "Rubik";
+--h4-size: 38px;
+--h4-weight: 500;
+--h4-line-height: 28px;
+
+/* link */
+--link-family: "Rubik";
+--link-size: 18px;
+--link-weight: 500;
+--link-line-height: 28px;
+
+/* rubik-16-regular */
+--rubik-16-regular-family: "Rubik";
+--rubik-16-regular-size: 20px;
+--rubik-16-regular-weight: 400;
+--rubik-16-regular-line-height: 22px;
+
+/* rubik-16-medium */
+--rubik-16-medium-family: "Rubik";
+--rubik-16-medium-size: 20px;
+--rubik-16-medium-weight: 400;
+--rubik-16-medium-line-height: 22px;
+
+}
+
+
+.header {
+background-color: var(--background);
+padding: 20px 108px 7px;
+display: flex;
+align-items: flex-start;
+}
+.about-gallery-pricin {
+width: 18%;
+color: var(--black);
+text-transform: uppercase;
+margin-top: 8px;
+margin-right: 12px;
+letter-spacing: 2px;
+font-family: var(--link-family);
+font-size: var(--link-size);
+font-weight: var(--link-weight);
+line-height: var(--link-line-height);
+}
+.about-gallery-pricin-two {
+width: 13%;
+color: var(--black);
+text-transform: uppercase;
+margin-top: 8px;
+margin-right: 12px;
+letter-spacing: 2px;
+font-family: var(--link-family);
+font-size: var(--link-size);
+font-weight: var(--link-weight);
+line-height: var(--link-line-height);
+}
+.about-gallery-pricin-three {
+width: 8%;
+color: var(--black);
+text-transform: uppercase;
+margin-top: 8px;
+margin-right: 12px;
+letter-spacing: 2px;
+font-family: var(--link-family);
+font-size: var(--link-size);
+font-weight: var(--link-weight);
+line-height: var(--link-line-height);
+}
+.about-gallery-pricin-four {
+width: 7%;
+color: var(--black);
+text-transform: uppercase;
+margin-top: 8px;
+margin-right: 20px;
+letter-spacing: 2px;
+font-family: var(--link-family);
+font-size: var(--link-size);
+font-weight: var(--link-weight);
+line-height: var(--link-line-height);
+}
+.about-gallery-pricin-five {
+width: 20%;
+color: var(--black);
+text-transform: uppercase;
+margin-top: 8px;
+margin-right: 20px;
+letter-spacing: 2px;
+font-family: var(--link-family);
+font-size: var(--link-size);
+font-weight: var(--link-weight);
+line-height: var(--link-line-height);
+}
+.containers {
+width: 8.28%;
+color: var(--black);
+text-align: center;
+margin-top: 0px;
+margin-right: 416px;
+font-family: var(--h4-family);
+font-size: var(--h4-size);
+font-weight: var(--h4-weight);
+line-height: var(--h4-line-height);
+}
+.mask {
+width: 36px;
+height: 36px;
+margin-top: 1px;
+}
+
+.table {
+display: flex;
+flex-direction: column;
+height: 800px;
+width: 1500px;
+align-items: center;
+justify-content: space-evenly;
+align-content: center;
+align-self: center;
+flex-wrap: wrap;
+}
+
+.td {
+width: calc(24.93% - 224.36px);
+padding: 15px 207.36px 14.95px 17px;
+display: flex;
+align-items: center;
+align-self: stretch;
+border: 1px solid var(--neutral-2);
+}
+.td:not(:last-of-type) {
+margin-right: -1px;
+}
+.standart {
+color: var(--black);
+font-family: var(--rubik-16-regular-family);
+font-size: var(--rubik-16-regular-size);
+font-weight: var(--rubik-16-regular-weight);
+line-height: var(--rubik-16-regular-line-height);
+}
+.standart-b {
+color: var(--black);
+font-family: var(--rubik-16-medium-family);
+font-size: var(--rubik-16-medium-size);
+font-weight: var(--rubik-16-medium-weight);
+line-height: var(--rubik-16-medium-line-height);
+text-decoration: underline #32557f dashed;
+}
+.td-two {
+width: calc(24.93% - 224.36px);
+margin-right: -0.72px;
+padding: 15px 207.36px 14.95px 17px;
+display: flex;
+align-items: center;
+align-self: stretch;
+border: 1px solid var(--neutral-2);
+}
+.flex-wrapper-two {
+margin-bottom: 0.96px;
+display: flex;
+align-items: flex-start;
+}
+.frame-2 {
+display: flex;
+}
+.flex-wrapper-one {
+margin-bottom: 0.96px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.input {
+display:flex;
+margin-bottom: 3px;
+padding: 15px 207.36px 30.95px 90px;
+align-self: center;
+flex-direction: row;
+justify-content: center;
+align-items: baseline;
+}
+.dots {
+width: 80px;
+height: 8.3px;
+margin-left: 180px;
+}
+.regiony {
+font-family: "Rubik";
+font-size: 36px;
+font-weight: 500;
+line-height: 43px;
+color: var(--text);
+align-self: center;
+text-align: center;
+}
+.search {
+display:flex;
+color: var(--neutral-4);
+font-family: var(--rubik-16-regular-family);
+font-size: var(--rubik-16-regular-size);
+font-weight: var(--rubik-16-regular-weight);
+line-height: var(--rubik-16-regular-line-height);
+margin-left: 50%;
+flex-direction:row;
+}
+.dropdown {
+height:30px;
+display:flex;
+flex-direction:row;
+align-items: baseline;
+margin-right:30%;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+padding: 12px 16px;
+z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+display: flex;
+}
+.dropdown {
+color: var(--text);
+font-family: var(--rubik-16-regular-family);
+font-size: var(--rubik-16-regular-size);
+font-weight: var(--rubik-16-regular-weight);
+line-height: var(--rubik-16-regular-line-height);
+}
+
+.frame-8 {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.nazvanie-regiona {
+font-family: "Rubik";
+font-size: 36px;
+font-weight: 500;
+line-height: 43px;
+color: var(--text);
+}
+.rectangle-9 {
+width: 1251px;
+height: 332px;
+background-color: rgba(110, 56, 247, 0.12);
+border-radius: 10px;
+flex-direction: row;
+}
+.rukovoditel-gorod-telefon-adres-ema {
+height: 259px;
+width: 933px;
+font-family: Rubik;
+font-size: 24px;
+font-weight: 400;
+line-height: 22px;
+color: var(--black);
+display: flex;
+align-self: center;
+margin-left: 250px;
+margin-top: -250px;
+flex-direction: row;
+flex-wrap: nowrap;
+align-content: stretch;
+align-items: center;
+}
+.picture-big {
+height: 200px;
+width: 200px;
+background-position: center;
+background: url("https://static.overlay-tech.com/assets/21b40167-3488-4e48-b8d2-9229cf43c84b.png"),
+rgba(246, 247, 250, 1);
+padding: 10px;
+display: flex;
+align-items: center;
+margin-top: 50px;
+margin-left: 10px;
+}
+.icon-mountains {
+height: 200px;
+width: 200px;
+display: flex;
+align-items: center;
+align-self: center;
+}
+.shape {
+height: 80px;
+width: 80px;
+flex: 1;
+align-self: stretch;
+object-fit: cover;
+align-self: center;
+}
+.flex-wrapper-three {
+display: flex;
+}

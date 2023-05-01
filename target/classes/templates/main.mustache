@@ -1,17 +1,100 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+</head>
 <body>
-{{#biathlonStats}}
-<div>
-    <b>{{idSportsman}}</b>
-    <span>{{name}}</span>
-    <span>{{surname}}</span>
-    <span>{{sex}}</span>
-    <span>{{region}}</span>
-    <span>{{institution}}</span>
-    <span>{{rank}}</span>
-    <span>{{birthdate}}</span>
+<div class="header">
+    <a href="tableSportcomplex.html" class="about-gallery-pricin">Спорткомплексы</a>
+    <p class="about-gallery-pricin-two">Соревнования</p>
+    <p class="about-gallery-pricin-three">Регионы</p>
+    <p class="about-gallery-pricin-four">Тренеры</p>
+    <p class="about-gallery-pricin-five">Спортсмены</p>
+    <a href="main.html" class="containers">Главная</a>
+    <img
+            alt=""
+            class="mask"
+            src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
+    />
 </div>
-{{/biathlonStats}}
+
+<div class="flex-wrapper-one">
+    <a href="region.html" class="regiony">Регионы</a>
+    <div class="input">
+        <div class="dropdown">
+            <p>Сортировка по</p>
+            <select class="dropdown" name="language" id="language">
+                <option value="name">Названию(А-Я)</option>
+                <option value="nameNo">Названию(Я-А)</option>
+            </select>
+        </div>
+        <div class="search">
+            <input class="search" type="text" placeholder="Искать здесь...">
+            <button type="submit"></button>
+        </div>
+    </div>
+    <div>
+    </div>
+    <div class="table">
+        <div class="flex-wrapper-two">
+            <div class="td"><p class="standart-b">Регион</p></div>
+            <div class="td-two"><p class="standart-b">Регион</p></div>
+            <div class="td"><p class="standart-b">Регион</p></div>
+            <div class="td"><p class="standart-b">Регион</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td-two"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td-two"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td-two"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td-two"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td-two"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td-two"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td-two"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+            <div class="td"><p class="standart">Регион</p></div>
+        </div>
+    </div>
+    <img
+            alt=""
+            class="dots"
+            src="https://static.overlay-tech.com/assets/3ff18855-81fc-43c4-a398-3d3252f497ef.svg"
+    />
+</div>
+
 </body>
 </html>

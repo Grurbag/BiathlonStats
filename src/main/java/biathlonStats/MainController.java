@@ -25,11 +25,11 @@ public class MainController {
 
   @GetMapping
   public String main(Map<String, Object> model) {
-    Iterable<Sportsman> sportsmanStat = biathlonstats.findAll();
+   /* Iterable<Sportsman> sportsmanStat = biathlonstats.findAll();
     for (Sportsman stat : sportsmanStat) {
       System.out.println(stat.getName());
     }
-    model.put("biathlonStats", sportsmanStat);
+    model.put("biathlonStats", sportsmanStat);*/
     return "main";
   }
 }
