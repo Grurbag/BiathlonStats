@@ -1,52 +1,116 @@
-<!DOCTYPE html>
 <html>
-<!--  This source code is exported from pxCode, you can get more document from https://www.pxcode.io  -->
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-            crossorigin="anonymous"
-    />
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <!-- Please DO NOT remove this line, all link and script tags will be merged to here -->
-
-    <link rel="stylesheet" type="text/css" href="/css/common.css" />
-    <link rel="stylesheet" type="text/css" href="/css/fonts.css" />
-
-    <link rel="stylesheet" type="text/css" href="/css/UntitledPage.css" />
-
-    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/px2code/posize/build/v1.01.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
-<body class="flex-column">
-<div class="untitled-page root">
-    /*This group structure is not ready for flow layout, please resolve the ❗alone items in pxCode editor.*/<img
-        src="/assets/00d001889b45fe18a28a87bba00af461.png"
-        alt="alt text"
-        class="image"
-/>
-    <div class="rect1"></div>
-    <div class="info">Соревнования  </div>
-    <div class="info1">Тренеры</div>
-    <img src="/assets/bac423b967a2e0a8044579ab9fd32653.png" alt="alt text" class="icon" /><px-grid
-        x="742fr minmax(0px, max-content) 560fr"
-        y="66px minmax(0px, max-content) 706fr"
-        absolute="true"
-><h2 class="medium_title">Главная</h2></px-grid
->
-    <div class="info2">спорткомплексы</div>
-    <div class="info3">Регионы</div>
-    <div class="info4">Спортсмены</div>
+<body>
+<div class="row">
+    <a class="buttonBox col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
+    <a class="buttonBox col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
+    <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Регионы</h2></a>
+    <a class="buttonBox col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
+    <a class="buttonBox col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
+    <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
+    <img
+            alt=""
+            class="mask  col-md"
+            src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
+    />
 </div>
-<script type="text/javascript">
-      AOS.init();
-    </script>
+
+<div class="flex-wrapper-one">
+    <a class="regiony" href="region.html">Спортсмены</a>
+    <div class="input">
+        <div class="dropdown">
+            <p>Сортировка по</p>
+            <select class="dropdown" id="language" name="language">
+                <option value="name">Названию(А-Я)</option>
+                <option value="nameNo">Названию(Я-А)</option>
+            </select>
+        </div>
+        <div class="button-two">
+            <p class="button">Сравнить спортсменов</p>
+        </div>
+        <div class="search">
+            <input class="search" placeholder="Искать здесь..." type="text">
+            <button type="submit"></button>
+        </div>
+    </div>
+    <div>
+    </div>
+    <div class="table">
+        <div class="flex-wrapper-two">
+            <div class="td-man"><p class="standart-b">ФИО</p></div>
+            <div class="td-man"><p class="standart-b">Пол</p></div>
+            <div class="td-man"><p class="standart-b">Год</p></div>
+            <div class="td-man"><p class="standart-b">Регион</p></div>
+            <div class="td-man"><p class="standart-b">Звание</p></div>
+            <div class="td-man"><p class="standart-b">Учреждение</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td-man"><p class="standart">ФИО</p></div>
+            <div class="td-man"><p class="standart">Пол</p></div>
+            <div class="td-man"><p class="standart">Год</p></div>
+            <div class="td-man"><p class="standart">Регион</p></div>
+            <div class="td-man"><p class="standart">Звание</p></div>
+            <div class="td-man"><p class="standart">Учреждение</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td-man"><p class="standart">ФИО</p></div>
+            <div class="td-man"><p class="standart">Пол</p></div>
+            <div class="td-man"><p class="standart">Год</p></div>
+            <div class="td-man"><p class="standart">Регион</p></div>
+            <div class="td-man"><p class="standart">Звание</p></div>
+            <div class="td-man"><p class="standart">Учреждение</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td-man"><p class="standart">ФИО</p></div>
+            <div class="td-man"><p class="standart">Пол</p></div>
+            <div class="td-man"><p class="standart">Год</p></div>
+            <div class="td-man"><p class="standart">Регион</p></div>
+            <div class="td-man"><p class="standart">Звание</p></div>
+            <div class="td-man"><p class="standart">Учреждение</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td-man"><p class="standart">ФИО</p></div>
+            <div class="td-man"><p class="standart">Пол</p></div>
+            <div class="td-man"><p class="standart">Год</p></div>
+            <div class="td-man"><p class="standart">Регион</p></div>
+            <div class="td-man"><p class="standart">Звание</p></div>
+            <div class="td-man"><p class="standart">Учреждение</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td-man"><p class="standart">ФИО</p></div>
+            <div class="td-man"><p class="standart">Пол</p></div>
+            <div class="td-man"><p class="standart">Год</p></div>
+            <div class="td-man"><p class="standart">Регион</p></div>
+            <div class="td-man"><p class="standart">Звание</p></div>
+            <div class="td-man"><p class="standart">Учреждение</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td-man"><p class="standart">ФИО</p></div>
+            <div class="td-man"><p class="standart">Пол</p></div>
+            <div class="td-man"><p class="standart">Год</p></div>
+            <div class="td-man"><p class="standart">Регион</p></div>
+            <div class="td-man"><p class="standart">Звание</p></div>
+            <div class="td-man"><p class="standart">Учреждение</p></div>
+        </div>
+        <div class="flex-wrapper-two">
+            <div class="td-man"><p class="standart">ФИО</p></div>
+            <div class="td-man"><p class="standart">Пол</p></div>
+            <div class="td-man"><p class="standart">Год</p></div>
+            <div class="td-man"><p class="standart">Регион</p></div>
+            <div class="td-man"><p class="standart">Звание</p></div>
+            <div class="td-man"><p class="standart">Учреждение</p></div>
+        </div>
+    </div>
+    <img
+            alt=""
+            class="dots"
+            src="https://static.overlay-tech.com/assets/3ff18855-81fc-43c4-a398-3d3252f497ef.svg"
+    />
+</div>
+
 </body>
 </html>

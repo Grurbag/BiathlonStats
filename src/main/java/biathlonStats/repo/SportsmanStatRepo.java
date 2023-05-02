@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import biathlonStats.entity.Sportsman;
 
 @Repository
-public interface BiathlonStatsRepo extends JpaRepository<Sportsman, String> {
+public interface SportsmanStatRepo extends JpaRepository<Sportsman, String>  {
 
 }

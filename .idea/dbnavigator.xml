@@ -39,6 +39,7 @@
     <connection id="a1700814-8d11-457e-82f2-52fe550b918b" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.region" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.institution" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.sportsman" active-filter-id="EMPTY_FILTER" />
   </component>
