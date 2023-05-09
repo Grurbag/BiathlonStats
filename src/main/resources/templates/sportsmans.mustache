@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
@@ -12,11 +12,12 @@
     <a class="buttonBox col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
     <a class="buttonBox col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
     <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
-    <img
+    <a href="/registrationRedirect" ><img
             alt=""
             class="mask  col-md"
+
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
-    />
+    /></a>
 </div>
 
 <div class="flex-wrapper-one">
@@ -33,84 +34,66 @@
             <p class="button">Сравнить спортсменов</p>
         </div>
         <div class="search">
-            <input class="search" placeholder="Искать здесь..." type="text">
+            <input class="search" placeholder="Поиск..." type="text">
             <button type="submit"></button>
         </div>
     </div>
-    <div>
-    </div>
-    <div class="table">
-        <div class="flex-wrapper-two">
-            <div class="td-man"><p class="standart-b">ФИО</p></div>
-            <div class="td-man"><p class="standart-b">Пол</p></div>
-            <div class="td-man"><p class="standart-b">Год</p></div>
-            <div class="td-man"><p class="standart-b">Регион</p></div>
-            <div class="td-man"><p class="standart-b">Звание</p></div>
-            <div class="td-man"><p class="standart-b">Учреждение</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td-man"><p class="standart">ФИО</p></div>
-            <div class="td-man"><p class="standart">Пол</p></div>
-            <div class="td-man"><p class="standart">Год</p></div>
-            <div class="td-man"><p class="standart">Регион</p></div>
-            <div class="td-man"><p class="standart">Звание</p></div>
-            <div class="td-man"><p class="standart">Учреждение</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td-man"><p class="standart">ФИО</p></div>
-            <div class="td-man"><p class="standart">Пол</p></div>
-            <div class="td-man"><p class="standart">Год</p></div>
-            <div class="td-man"><p class="standart">Регион</p></div>
-            <div class="td-man"><p class="standart">Звание</p></div>
-            <div class="td-man"><p class="standart">Учреждение</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td-man"><p class="standart">ФИО</p></div>
-            <div class="td-man"><p class="standart">Пол</p></div>
-            <div class="td-man"><p class="standart">Год</p></div>
-            <div class="td-man"><p class="standart">Регион</p></div>
-            <div class="td-man"><p class="standart">Звание</p></div>
-            <div class="td-man"><p class="standart">Учреждение</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td-man"><p class="standart">ФИО</p></div>
-            <div class="td-man"><p class="standart">Пол</p></div>
-            <div class="td-man"><p class="standart">Год</p></div>
-            <div class="td-man"><p class="standart">Регион</p></div>
-            <div class="td-man"><p class="standart">Звание</p></div>
-            <div class="td-man"><p class="standart">Учреждение</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td-man"><p class="standart">ФИО</p></div>
-            <div class="td-man"><p class="standart">Пол</p></div>
-            <div class="td-man"><p class="standart">Год</p></div>
-            <div class="td-man"><p class="standart">Регион</p></div>
-            <div class="td-man"><p class="standart">Звание</p></div>
-            <div class="td-man"><p class="standart">Учреждение</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td-man"><p class="standart">ФИО</p></div>
-            <div class="td-man"><p class="standart">Пол</p></div>
-            <div class="td-man"><p class="standart">Год</p></div>
-            <div class="td-man"><p class="standart">Регион</p></div>
-            <div class="td-man"><p class="standart">Звание</p></div>
-            <div class="td-man"><p class="standart">Учреждение</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td-man"><p class="standart">ФИО</p></div>
-            <div class="td-man"><p class="standart">Пол</p></div>
-            <div class="td-man"><p class="standart">Год</p></div>
-            <div class="td-man"><p class="standart">Регион</p></div>
-            <div class="td-man"><p class="standart">Звание</p></div>
-            <div class="td-man"><p class="standart">Учреждение</p></div>
-        </div>
-    </div>
-    <img
-            alt=""
-            class="dots"
-            src="https://static.overlay-tech.com/assets/3ff18855-81fc-43c4-a398-3d3252f497ef.svg"
-    />
-</div>
+    <table class="iksweb">
+        <tbody>
+        <tr>
+            <td>Код</td>
+            <td>Фио</td>
+            <td>Пол</td>
+            <td>Регион</td>
+            <td>Учреждение</td>
+            <td>Звание</td>
+            <td>Дата рождения</td>
+        </tr>
+        {{#sportsman}}
+        <tr>
 
+            <div class="row">
+                <td>
+                    {{idsportsman}}
+                </td>
+                <td>
+                    {{name}} {{surname}}
+                </td>
+                <td>
+                   {{sex}}
+                </td>
+                <td>
+                    {{region}}
+                </td>
+                <td>
+                    {{institution}}
+                </td>
+                <td>
+                    {{rank}}
+                </td>
+                <td>
+                    {{birthdate}}
+                </td>
+
+            </div>
+
+        </tr>
+        {{/sportsman}}
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="buttonDaySwitchBox col-xl">
+        <a href="/prevPage" class="buttonDaySwitchBox2">
+            <h2 class="buttonTitle">Предыдущая страница</h2>
+        </a>
+    </div>
+    <div class="col-xl-7"></div>
+    <div class="buttonDaySwitchBox col-xl">
+        <a href="/nextPage" class="buttonDaySwitchBox2">
+            <h2 class="buttonTitle">Следующая страница</h2>
+        </a>
+    </div>
+</div>
 </body>
 </html>

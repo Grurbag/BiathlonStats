@@ -12,11 +12,11 @@
       <quote-values-containing-separator value="true" />
       <quote-all-values value="false" />
       <value-separator value="" />
-      <file-name value="" />
-      <file-location value="" />
+      <file-name value="coaches.sql" />
+      <file-location value="C:\Users\timos\Desktop\BiathlonStateDatabase" />
       <scope value="GLOBAL" />
       <destination value="FILE" />
-      <format value="EXCEL" />
+      <format value="SQL" />
       <charset value="windows-1251" />
       <charset value="windows-1251" />
     </export-instructions>
@@ -40,8 +40,11 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.region" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.coaches" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.institution" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.race" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.sportsman" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.race-sportsman" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
