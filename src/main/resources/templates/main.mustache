@@ -39,62 +39,47 @@
     </div>
     <div>
     </div>
-    <div class="table">
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart-b">Регион</p></div>
-            <div class="td-two"><p class="standart-b">Регион</p></div>
-            <div class="td"><p class="standart-b">Регион</p></div>
-            <div class="td"><p class="standart-b">Регион</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td-two"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td-two"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td-two"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td-two"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td-two"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td-two"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td-two"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-        </div>
-    </div>
+    <table class="iksweb">
+        <tbody>
+        <tr>
+            <td>Код</td>
+            <td>Название</td>
+            <td>Регион</td>
+        </tr>
+        {{#institution}}
+            <tr>
+                <div class="row">
+                    <td>
+                        <a href="/sportsmanRedirect">{{idinstitution}}</a>
+                    </td>
+                    <td>
+                        {{name}}
+                    </td>
+                    <td>
+                        {{region}}
+                    </td>
+                </div>
+            </tr>
+        {{/institution}}
+        </tbody>
+    </table>
     <img
             alt=""
             class="dots"
             src="https://static.overlay-tech.com/assets/3ff18855-81fc-43c4-a398-3d3252f497ef.svg"
     />
-</div>
-
+    <div class="row">
+        <div class="buttonDaySwitchBox col-xl">
+            <a href="/prevPageInstitution" class="buttonDaySwitchBox2">
+                <h2 class="buttonTitle">Предыдущая страница</h2>
+            </a>
+        </div>
+        <div class="col-xl-7"></div>
+        <div class="buttonDaySwitchBox col-xl">
+            <a href="/nextPageInstitution" class="buttonDaySwitchBox2">
+                <h2 class="buttonTitle">Следующая страница</h2>
+            </a>
+        </div>
+    </div>
 </body>
 </html>

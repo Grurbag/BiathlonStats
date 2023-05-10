@@ -19,9 +19,9 @@
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
 </div>
-
 <div class="component-2">
-    <p class="fio-trenera">ФИО тренера</p>
+    {{#sportsman}}
+    <p class="fio-trenera">{{name}} {{surname}}</p>
     <div class="flex-wrapper-thr">
         <div class="flex-wrapper-four">
             <div class="flex-wrapper-six">
@@ -36,74 +36,56 @@
                 </div>
                 <div class="flex-wrapper-o">
                     <p class="trenery-sportsmena-trener-trener-trener">
-                        Дата рождения:<br/>
+                        Дата рождения:{{birthdate}}<br/>
                         Место рождения:<br/>
-                        Регион:<br/>
+                        Регион:{{region}}<br/>
                         Рост:</br>
                         Вес:
+                    {{/sportsman}}
                     </p>
                 </div>
             </div>
             <div class="flex-wrapper-five">
                 <p class="trenery-sportsmena-trener-trener-trener">
                     Тренер:<br/>
-                    Тренер:<br/>
-                    Тренер:<br/>
-                    Тренер:
                 </p>
             </div>
             <div class="flex-wrapper-five">
                 <div class="table-mini">
-                    <div class="flex-wrapper-six">
-                        <div class="td-mini"><p class="standart-b">ФИО</p></div>
-                        <div class="td-mini"><p class="standart-b">Пол</p></div>
-                        <div class="td-mini"><p class="standart-b">Год</p></div>
-                        <div class="td-mini"><p class="standart-b">Регион</p></div>
-                        <div class="td-mini"><p class="standart-b">Звание</p></div>
-                        <div class="td-mini"><p class="standart-b">Учреждение</p></div>
-                    </div>
                     <div class="flex-wrapper-two">
-                        <div class="td-mini"><p class="standart">ФИО</p></div>
-                        <div class="td-mini"><p class="standart">Пол</p></div>
-                        <div class="td-mini"><p class="standart">Год</p></div>
-                        <div class="td-mini"><p class="standart">Регион</p></div>
-                        <div class="td-mini"><p class="standart">Звание</p></div>
-                        <div class="td-mini"><p class="standart">Учреждение</p></div>
-                    </div>
-                    <div class="flex-wrapper-two">
-                        <div class="td-mini"><p class="standart">ФИО</p></div>
-                        <div class="td-mini"><p class="standart">Пол</p></div>
-                        <div class="td-mini"><p class="standart">Год</p></div>
-                        <div class="td-mini"><p class="standart">Регион</p></div>
-                        <div class="td-mini"><p class="standart">Звание</p></div>
-                        <div class="td-mini"><p class="standart">Учреждение</p></div>
+                        {{#sportsmanStat}}
+                        <div class="td-mini"><p class="standart">Количество гонок: {{raceNumber}}</p></div>
+                        <div class="td-mini"><p class="standart">Стрельба: {{accuracy}}%</p></div>
+                        <div class="td-mini"><p class="standart">Стрельба лежа: {{layingAccuracy}}%</p></div>
+                        <div class="td-mini"><p class="standart">Стрельба стоя: {{standingAccuracy}}%</p></div>
+                        {{/sportsmanStat}}
                     </div>
                 </div>
             </div>
             <div class="flex-wrapper-five">
                 <div class="table-mini">
                     <div class="flex-wrapper-two">
-                        <div class="td-mini"><p class="standart-b">ФИО</p></div>
-                        <div class="td-mini"><p class="standart-b">Пол</p></div>
-                        <div class="td-mini"><p class="standart-b">Год</p></div>
-                        <div class="td-mini"><p class="standart-b">Регион</p></div>
-                        <div class="td-mini"><p class="standart-b">Звание</p></div>
+                        <div class="td-mini"><p class="standart-b">Сезон</p></div>
+                        <div class="td-mini"><p class="standart-b">Дата</p></div>
+                        <div class="td-mini"><p class="standart-b">Место проведения</p></div>
+                        <div class="td-mini"><p class="standart-b">Тип гонки</p></div>
+                        <div class="td-mini"><p class="standart-b">Место</p></div>
                         <div class="td-mini"><p class="standart-b">Учреждение</p></div>
                     </div>
                     <div class="flex-wrapper-two">
-                        <div class="td-mini"><p class="standart">ФИО</p></div>
-                        <div class="td-mini"><p class="standart">Пол</p></div>
-                        <div class="td-mini"><p class="standart">Год</p></div>
-                        <div class="td-mini"><p class="standart">Регион</p></div>
-                        <div class="td-mini"><p class="standart">Звание</p></div>
+                        <div class="td-mini"><p class="standart">Сезон</p></div>
+                        <div class="td-mini"><p class="standart">Дата</p></div>
+                        <div class="td-mini"><p class="standart">Место проведения</p></div>
+                        <div class="td-mini"><p class="standart">Тип гонки</p></div>
+                        <div class="td-mini"><p class="standart">Место</p></div>
                         <div class="td-mini"><p class="standart">Учреждение</p></div>
                     </div>
                     <div class="flex-wrapper-two">
-                        <div class="td-mini"><p class="standart">ФИО</p></div>
-                        <div class="td-mini"><p class="standart">Пол</p></div>
-                        <div class="td-mini"><p class="standart">Год</p></div>
-                        <div class="td-mini"><p class="standart">Регион</p></div>
-                        <div class="td-mini"><p class="standart">Звание</p></div>
+                        <div class="td-mini"><p class="standart">Сезон</p></div>
+                        <div class="td-mini"><p class="standart">Дата</p></div>
+                        <div class="td-mini"><p class="standart">Место проведения</p></div>
+                        <div class="td-mini"><p class="standart">Тип гонки</p></div>
+                        <div class="td-mini"><p class="standart">Место</p></div>
                         <div class="td-mini"><p class="standart">Учреждение</p></div>
                     </div>
                 </div>
