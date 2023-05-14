@@ -1,9 +1,11 @@
 package biathlonStats;
 
 import biathlonStats.entity.Institution;
+import biathlonStats.entity.Region;
 import biathlonStats.entity.Sportsman;
 import biathlonStats.entity.SportsmanRace;
 import biathlonStats.repo.InstitutionStatRepo;
+import biathlonStats.repo.RegionStatRepo;
 import biathlonStats.repo.SportsmanRaceStatRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,11 +66,18 @@ public class MainController {
     }
   }
 
+  private String idsportsman;
+  private int idregion;
+  private int idinstitution;
+
   int start = 0;
   int end = 20;
 
   int startInstitution = 0;
   int endInstitution = 20;
+
+  int startRegion = 0;
+  int endRegion = 20;
 
   @Autowired
   private SportsmanStatRepo sportsmanStats;
@@ -78,6 +87,9 @@ public class MainController {
 
   @Autowired
   private SportsmanRaceStatRepo sportsmanRaceStats;
+
+  @Autowired
+  private RegionStatRepo regionStats;
 
   @GetMapping("/registration")
   public String registration() {
@@ -119,23 +131,50 @@ public class MainController {
     return "races";
   }
 
-  @GetMapping("/sportsmans")
-  public String sportsmans(Map < String, Object > model) {
+  @GetMapping("/region")
+  public String region(Map < String, Object > model) {
+    List<Region> regionStat = regionStats.findAll();
+    ArrayList<Sportsman> showinglist = new ArrayList<>();
+    for (Region region: regionStat) {
+      if (region.getIdregion() == this.idregion) {
+        model.put("region", region);
+        List<Sportsman> sportsmansList = sportsmanStats.findAll();
+        for (Sportsman sportsman: sportsmansList) {
+          if (sportsman.getRegion().equals(region.getName())){
+            showinglist.add(sportsman);
+          }
+        }
+        model.put("sportsmans", showinglist);
+        break;
+      }
 
-    List<Sportsman> sportsmanStat = sportsmanStats.findAll();
-    ArrayList<Sportsman> showingList = new ArrayList<>();
-    for (int i = start; i < end; i ++){
-      showingList.add(sportsmanStat.get(i));
     }
-    model.put("sportsman", showingList);
-    return "sportsmans";
+    return "region";
   }
 
-  private String idsportsman = "110604200300";
+  @GetMapping("/institution")
+  public String institution(Map < String, Object > model) {
+    List<Institution> institutionStat = institutionStats.findAll();
+    ArrayList<Sportsman> showinglist = new ArrayList<>();
+    for (Institution institution: institutionStat) {
+      if (institution.getIdinstitution() == this.idinstitution) {
+        model.put("institution", institution);
+        List<Sportsman> sportsmansList = sportsmanStats.findAll();
+        for (Sportsman sportsman: sportsmansList) {
+          if (sportsman.getInstitution().equals(institution.getName())){
+            showinglist.add(sportsman);
+          }
+        }
+        model.put("sportsmans", showinglist);
+        break;
+      }
+
+    }
+    return "institution";
+  }
 
   @GetMapping("/sportsman")
   public String sportsman(Map < String, Object > model) {
-
     List<Sportsman> sportsmanStat = sportsmanStats.findAll();
     List<SportsmanRace> sportsmanRaceStat = sportsmanRaceStats.findAll();
     ArrayList<SportsmanRace> sportsmanInRaces = new ArrayList<>();
@@ -157,6 +196,7 @@ public class MainController {
         layingAccuracy = layingAccuracy/raceNumber;
         accuracy = (standingAccuracy + layingAccuracy) / 2;
         stat stat1 = new stat(raceNumber, accuracy, standingAccuracy, layingAccuracy);
+        model.put("race", sportsmanInRaces);
         model.put("sportsman", stat);
         model.put("sportsmanStat", stat1);
         break;
@@ -166,15 +206,38 @@ public class MainController {
     return "sportsman";
   }
 
-  @GetMapping("/main")
+ @GetMapping("/main")
   public String main(Map<String, Object> model) {
-    List<Institution> institutionStat = institutionStats.findAll();
-    ArrayList<Institution> showingList = new ArrayList<>();
-    for (int i = start; i < end; i ++){
-      showingList.add(institutionStat.get(i));
+    List<Region> regionStat = regionStats.findAll();
+    ArrayList<Region> showingList = new ArrayList<>();
+    for (int i = startRegion; i < endRegion; i ++){
+      showingList.add(regionStat.get(i));
     }
-    model.put("institution", showingList);
+    model.put("region", showingList);
     return "main";
+  }
+
+  @GetMapping("/sportsmans")
+  public String sportsmans(Map < String, Object > model) {
+
+    List<Sportsman> sportsmanStat = sportsmanStats.findAll();
+    ArrayList<Sportsman> showingList = new ArrayList<>();
+    for (int i = start; i < end; i ++){
+      showingList.add(sportsmanStat.get(i));
+    }
+    model.put("sportsman", showingList);
+    return "sportsmans";
+  }
+
+  @GetMapping("/regions")
+  public String regions(Map<String, Object> model) {
+    List<Region> regionStat = regionStats.findAll();
+    ArrayList<Region> showingList = new ArrayList<>();
+    for (int i = startRegion; i < endRegion; i ++){
+      showingList.add(regionStat.get(i));
+    }
+    model.put("region", showingList);
+    return "regions";
   }
 
   @GetMapping(value = "/institutionsRedirect")
@@ -187,6 +250,10 @@ public class MainController {
     return "redirect:/main";
   }
 
+  @GetMapping(value = "/regionsRedirect")
+  public String regionsRedirect() {
+    return "redirect:/regions";
+  }
   @GetMapping(value = "/coachesRedirect")
   public String coachesRedirect() {
     return "redirect:/coaches";
@@ -244,18 +311,61 @@ public class MainController {
     startInstitution += 20;
     endInstitution += 20;
     if (endInstitution >= 60) {
-      endInstitution = 77;
+      startInstitution = 60;
+      endInstitution = 78;
     }
     return "redirect:/institutions";
+  }
+
+  @GetMapping(value = "/prevPageRegion")
+  public String prevPageRegion() {
+    if (startRegion !=0) {
+      startRegion -= 20;
+      endRegion -=20;
+    }
+    return "redirect:/regions";
+  }
+
+  @GetMapping(value = "/nextPageRegion")
+  public String nextPageRegion() {
+    startRegion += 20;
+    endRegion += 20;
+    if (endRegion >= 40) {
+      endRegion = 55;
+    }
+    return "redirect:/regions";
   }
 
   @GetMapping(value = "/sportsmanRedirect")
   public String sportsmanRedirect() {
     return "redirect:/sportsman";
   }
+
+  @GetMapping(value = "/regionRedirect")
+  public String regionRedirect() {
+    return "redirect:/region";
+  }
+
+  @GetMapping(value = "/institutionRedirect")
+  public String institutionRedirect() {
+    return "redirect:/institution";
+  }
+
   @PostMapping
-  public String goToSportsman(@RequestParam String idsportsman, Map<String, Object> model) {
-    this.idsportsman = idsportsman;
-    return "redirect:/sportsman";
+  public String goToStuff(@RequestParam(name = "idsportsman", required = false) String idsportsman,
+                          @RequestParam(name = "idregion", required = false) Integer idregion,
+                          @RequestParam(name = "idinstitution", required = false) Integer idinstitution) {
+    String goTo = "";
+    if (idsportsman != null) {
+      this.idsportsman = idsportsman;
+      goTo = "redirect:/sportsman";
+    } else if (idregion != null) {
+      this.idregion = idregion;
+      goTo = "redirect:/region";
+    } else if (idinstitution != null) {
+      this.idinstitution = idinstitution;
+      goTo = "redirect:/institution";
+    }
+    return goTo;
   }
 }

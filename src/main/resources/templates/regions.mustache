@@ -20,8 +20,10 @@
     /></a>
 </div>
 
+
+
 <div class="flex-wrapper-one">
-    <a class="regiony">Спорткомплексы</a>
+    <a class="regiony">Регионы</a>
     <div class="input">
         <div class="dropdown">
             <p>Сортировка по</p>
@@ -37,42 +39,40 @@
     </div>
     <div>
     </div>
+
     <table class="iksweb">
         <tbody>
         <tr>
             <td>Код</td>
             <td>Название</td>
-            <td>Регион</td>
         </tr>
-        {{#institution}}
+        {{#region}}
             <tr>
                 <div class="row">
                     <td>
-                        {{idinstitution}}
+                        {{idregion}}
+
                     </td>
                     <td>
                         <form method="post">
-                            <p style="text-align: center"><button name="idinstitution" value="{{idinstitution}}" type="submit">{{name}}</button>
+                            <p style="text-align: center"><button name="idregion" value="{{idregion}}" type="submit">{{name}}</button>
                         </form>
-                    </td>
-                    <td>
-                        {{region}}
                     </td>
                 </div>
             </tr>
-        {{/institution}}
+        {{/region}}
         </tbody>
     </table>
 </div>
 <div class="row">
     <div class="buttonDaySwitchBox col-xl">
-        <a href="/prevPageInstitution" class="buttonDaySwitchBox2">
+        <a href="/prevPageRegion" class="buttonDaySwitchBox2">
             <h2 class="buttonTitle">Предыдущая страница</h2>
         </a>
     </div>
     <div class="col-xl-7"></div>
     <div class="buttonDaySwitchBox col-xl">
-        <a href="/nextPageInstitution" class="buttonDaySwitchBox2">
+        <a href="/nextPageRegion" class="buttonDaySwitchBox2">
             <h2 class="buttonTitle">Следующая страница</h2>
         </a>
     </div>
