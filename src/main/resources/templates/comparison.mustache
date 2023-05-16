@@ -1,0 +1,197 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/chosen/chosen.min.css">
+    <script src="/jquery.min.js"></script>
+    <script src="/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="row">
+    <a class="buttonBox col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
+    <a class="buttonBox col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
+    <a class="buttonBox col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
+    <a class="buttonBox col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
+    <a class="buttonBox col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
+    <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
+    <a href="/registrationRedirect" ><img
+            alt=""
+            class="mask  col-md"
+
+            src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
+    /></a>
+</div>
+
+<div class="component-2-sp">
+    <div class="flex-wrapper-two-sp">
+        <div class="picture">
+            <div class="picture-big">
+                <div>
+                    <div class="icon-profile">
+                        <img
+                                alt=""
+                                class="mask"
+                                src="https://static.overlay-tech.com/assets/314c4c35-6cfd-401f-8163-6d9c4a8d9671.svg"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <select class="js-chosen" name="city" placeholder="Выберите спортсмена">
+            {{#sportsman}}
+                <form method="post">
+                    <p style="text-align: center"><button name="idsportsman1" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
+                </form>
+            <option value="">{{idsportsman}} {{name}} {{surname}}</option>
+            {{/sportsman}}
+        </select>
+
+        <script>
+        $(document).ready(function(){
+            $('.js-chosen').chosen({
+                width: '100%',
+                no_results_text: 'Совпадений не найдено',
+                placeholder_text_single: 'Выберите спортсмена'
+            });
+        });
+        </script>
+    </div>
+    <div class="flex-wrapper-one-sp">
+        <div class="rezul-taty">
+            <div class="button-sp">
+                <div class="button-two">
+                    <p class="button-sp">Сравнить спортсменов</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-wrapper-two-sp2">
+        <div class="picture">
+            <div class="picture-big">
+                <div>
+                    <div class="icon-profile">
+                        <img
+                                alt=""
+                                class="mask"
+                                src="https://static.overlay-tech.com/assets/314c4c35-6cfd-401f-8163-6d9c4a8d9671.svg"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <select class="js-chosen" name="city" placeholder="Выберите город">
+            {{#sportsman}}
+                <form method="post">
+                    <p style="text-align: center"><button name="idsportsman2" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
+                </form>
+                <option value="">{{idsportsman}} {{name}} {{surname}}</option>
+            {{/sportsman}}
+        </select>
+
+        <link rel="stylesheet" href="/chosen/chosen.min.css">
+        <script src="/jquery.min.js"></script>
+        <script src="/chosen.jquery.min.js"></script>
+
+        <script>
+        $(document).ready(function(){
+            $('.js-chosen').chosen({
+                width: '100%',
+                no_results_text: 'Совпадений не найдено',
+                placeholder_text_single: 'Выберите спортсмена'
+            });
+        });
+</script>
+    </div>
+</div>
+
+<table class="iksweb">
+    <tbody>
+    <tr>
+        <div class="row">
+            <td>{{#sportsman1}}{{name}} {{surname}}{{/sportsman1}}</td>
+            <td>Сравнение</td>
+            <td>{{#sportsman2}}{{name}} {{surname}}{{/sportsman2}}</td>
+        </div>
+    </tr>
+        <tr>
+            <div class="row">
+                <td>
+                    {{#sportsmanStat1}}
+                    <a >Общая точность: {{accuracy}}%</a>
+                    {{/sportsmanStat1}}
+                </td>
+                <td>
+                    {{#comparison}}
+                        <a >{{accuracy}}%</a>
+                    {{/comparison}}
+                </td>
+                <td>
+                    {{#sportsmanStat2}}
+                        <a >Общая точность: {{accuracy}}%</a>
+                    {{/sportsmanStat2}}
+                </td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row">
+                <td>
+                    {{#sportsmanStat1}}
+                        <a >Точность на стойке: {{standingAccuracy}}%</a>
+                    {{/sportsmanStat1}}
+                </td>
+                <td>
+                    {{#comparison}}
+                        <a >{{standingAccuracy}}%</a>
+                    {{/comparison}}
+                </td>
+                <td>
+                    {{#sportsmanStat2}}
+                        <a >Точность на стойке: {{standingAccuracy}}%</a>
+                    {{/sportsmanStat2}}
+                </td>
+            </div>
+        </tr>
+        <tr>
+            <div class="row">
+                <td>
+                {{#sportsmanStat1}}
+                    <a >Точность на лежке: {{layingAccuracy}}%</a>
+                {{/sportsmanStat1}}
+                </td>
+                <td>
+                    {{#comparison}}
+                        <a >{{layingAccuracy}}%</a>
+                    {{/comparison}}
+                </td>
+                <td>
+                    {{#sportsmanStat2}}
+                        <a >Точность на лежке: {{layingAccuracy}}%</a>
+                    {{/sportsmanStat2}}
+                </td>
+            </div>
+        </tr>
+    <tr>
+        <div class="row">
+            <td>
+            {{#sportsmanStat1}}
+                <a >{{raceNumber}}</a>
+            {{/sportsmanStat1}}
+            </td>
+            <td>
+                {{#comparison}}
+                    <a >{{raceNumber}}</a>
+                {{/comparison}}
+            </td>
+            <td>
+                {{#sportsmanStat2}}
+                    <a >Гонки: {{raceNumber}}</a>
+                {{/sportsmanStat2}}
+            </td>
+        </div>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

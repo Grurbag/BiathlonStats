@@ -38,72 +38,54 @@
             <button type="submit"></button>
         </div>
     </div>
-    <div>
-    </div>
-    <div class="table">
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart-b">Гонка</p></div>
-            <div class="td"><p class="standart-b">Категория</p></div>
-            <div class="td"><p class="standart-b">Регион</p></div>
-            <div class="td"><p class="standart-b">Дата</p></div>
-            <div class="td"><p class="standart-b">Время старта</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Гонка</p></div>
-            <div class="td"><p class="standart">Категория</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Дата</p></div>
-            <div class="td"><p class="standart">Время старта</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Гонка</p></div>
-            <div class="td"><p class="standart">Категория</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Дата</p></div>
-            <div class="td"><p class="standart">Время старта</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Гонка</p></div>
-            <div class="td"><p class="standart">Категория</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Дата</p></div>
-            <div class="td"><p class="standart">Время старта</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Гонка</p></div>
-            <div class="td"><p class="standart">Категория</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Дата</p></div>
-            <div class="td"><p class="standart">Время старта</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Гонка</p></div>
-            <div class="td"><p class="standart">Категория</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Дата</p></div>
-            <div class="td"><p class="standart">Время старта</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Гонка</p></div>
-            <div class="td"><p class="standart">Категория</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Дата</p></div>
-            <div class="td"><p class="standart">Время старта</p></div>
-        </div>
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart">Гонка</p></div>
-            <div class="td"><p class="standart">Категория</p></div>
-            <div class="td"><p class="standart">Регион</p></div>
-            <div class="td"><p class="standart">Дата</p></div>
-            <div class="td"><p class="standart">Время старта</p></div>
-        </div>
-    </div>
-    <img
-            alt=""
-            class="dots"
-            src="https://static.overlay-tech.com/assets/3ff18855-81fc-43c4-a398-3d3252f497ef.svg"
-    />
 </div>
+<table class="iksweb">
+    <tbody>
+    <tr>
+        <td>Код</td>
+        <td>Название</td>
+        <td>Регион</td>
+        <td>Дата</td>
+        <td>Время</td>
+    </tr>
+    {{#race}}
+        <tr>
 
+            <div class="row">
+                <td>
+                    <a >{{idrace}}</a>
+                </td>
+                <td><form method="post">
+                    <p style="text-align: center"><button name="idrace" value="{{idrace}}" type="submit">{{name}}</button>
+                </form>
+                </td>
+                <td>
+                    {{region}}
+                </td>
+                <td>
+                    {{date}}
+                </td>
+                <td>
+                    {{time}}
+                </td>
+            </div>
+        </tr>
+    {{/race}}
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="buttonDaySwitchBox col-xl">
+        <a href="/prevPageRace" class="buttonDaySwitchBox2">
+            <h2 class="buttonTitle">Предыдущая страница</h2>
+        </a>
+    </div>
+    <div class="col-xl-7"></div>
+    <div class="buttonDaySwitchBox col-xl">
+        <a href="/nextPageRace" class="buttonDaySwitchBox2">
+            <h2 class="buttonTitle">Следующая страница</h2>
+        </a>
+    </div>
+</div>
 </body>
 </html>

@@ -5,13 +5,15 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
+@IdClass(SportsmanRaceId.class)
 @Table(name = "racesportsman", schema = "biathlonstats")
 public class SportsmanRace {
 
     @Id
     @GenericGenerator(name = "increment", strategy = "increment")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long idrace;
+    private int idrace;
+    @Id
     private String idsportsman;
     private String place;
     private String datetime;
@@ -21,7 +23,7 @@ public class SportsmanRace {
     public SportsmanRace() {
     }
 
-    public SportsmanRace(long idrace, String idsportsman, String place, String datetime, int stading_accuracy, int laying_accuracy) {
+    public SportsmanRace(int idrace, String idsportsman, String place, String datetime, int stading_accuracy, int laying_accuracy) {
         this.idrace = idrace;
         this.idsportsman = idsportsman;
         this.place = place;
@@ -50,7 +52,7 @@ public class SportsmanRace {
         return layingaccuracy;
     }
 
-    public void setIdrace(long idrace) {
+    public void setIdrace(int idrace) {
         this.idrace = idrace;
     }
 

@@ -19,74 +19,48 @@
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
 </div>
-
-<p class="competition">Название соревнования</p>
-<div class="table">
-    <div class="flex-wrapper-two">
-        <div class="td-man"><p class="standart-b">Место</p></div>
-        <div class="td-man"><p class="standart-b">ФИО</p></div>
-        <div class="td-man"><p class="standart-b">Год рождения</p></div>
-        <div class="td-man"><p class="standart-b">Регион</p></div>
-        <div class="td-man"><p class="standart-b">Штрафы</p></div>
-        <div class="td-man"><p class="standart-b">Время</p></div>
-    </div>
-    <div class="flex-wrapper-two">
-        <div class="td-man"><p class="standart">Место</p></div>
-        <div class="td-man"><p class="standart">ФИО</p></div>
-        <div class="td-man"><p class="standart">Год рождения</p></div>
-        <div class="td-man"><p class="standart">Регион</p></div>
-        <div class="td-man"><p class="standart">Штрафы</p></div>
-        <div class="td-man"><p class="standart">Время</p></div>
-    </div>
-    <div class="flex-wrapper-two">
-        <div class="td-man"><p class="standart">Место</p></div>
-        <div class="td-man"><p class="standart">ФИО</p></div>
-        <div class="td-man"><p class="standart">Год рождения</p></div>
-        <div class="td-man"><p class="standart">Регион</p></div>
-        <div class="td-man"><p class="standart">Штрафы</p></div>
-        <div class="td-man"><p class="standart">Время</p></div>
-    </div>
-    <div class="flex-wrapper-two">
-        <div class="td-man"><p class="standart">Место</p></div>
-        <div class="td-man"><p class="standart">ФИО</p></div>
-        <div class="td-man"><p class="standart">Год рождения</p></div>
-        <div class="td-man"><p class="standart">Регион</p></div>
-        <div class="td-man"><p class="standart">Штрафы</p></div>
-        <div class="td-man"><p class="standart">Время</p></div>
-    </div>
-    <div class="flex-wrapper-two">
-        <div class="td-man"><p class="standart">Место</p></div>
-        <div class="td-man"><p class="standart">ФИО</p></div>
-        <div class="td-man"><p class="standart">Год рождения</p></div>
-        <div class="td-man"><p class="standart">Регион</p></div>
-        <div class="td-man"><p class="standart">Штрафы</p></div>
-        <div class="td-man"><p class="standart">Время</p></div>
-    </div>
-    <div class="flex-wrapper-two">
-        <div class="td-man"><p class="standart">Место</p></div>
-        <div class="td-man"><p class="standart">ФИО</p></div>
-        <div class="td-man"><p class="standart">Год рождения</p></div>
-        <div class="td-man"><p class="standart">Регион</p></div>
-        <div class="td-man"><p class="standart">Штрафы</p></div>
-        <div class="td-man"><p class="standart">Время</p></div>
-    </div>
-    <div class="flex-wrapper-two">
-        <div class="td-man"><p class="standart">Место</p></div>
-        <div class="td-man"><p class="standart">ФИО</p></div>
-        <div class="td-man"><p class="standart">Год рождения</p></div>
-        <div class="td-man"><p class="standart">Регион</p></div>
-        <div class="td-man"><p class="standart">Штрафы</p></div>
-        <div class="td-man"><p class="standart">Время</p></div>
-    </div>
-    <div class="flex-wrapper-two">
-        <div class="td-man"><p class="standart">Место</p></div>
-        <div class="td-man"><p class="standart">ФИО</p></div>
-        <div class="td-man"><p class="standart">Год рождения</p></div>
-        <div class="td-man"><p class="standart">Регион</p></div>
-        <div class="td-man"><p class="standart">Штрафы</p></div>
-        <div class="td-man"><p class="standart">Время</p></div>
-    </div>
+<div class="component-2">
+    {{#race}}
+        <p class="fio-trenera">{{name}}</p>
+    <div class="flex-wrapper-thr">
+    <div class="flex-wrapper-four">
+    <div class="flex-wrapper-six">
+    <div class="flex-wrapper-o">
+    <p class="trenery-sportsmena-trener-trener-trener">
+        Дата:{{date}}<br/>
+        Время старта:{{time}}<br/>
+    {{/race}}
+</p>
 </div>
+</div>
+</div>
+</div>
+</div>
+<table class="iksweb">
+    <tbody>
+    <tr>
+        <td>Спортсмен</td>
+        <td>Точность стоя</td>
+        <td>Точность лежа</td>
+    </tr>
+    {{#sportsmanrace}}
+        <tr>
+            <div class="row">
+                <td><form method="post">
+                    <p style="text-align: center"><button name="idrace" value="{{idsportsman}}" type="submit">{{idsportsman}}</button>
+                </form>
+                </td>
+                <td>
+                    {{standingaccuracy}}
+                </td>
+                <td>
+                    {{layingaccuracy}}
+                </td>
+            </div>
+        </tr>
+    {{/sportsmanrace}}
+    </tbody>
+</table>
 
 </body>
 </html>

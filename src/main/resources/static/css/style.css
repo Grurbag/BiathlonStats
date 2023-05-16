@@ -92,7 +92,7 @@ justify-content: center;
 
 }
 .about-gallery-pricin {
-width: 17%;
+width: 18%;
 color: var(--black);
 text-transform: uppercase;
 margin-top: 8px;
@@ -182,11 +182,8 @@ flex-wrap: wrap;
 .table-mini {
 display: flex;
 flex-direction: column;
-align-items: center;
 justify-content: space-evenly;
-align-content: center;
-align-self: center;
-flex-wrap: wrap;
+
 }
 
 .td {
@@ -211,6 +208,16 @@ display: flex;
 align-items: center;
 align-self: stretch;
 border: 1px solid var(--neutral-2);
+width: 150%
+}
+.td-sp{
+    display: flex;
+    align-self: stretch;
+    border: 1px solid var(--neutral-2);
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .td-coach {
 padding: 15px 160px 14.95px 17px;
@@ -243,43 +250,42 @@ align-items: center;
 align-self: stretch;
 border: 1px solid var(--neutral-2);
 }
-.tableHeader {
-    color: inherit;
-    font-family: inherit;
-    border-collapse: collapse;
-    font-size: 14px;
-    line-height: 30px;
-    text-align: left;
-    border-bottom: none;
-    cursor: default;
-    background-color: #f1f1f1;
-    }
-
-.tableSportsman {
-line-height: 1.2;
-    color: inherit;
-    font-family: inherit;
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
 .flex-wrapper-two {
-    line-height: 1.2;
-    color: inherit;
-    border-collapse: collapse;
-    cursor: pointer;
-    white-space: nowrap;
-    padding: 10px 10px 10px 20px;
-    font-size: 13px;
-    font-family: Verdana;
-    vertical-align: top;
-    border-bottom: 1px solid #D2DAE1;
+    display: flex;
+    align-items: flex-start;
+}
+.flex-wrapper-five {
+margin-top:10px;
+  background-color: rgba(110, 56, 247, 0.12);
+  border-radius: 10px;
+  padding: 19px 0 26px 15px;
+
+}
+.trenery-sportsmena-trener-trener-trener {
+  font-family: "Rubik";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 40px;
+  color: var(--black);
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+}
+.flex-wrapper-thr {
+  display: flex;
+  align-items: flex-start;
+}
+.flex-wrapper-six {
+  display: flex;
+  align-items: center;
+}
+.flex-wrapper-four {
+  margin-right: 30px;
+
 }
 .frame-2 {
 display: flex;
 }
-
 .flex-wrapper-one {
 margin-bottom: 0.96px;
 display: flex;
@@ -294,6 +300,25 @@ align-self: center;
 flex-direction: row;
 justify-content: center;
 align-items: baseline;
+}
+.flex-wrapper-o {
+  background-color: rgba(110, 56, 247, 0.12);
+  border-radius: 10px;
+  padding: 0 400px 40px 27px;
+  display: flex;
+  align-items: flex-start;
+  height:200px;
+  margin-left:15px;
+}
+.flex-wrapper-cabinet {
+  background-color: rgba(110, 56, 247, 0.12);
+  border-radius: 10px;
+  padding: 0 400px 40px 27px;
+  display: flex;
+  align-items: flex-start;
+  height:200px;
+  margin-left:15px;
+  flex-direction: column;
 }
 .dots {
 width: 80px;
@@ -323,7 +348,7 @@ font-family: var(--rubik-16-regular-family);
 font-size: var(--rubik-16-regular-size);
 font-weight: var(--rubik-16-regular-weight);
 line-height: var(--rubik-16-regular-line-height);
-margin-left: 30%;
+margin-left: 40%;
 flex-direction:row;
 justify-content: center;
 }
@@ -332,7 +357,7 @@ height:30px;
 display:flex;
 flex-direction:row;
 align-items: baseline;
-margin-right:30%;
+margin-right:40%;
 justify-content: center;
 }
 
@@ -442,6 +467,7 @@ display: flex;
 align-items: center;
 margin-top: 50px;
 margin-left: 10px;
+justify-content: center;
 }
 .picture {
   margin-bottom: 40px;
@@ -627,44 +653,195 @@ align-items: baseline;
   color: var(--black);
   margin-bottom: 15px;
 }
-.flex-wrapper-thr {
-  display: flex;
-  align-items: flex-start;
-}
-.flex-wrapper-six {
-  display: flex;
-  align-items: center;
-}
-.flex-wrapper-four {
-  margin-right: 30px;
-
-}
-.flex-wrapper-five {
-margin-top:10px;
-  background-color: rgba(110, 56, 247, 0.12);
-  border-radius: 10px;
-  padding: 19px 0 26px 15px;
-  display: flex;
-  align-items: flex-start;
-}
 .trenery-sportsmena-trener-trener-trener {
   font-family: "Rubik";
   font-size: 24px;
   font-weight: 400;
-  line-height: 43px;
+  line-height: 40px;
   color: var(--black);
   flex: 1;
   align-self: stretch;
   display: flex;
 }
-.flex-wrapper-o {
-  background-color: rgba(110, 56, 247, 0.12);
-  border-radius: 10px;
-  padding: 0 400px 32px 27px;
+.component-2-sp {
+ display: flex;
+     align-items: center;
+     flex-direction: row;
+     justify-content: space-between;
+}
+.flex-wrapper-two-sp {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+}
+
+.flex-wrapper-two-sp2 {
   display: flex;
-  align-items: flex-start;
-  height:200px;
-  margin-left:15px;
+      align-items: flex-end;
+      flex-direction: column;
+}
+.flex-wrapper-two-sp2:not(:last-of-type) {
+  margin-bottom: 23px;
+}
+
+.dropbox-sp {
+  margin-top: 5px;
+}
+
+.fio {
+  width: 500px;
+  background-color: rgba(238, 231, 254, 1);
+  border-radius: 10px;
+      /* padding: 19px 23px 17px 31px;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fio-sportsmena {
+  font-family: "Rubik";
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 43px;
+  color: var(--text);
+  text-align: center;
+  justify-content: center;
+}
+.statistika-vystuplenij-sportsmena-1 {
+  width: 99.07%;
+  height: 44.48%;
+  margin-left: 4px;
+  position: relative;
+}
+
+.flex-wrapper-one-sp {
+  border-radius: 10px;
+  padding: 0 1px 0 0;
+  position: relative;
+}
+.statistika-vystuplenij {
+  width: 500px;
+  font-family: "Rubik";
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 43px;
+  color: var(--black);
+  display: flex;
+  justify-content: center;
+}
+.sravnenie-vystuplenij {
+  width: 300px;
+  font-family: "Rubik";
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 43px;
+  color: var(--black);
+  display: flex;
+  justify-content: center;
+}
+.relative-wrapper-one {
+  width: 18.16%;
+  height: 82.58%;
+  margin-top: 54px;
+  margin-right: 32px;
+  position: relative;
+}
+.rezul-tat-sravnenija {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     align-content: center;
+     justify-content: center;
+     flex-wrap: nowrap;
+}
+
+.rezul-taty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+    margin-top: 380px;
+}
+.button-sp {
+  margin-bottom: 12.27px;
+  align-self: stretch;
+}
+.rezul-tat {
+    background-color: rgba(110, 56, 247, 0.12);
+    border-radius: 10px;
+}
+.statistika-vystuplenij-sportsmena-2 {
+  width: 84.42%;
+  height: 44.18%;
+  position: relative;
+}
+.rectangle-6 {
+  width: 513px;
+  height: 197px;
+  background-color: rgba(238, 231, 254, 1);
+  margin-left: -6px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.statistika-vystuplenij-two {
+  height: 197px;
+  width: 513px;
+  font-family: "Rubik";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 43px;
+  color: var(--black);
+  display: flex;
+  position: absolute;
+  left: -6px;
+  top: -49px;
+}
+.dropdown-sp {
+height:30px;
+display:flex;
+flex-direction:row;
+align-items: baseline;
+justify-content: center;
+    margin-bottom: 25px;
+}
+.dropdown-sp {
+  color: var(--text);
+  font-family: var(--rubik-16-regular-family);
+  font-size: var(--rubik-16-regular-size);
+  font-weight: var(--rubik-16-regular-weight);
+  line-height: var(--rubik-16-regular-line-height);
+}
+
+.icon-down {
+  padding: 7.5px 5px 6.32px;
+  display: flex;
+  align-items: center;
+}
+.shape {
+  flex: 1;
+  align-self: stretch;
+  object-fit: cover;
+}
+
+.button-two {
+  background-color: rgba(110, 56, 247, 1);
+  border-radius: 4px;
+  padding: 14px 18.2px 13.73px 16.8px;
+  display: flex;
+  align-items: center;
+}
+.button-sp {
+  color: var(--background);
+  flex: 1;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: var(--link-family);
+  font-size: var(--link-size);
+  font-weight: var(--link-weight);
+  line-height: var(--link-line-height);
 }
 table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
 table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#0f65a3;}

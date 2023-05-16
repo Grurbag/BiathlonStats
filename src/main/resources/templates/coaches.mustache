@@ -35,70 +35,49 @@
             <button type="submit"></button>
         </div>
     </div>
-    <div>
-    </div>
-    <div class="table">
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart-b">Код</p></div>
-            <div class="td"><p class="standart-b">ФИО</p></div>
-            <div class="td"><p class="standart-b">Регион</p></div>
-            <div class="td"><p class="standart-b">Спорткомплекс</p></div>
-        </div>
-        {{#institution}}
-            <div class="row">
-                <div class="col"><p class="standart-b">{{idinstitution}}</p></div>
-                <div class="col"><p class="standart-b">{{Name}}</p></div>
-                <div class="col"><p class="standart-b">{{Region}}</p></div>
-            </div>
-        {{/institution}}
-        <div class="flex-wrapper-two">
-            <div class="td"><p class="standart-b">Код</p></div>
-            <div class="td"><p class="standart-b">ФИО</p></div>
-            <div class="td"><p class="standart-b">Регион</p></div>
-            <div class="td"><p class="standart-b">Спорткомплекс</p></div>
-        </div>
-        <!-- <div class="flex-wrapper-two">
-             <div class="td"><p class="standart-b">Код</p></div>
-             <div class="td"><p class="standart-b">Название</p></div>
-             <div class="td"><p class="standart-b">Регион</p></div>
-         </div>
-         <div class="flex-wrapper-two">
-             <div class="td"><p class="standart-b">Код</p></div>
-             <div class="td"><p class="standart-b">Название</p></div>
-             <div class="td"><p class="standart-b">Регион</p></div>
-         </div>
-         <div class="flex-wrapper-two">
-             <div class="td"><p class="standart-b">Код</p></div>
-             <div class="td"><p class="standart-b">Название</p></div>
-             <div class="td"><p class="standart-b">Регион</p></div>
-         </div>
-         <div class="flex-wrapper-two">
-             <div class="td"><p class="standart-b">Код</p></div>
-             <div class="td"><p class="standart-b">Название</p></div>
-             <div class="td"><p class="standart-b">Регион</p></div>
-         </div>
-         <div class="flex-wrapper-two">
-             <div class="td"><p class="standart-b">Код</p></div>
-             <div class="td"><p class="standart-b">Название</p></div>
-             <div class="td"><p class="standart-b">Регион</p></div>
-         </div>
-         <div class="flex-wrapper-two">
-             <div class="td"><p class="standart-b">Код</p></div>
-             <div class="td"><p class="standart-b">Название</p></div>
-             <div class="td"><p class="standart-b">Регион</p></div>
-         </div>
-         <div class="flex-wrapper-two">
-             <div class="td"><p class="standart-b">Код</p></div>
-             <div class="td"><p class="standart-b">Название</p></div>
-             <div class="td"><p class="standart-b">Регион</p></div>
-         </div>-->
-    </div>
-    <img
-            alt=""
-            class="dots"
-            src="https://static.overlay-tech.com/assets/3ff18855-81fc-43c4-a398-3d3252f497ef.svg"
-    />
 </div>
+<table class="iksweb">
+    <tbody>
+    <tr>
+        <td>Код</td>
+        <td>Фио</td>
+        <td>Регион</td>
+        <td>Учреждение</td>
+    </tr>
+    {{#coach}}
+        <tr>
 
+            <div class="row">
+                <td>
+                    <a >{{idcoach}}</a>
+                </td>
+                <td><form method="post">
+                    <p style="text-align: center"><button name="idcoach" value="{{idcoach}}" type="submit">{{name}}</button>
+                </form>
+                </td>
+                <td>
+                    {{region}}
+                </td>
+                <td>
+                    {{institution}}
+                </td>
+            </div>
+        </tr>
+    {{/coach}}
+    </tbody>
+</table>
+<div class="row">
+    <div class="buttonDaySwitchBox col-xl">
+        <a href="/prevPageCoach" class="buttonDaySwitchBox2">
+            <h2 class="buttonTitle">Предыдущая страница</h2>
+        </a>
+    </div>
+    <div class="col-xl-7"></div>
+    <div class="buttonDaySwitchBox col-xl">
+        <a href="/nextPageCoach" class="buttonDaySwitchBox2">
+            <h2 class="buttonTitle">Следующая страница</h2>
+        </a>
+    </div>
+</div>
 </body>
 </html>

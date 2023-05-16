@@ -21,7 +21,8 @@
 </div>
 
 <div class="component-2">
-    <p class="fio-trenera">ФИО тренера</p>
+    {{#coach}}
+    <p class="fio-trenera">ФИО тренера: {{name}}</p>
     <div class="flex-wrapper-thr">
         <div class="flex-wrapper-four">
             <div class="flex-wrapper-six">
@@ -36,10 +37,9 @@
                 </div>
                 <div class="flex-wrapper-o">
                     <p class="trenery-sportsmena-trener-trener-trener">
-                        Дата рождения:<br/>
-                        Место рождения:<br/>
-                        Регион:<br/>
-                        Учреждение:
+                        Регион:{{region}}<br/>
+                        Учреждение:{{institution}}<br/>
+                    {{/coach}}
                     </p>
                 </div>
             </div>

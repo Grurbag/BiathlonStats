@@ -21,7 +21,7 @@
 </div>
 
 <div class="flex-wrapper-one">
-    <a class="regiony" href="region.html">Спортсмены</a>
+    <a>Спортсмены</a>
     <div class="input">
         <div class="dropdown">
             <p>Сортировка по</p>
@@ -31,7 +31,7 @@
             </select>
         </div>
         <div class="button-two">
-            <p class="button">Сравнить спортсменов</p>
+            <a class="button" href="/comparisonRedirect"><h2 class="buttonTitle">Сравнить спортсменов</h2></a>
         </div>
         <div class="search">
             <input class="search" placeholder="Поиск..." type="text">
@@ -59,7 +59,6 @@
                 <td><form method="post">
                     <p style="text-align: center"><button name="idsportsman" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
                 </form>
-
                 </td>
                 <td>
                    {{sex}}
