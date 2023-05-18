@@ -19,17 +19,19 @@ public class SportsmanRace {
     private String datetime;
     private int standingaccuracy;
     private int layingaccuracy;
+    private int placesportsman;
 
     public SportsmanRace() {
     }
 
-    public SportsmanRace(int idrace, String idsportsman, String place, String datetime, int stading_accuracy, int laying_accuracy) {
+    public SportsmanRace(int idrace, String idsportsman, String place, String datetime, int stadingaccuracy, int layingaccuracy, int placesportsman) {
         this.idrace = idrace;
         this.idsportsman = idsportsman;
         this.place = place;
         this.datetime = datetime;
-        this.standingaccuracy = stading_accuracy;
-        this.layingaccuracy = laying_accuracy;
+        this.standingaccuracy = stadingaccuracy;
+        this.layingaccuracy = layingaccuracy;
+        this.placesportsman = placesportsman;
     }
 
     public long getIdrace() {
@@ -78,5 +80,13 @@ public class SportsmanRace {
 
     public void setDatetime(String datetime) {
         this.datetime = datetime;
+    }
+
+    public int getPlacesportsman() {
+        return placesportsman;
+    }
+
+    public void setPlacesportsman(int placesportsman) {
+        this.placesportsman = placesportsman;
     }
 }

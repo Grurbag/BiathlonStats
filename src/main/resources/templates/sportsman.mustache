@@ -68,31 +68,27 @@
         <th>Результаты гонок</th>
     </tr>
     <tr>
-        <td>Код</td>
-        <td>Название</td>
-        <td>Регион</td>
-        <td>Дата</td>
-        <td>Время</td>
+        <td>Место</td>
+        <td>Номер гонки</td>
+        <td>Точность стоя</td>
+        <td>Точность лежа</td>
     </tr>
     {{#race}}
         <tr>
-
             <div class="row">
                 <td>
-                    <a >{{idrace}}</a>
+                    <a >{{placesportsman}}</a>
                 </td>
-                <td><form method="post">
-                    <p style="text-align: center"><button name="idrace" value="{{ididrace}}" type="submit">{{name}}</button>
+                <td>
+                <form method="post">
+                    <p style="text-align: center"><button name="idrace" value="{{idrace}}" type="submit">{{idrace}}</button>
                 </form>
                 </td>
                 <td>
-                    {{region}}
+                    {{standingaccuracy}}
                 </td>
                 <td>
-                    {{date}}
-                </td>
-                <td>
-                    {{time}}
+                    {{layingaccuracy}}
                 </td>
             </div>
         </tr>

@@ -22,26 +22,56 @@
 
 <div class="frame-8">
     <div class="input">
-        <div class="dropdown">
-            <p>Выберите соревнование</p>
-            <select class="dropdown" id="language" name="language">
-                <option value="name">...</option>
-                <option value="nameNo">...</option>
-            </select>
-        </div>
         <div class="button-two">
-            <a href="resultCompetition.html" class="button">Предсказать результат</a>
-        </div>
-    </div>
-    <div class="flex-wrapper-three">
-        <div class="rectangle-win">
-            <p class="winner">
-                Победитель:</br>
-            </p>
+            <a href="/predictResult" class="button">Предсказать результат</a>
         </div>
     </div>
 </div>
-
+<div>
+    <form method="post" action = "/addSportsman">
+        <select class="js-select2" name="idaddedsportsman">
+            {{#sportsmanadd}}
+                <option value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
+            {{/sportsmanadd}}
+        </select>
+        <button type="submit">Добавить спортсмена</button>
+    </form>
+</div>
+<table class="iksweb">
+    <tbody>
+    <tr>
+        <td>Код</td>
+        <td>Фио</td>
+        <td>Пол</td>
+        <td>Дата рождения</td>
+        <td></td>
+    </tr>
+    {{#sportsman}}
+        <tr>
+            <div class="row">
+                <td>
+                    <a >{{idsportsman}}</a>
+                </td>
+                <td><form method="post">
+                    <p style="text-align: center"><button name="idsportsman" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
+                </form>
+                </td>
+                <td>
+                    {{sex}}
+                </td>
+                <td>
+                    {{birthdate}}
+                </td>
+                <td>
+                    <form method="post" action = "/deleteSportsman">
+                        <p style="text-align: center"><button name="idremovedsportsman" value="{{idsportsman}}" type="submit">Удалить</button>
+                    </form>
+                </td>
+            </div>
+        </tr>
+    {{/sportsman}}
+    </tbody>
+</table>
 
 </body>
 </html>

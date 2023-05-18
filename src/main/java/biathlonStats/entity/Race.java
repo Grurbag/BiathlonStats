@@ -19,7 +19,7 @@ public class Race {
     public Race() {
     }
 
-    public Race(int idrace, String name, String region, String date, String time) {
+    public Race(int idrace, String name, String region, String date, String time, int place) {
         this.idrace = idrace;
         this.name = name;
         this.region = region;

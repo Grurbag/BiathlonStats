@@ -1,7 +1,9 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -20,34 +22,49 @@
     /></a>
 </div>
 
-<div class="component-1">
-    <p class="sign-in">Вход</p>
-    <div class="flex-wrapper-two">
-        <div class="form">
-            <div class="input-sign">
-                <div class="input-default">
-                    <p class="placeholder">Email</p>
+<div class="container text-center">
+    <div>
+        <h1>User Registration - Sign Up</h1>
+    </div>
+    <form action="/process_register" th:object="${user}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-4 col-form-label">E-mail: </label>
+                <div class="col-8">
+                    <input type="email" th:field="*{email}" class="form-control" required />
                 </div>
             </div>
-            <div class="flex-wrapper-one">
-                <div class="input-sign">
-                    <div class="input-default">
-                        <p class="placeholder">Пароль</p>
-                    </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Password: </label>
+                <div class="col-8">
+                    <input type="password" th:field="*{password}" class="form-control"
+                           required minlength="6" maxlength="10"/>
                 </div>
-                <p class="forgot">забыли?</p>
             </div>
-            <div class="input-default">
-                <div class="button-big">
-                    <p class="button">Войти</p>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">First Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{firstName}" class="form-control"
+                           required minlength="2" maxlength="20"/>
                 </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Last Name: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{lastName}" class="form-control"
+                           required minlength="2" maxlength="20" />
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
         </div>
-    </div>
-    <div class="flex-wrapper-three">
-        <p class="dont-have-an-accoun">Нет аккаунта?</p>
-        <a href="registration.html" class="sign-up">Зарегистрироваться</a>
-    </div>
+    </form>
 </div>
 </body>
 </html>
