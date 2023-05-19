@@ -164,6 +164,11 @@ public class MainController {
         return "registration";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @GetMapping("/sighIn")
     public String sighIn() {
         return "sighIn";
