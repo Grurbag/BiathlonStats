@@ -159,7 +159,7 @@ public class MainController {
 
     @Autowired private RaceStatRepo raceStats;
 
-    @GetMapping("/registration")
+   /* @GetMapping("/registration")
     public String registration() {
         return "registration";
     }
@@ -172,7 +172,12 @@ public class MainController {
     @GetMapping("/sighIn")
     public String sighIn() {
         return "sighIn";
-    }
+    }*/
+
+   @GetMapping("/")
+   public String greeting() {
+       return "redirect:/main";
+   }
 
     @GetMapping("/predictResult")
     public String predictResult(Map<String, Object> model) {
@@ -559,7 +564,7 @@ public class MainController {
         return "redirect:/sportsmans";
     }
 
-    @GetMapping(value = "/registrationRedirect")
+    /*@GetMapping(value = "/registrationRedirect")
     public String registrationRedirect() {
         return "redirect:/registration";
     }
@@ -567,7 +572,7 @@ public class MainController {
     @GetMapping(value = "/sighInRedirect")
     public String sighInRedirect() {
         return "redirect:/sighIn";
-    }
+    }*/
 
     @GetMapping(value = "/comparisonRedirect")
     public String comparisonRedirect() {

@@ -2,6 +2,8 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -19,20 +21,21 @@
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
 </div>
-
-<div class="component-1">
-    <p class="sign-in">Регистрация</p>
-    <div class="flex-wrapper">
-        <div class="form">
-            <form action="/registration" method="post">
-                <div><label> Имя пользователя : <input type="text" name="username"/> </label></div>
-                <div><label> Пароль: <input type="password" name="password"/> </label></div>
-                {{#message}}{{message}}{{/message}}
-                <div><input type="submit" value="Зарегистрироваться"/></div>
-            </form>
-            <a href="/login">Войти</a>
+<div class="component-2">
+    <p class="fio-trenera">Личный кабинет</p>
+    <div class="flex-wrapper-thr">
+        <div class="flex-wrapper-four">
+            <div class="flex-wrapper-six">
+                <div class="flex-wrapper-cabinet">
+                    <p class="trenery-sportsmena-trener-trener-trener">
+                        Имя пользователя:<br/>
+                        Статус:<br/><br/>
+                    </p>
+                    <a href="signIn.html" class="trenery-sportsmena-trener-trener-trener">Выйти</a>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
-    </body>
-    </html>
+</div>
+</body>
+</html>
