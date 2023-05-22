@@ -159,21 +159,6 @@ public class MainController {
 
     @Autowired private RaceStatRepo raceStats;
 
-   /* @GetMapping("/registration")
-    public String registration() {
-        return "registration";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("/sighIn")
-    public String sighIn() {
-        return "sighIn";
-    }*/
-
    @GetMapping("/")
    public String greeting() {
        return "redirect:/main";
@@ -668,9 +653,6 @@ public class MainController {
     public String nextPageRace() {
         startRace += 20;
         endRace += 20;
-        if (endRace >= raceStats.count()) {
-            endRace = (int) raceStats.count();
-        }
         return "redirect:/races";
     }
 
