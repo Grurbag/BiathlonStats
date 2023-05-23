@@ -7,6 +7,9 @@ import java.util.*;
 
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -152,6 +155,8 @@ public class MainController {
     @Autowired private InstitutionStatRepo institutionStats;
 
     @Autowired private SportsmanRaceStatRepo sportsmanRaceStats;
+
+    @Autowired private SportsmanCoachStatRepo sportsmanCoachStats;
 
     @Autowired private CoachStatRepo coachStats;
 
@@ -392,19 +397,25 @@ public class MainController {
 
     @GetMapping("/coach")
     public String coach(Map<String, Object> model) {
-        List<Coach> coachStat = coachStats.findAll();
+        List<Coach> coaches = coachStats.findAll();
         ArrayList<Coach> showinglist = new ArrayList<>();
-        for (Coach coach : coachStat) {
+        for (Coach coach : coaches) {
             if (coach.getIdcoach() == this.idcoach) {
                 model.put("coach", coach);
-                /*List<Sportsman> sportsmansList = sportsmanStats.findAll();
-                for (Sportsman sportsman: sportsmansList) {
-                    if (sportsman.getRegion().equals(region.getName())){
-                        showinglist.add(sportsman);
+                List<Sportsman> sportsmansList = sportsmanStats.findAll();
+                model.put("sportsmans", showinglist);
+                break;
+            }
+        }
+        List<Sportsman> sportsmen = sportsmanStats.findAll();
+        List<SportsmanCoach> coachStat = sportsmanCoachStats.findAll();
+        for(SportsmanCoach sportsmanCoach: coachStat) {
+            if (this.idcoach == sportsmanCoach.getIdCoach()) {
+                for (Sportsman sportsman: sportsmen) {
+                    if (sportsmanCoach.getIdsportsman().equals(sportsman.getId_sportsman())) {
+                        model.put("sportsman", sportsman);
                     }
                 }
-                model.put("sportsmans", showinglist);*/
-                break;
             }
         }
         return "coach";
@@ -455,6 +466,17 @@ public class MainController {
 
     @GetMapping("/sportsman")
     public String sportsman(Map<String, Object> model) {
+        List<SportsmanCoach> coachStat = sportsmanCoachStats.findAll();
+        List<Coach> coaches = coachStats.findAll();
+        for(SportsmanCoach sportsmanCoach: coachStat) {
+            if (this.idsportsman.equals(sportsmanCoach.getIdsportsman())) {
+                for (Coach coach: coaches) {
+                    if (sportsmanCoach.getIdCoach() == coach.getIdcoach()) {
+                        model.put("coach", coach);
+                    }
+                }
+            }
+        }
         List<Sportsman> sportsmanStat = sportsmanStats.findAll();
         List<SportsmanRace> sportsmanRaceStat = sportsmanRaceStats.findAll();
         ArrayList<SportsmanRace> sportsmanInRaces = new ArrayList<>();
@@ -674,6 +696,18 @@ public class MainController {
     @GetMapping(value = "/resultRaceRedirect")
     public String resultRaceRedirect() {
         return "redirect:/resultRace";
+    }
+
+    @PostMapping("/sort")
+    public String sort(@RequestParam(name = "sort") String sort, Map<String, Object> model) {
+        if (sort.equals("Я-А")){
+            List<Sportsman> sportsmanStat = sportsmanStats.findAll(Sort.by(Sort.Direction.DESC, "name"));
+            model.put("sportsmans", sportsmanStat);
+        } else {
+            List<Sportsman> sportsmanStat = sportsmanStats.findAll();
+            model.put("sportsmans", sportsmanStat);
+        }
+        return "redirect:/sportmans";
     }
 
     @PostMapping("/addSportsman")

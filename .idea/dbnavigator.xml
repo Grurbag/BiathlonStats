@@ -33,10 +33,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="a1700814-8d11-457e-82f2-52fe550b918b" object-ref="schemas/biathlonstats/tables/racesportsman" />
-      <object connection-id="a1700814-8d11-457e-82f2-52fe550b918b" object-ref="schemas/biathlonstats/tables/race" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a1700814-8d11-457e-82f2-52fe550b918b" />
@@ -44,6 +41,7 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.userrole" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.region" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.sportsmancoach" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.users" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.racesportsman1" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="a1700814-8d11-457e-82f2-52fe550b918b" dataset="biathlonstats.coaches" active-filter-id="EMPTY_FILTER" />

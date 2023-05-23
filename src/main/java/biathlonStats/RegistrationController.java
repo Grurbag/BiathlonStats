@@ -4,7 +4,11 @@ import biathlonStats.entity.Role;
 import biathlonStats.entity.User;
 import biathlonStats.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +27,10 @@ public class RegistrationController {
     }
 
     @GetMapping("/personalArea")
-    public String personalArea() throws Exception {
-
+    public String personalArea(Map<String, Object> model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        model.put("user", currentPrincipalName);
         return "personalArea";
     }
 
@@ -38,29 +44,56 @@ public class RegistrationController {
         return "registration";
     }
 
-    @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
+    @PostMapping("/logIn")
+    public String logIn(User user, Map<String, Object> model) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
 
         if (userFromDb != null) {
-            model.put("message", "User exists!");
-            return "registration";
+            model.put("message", "Неправильно введенные данные, попробуйте еще раз");
+            return "login";
         }
+        return "personalArea";
+    }
 
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.ROLE_USER));
-        userRepo.save(user);
+    @PostMapping("/logOut")
+    public String logOut() {
+        SecurityContextHolder.clearContext();
+        return "/login";
+    }
 
-        return "redirect:/login";
+    @PostMapping("/registration")
+    public String addUser(User user, Map<String, Object> model) {
+            User userFromDb = userRepo.findByUsername(user.getUsername());
+
+            if (userFromDb != null) {
+                model.put("message", "Пользователь существует!");
+                return "registration";
+            }
+
+            user.setActive(true);
+            user.setRoles(Collections.singleton(Role.ROLE_USER));
+            userRepo.save(user);
+
+            return "redirect:/login";
     }
 
     @GetMapping(value = "/registrationRedirect")
     public String registrationRedirect() {
-        return "redirect:/registration";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/personalArea";
+        } else {
+            return "redirect:/registration";
+        }
     }
 
     @GetMapping(value = "/sighInRedirect")
     public String sighInRedirect() {
         return "redirect:/sighIn";
+    }
+
+    @GetMapping(value = "/personalAreaRedirect")
+    public String personalAreaRedirect() {
+        return "redirect:/personalArea";
     }
 }

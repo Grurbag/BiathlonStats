@@ -28,10 +28,16 @@
             <div class="flex-wrapper-six">
                 <div class="flex-wrapper-cabinet">
                     <p class="trenery-sportsmena-trener-trener-trener">
-                        Имя пользователя:<br/>
-                        Статус:<br/><br/>
+                        {{#user}}
+                        Имя пользователя:{{user}}<br/>
+                        {{/user}}
+                        {{#role}}
+                        Статус:{{role}}<br/><br/>
+                        {{/role}}
                     </p>
-                    <a href="signIn.html" class="trenery-sportsmena-trener-trener-trener">Выйти</a>
+                    <form method="post" action = "/logOut">
+                        <p style="text-align: center"><button name="logOut" value="logOut" type="submit">Выйти из аккаунта</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -45,10 +45,12 @@
             </div>
             <div class="flex-wrapper-five">
                 <p class="trenery-sportsmena-trener-trener-trener">
-                    Спортсмены:<br/>
-                    Спортсмены:<br/>
-                    Спортсмены:<br/>
                     Спортсмены:
+                {{#sportsman}}
+                    <form method="post">
+                        <p style="text-align: center"><button name="idsportsman" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
+                    </form><br/>
+                {{/sportsman}}
                 </p>
             </div>
         </div>

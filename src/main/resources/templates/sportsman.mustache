@@ -44,7 +44,12 @@
             </div>
             <div class="flex-wrapper-five">
                 <p class="trenery-sportsmena-trener-trener-trener">
-                    Тренер:<br/>
+                    {{#coach}}
+                    Тренер:
+                    <form method="post">
+                        <p style="text-align: center"><button name="idcoach" value="{{idcoach}}" type="submit">{{name}}</button>
+                    </form><br/>
+                    {{/coach}}
                 </p>
             </div>
             <div class="flex-wrapper-five">
