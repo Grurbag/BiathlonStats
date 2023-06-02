@@ -47,7 +47,7 @@
                 <p class="trenery-sportsmena-trener-trener-trener">
                     Спортсмены:
                 {{#sportsman}}
-                    <form method="post">
+                    <form method="post" action = "/goToSportsman">
                         <p style="text-align: center"><button name="idsportsman" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
                     </form><br/>
                 {{/sportsman}}

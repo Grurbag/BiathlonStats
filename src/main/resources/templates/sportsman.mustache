@@ -46,7 +46,7 @@
                 <p class="trenery-sportsmena-trener-trener-trener">
                     {{#coach}}
                     Тренер:
-                    <form method="post">
+                    <form method="post" action = "/goToCoach">
                         <p style="text-align: center"><button name="idcoach" value="{{idcoach}}" type="submit">{{name}}</button>
                     </form><br/>
                     {{/coach}}
@@ -85,7 +85,7 @@
                     <a >{{placesportsman}}</a>
                 </td>
                 <td>
-                <form method="post">
+                <form method="post" action = "/goToRace">
                     <p style="text-align: center"><button name="idrace" value="{{idrace}}" type="submit">{{idrace}}</button>
                 </form>
                 </td>

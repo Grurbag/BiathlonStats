@@ -52,7 +52,7 @@
         </div>
         <div>
             <form method="post">
-                <select class="js-select2" name="idsportsman1">
+                <select name="idsportsman1">
                     {{#sportsman}}
                         <option value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
                     {{/sportsman}}
@@ -92,9 +92,9 @@
     <tbody>
     <tr>
         <div class="row">
-            <td>{{#sportsman1}}{{name}} {{surname}}{{/sportsman1}}</td>
-            <td>Сравнение</td>
-            <td>{{#sportsman2}}{{name}} {{surname}}{{/sportsman2}}</td>
+            <td><h2 class="buttonTitle"></h2>{{#sportsman1}}{{name}} {{surname}}{{/sportsman1}}</td>
+            <td><h2 class="buttonTitle"></h2>Сравнение</td>
+            <td><h2 class="buttonTitle"></h2>{{#sportsman2}}{{name}} {{surname}}{{/sportsman2}}</td>
         </div>
     </tr>
         <tr>

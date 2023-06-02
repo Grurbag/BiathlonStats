@@ -2,19 +2,20 @@ package biathlonStats;
 
 import biathlonStats.entity.*;
 import biathlonStats.repo.*;
-import com.google.common.collect.ComparisonChain;
 import java.util.*;
 
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@RestController
 public class MainController {
+
     public class Stat {
         private String idsportsman;
         private int raceNumber;
@@ -165,12 +166,14 @@ public class MainController {
     @Autowired private RaceStatRepo raceStats;
 
    @GetMapping("/")
-   public String greeting() {
-       return "redirect:/main";
+   public ModelAndView greeting() {
+       Map<String, Object> model = new HashMap<>();
+       return new ModelAndView("redirect:/main", model);
    }
 
     @GetMapping("/predictResult")
-    public String predictResult(Map<String, Object> model) {
+    public ModelAndView predictResult() {
+        Map<String, Object> model = new HashMap<>();
         List<SportsmanRace> sportsmanRaceStat = sportsmanRaceStats.findAll();
         ArrayList<SportsmanRace> sportsmanRaceIds = new ArrayList<>();
         for (SportsmanRace sportsmanRace : sportsmanRaceStat) {
@@ -226,19 +229,21 @@ public class MainController {
         model.put("sportsman", this.addedSportsmans);
         List<Sportsman> sportsmanStat = sportsmanStats.findAll();
         model.put("sportsmanadd", sportsmanStat);
-        return "resultRace";
+        return new ModelAndView("resultRace", model);
     }
 
     @GetMapping("/resultRace")
-    public String resultRace(Map<String, Object> model) {
+    public ModelAndView resultRace() {
+        Map<String, Object> model = new HashMap<>();
         List<Sportsman> sportsmanStat = sportsmanStats.findAll();
         model.put("sportsmanadd", sportsmanStat);
         model.put("sportsman", this.addedSportsmans);
-        return "resultRace";
+        return new ModelAndView("resultRace", model);
     }
 
     @GetMapping("/comparison")
-    public String comparison(Map<String, Object> model) {
+    public ModelAndView comparison() {
+        Map<String, Object> model = new HashMap<>();
         List<Sportsman> sportsmanStat = sportsmanStats.findAll();
         model.put("sportsman", sportsmanStat);
         List<SportsmanRace> sportsmanRaceStat = sportsmanRaceStats.findAll();
@@ -296,7 +301,7 @@ public class MainController {
                     "<" + (accuracyFirst - accuracySecond) + "%";
         } else if (accuracyFirst < accuracySecond) {
             comparisonStat.accuracy =
-                    "%" + (accuracySecond - accuracyFirst) + ">";
+                     (accuracySecond - accuracyFirst) + "%" + ">";
         } else {
             comparisonStat.accuracy = "=";
         }
@@ -306,7 +311,7 @@ public class MainController {
                     "<" + (layingAccuracyFirst - layingAccuracySecond) + "%";
         } else if (layingAccuracyFirst < layingAccuracySecond) {
             comparisonStat.layingAccuracy =
-                    "%" + (layingAccuracySecond - layingAccuracyFirst) + ">";
+                    (layingAccuracySecond - layingAccuracyFirst)+ "%" + ">";
         } else {
             comparisonStat.layingAccuracy = "=";
         }
@@ -316,7 +321,7 @@ public class MainController {
                     "<" + (standingAccuracyFirst - standingAccuracySecond) + "%";
         } else if (layingAccuracyFirst < standingAccuracySecond) {
             comparisonStat.standingAccuracy =
-                    "%" + (standingAccuracySecond - standingAccuracyFirst) + ">";
+                     (standingAccuracySecond - standingAccuracyFirst) + "%" + ">";
         } else {
             comparisonStat.standingAccuracy = "=";
         }
@@ -324,63 +329,67 @@ public class MainController {
         if (raceNumberFirst > raceNumberSecond) {
             comparisonStat.raceNumber =
                     "<" + (raceNumberFirst - raceNumberSecond);
-        } else if (layingAccuracyFirst < raceNumberSecond) {
+        } else if (raceNumberFirst < raceNumberSecond) {
             comparisonStat.raceNumber =
                     (raceNumberSecond - raceNumberFirst) + ">";
         } else {
             comparisonStat.raceNumber = "=";
         }
         model.put("comparison", comparisonStat);
-        return "comparison";
+        return new ModelAndView("comparison", model);
     }
 
     @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "name", required = false,
-            defaultValue = "World") String name,
-                           Map<String, Object> model) {
+    public ModelAndView greeting(@RequestParam(name = "name", required = false,
+            defaultValue = "World") String name) {
+        Map<String, Object> model = new HashMap<>();
         model.put("name", name);
-        return "greeting";
+        return new ModelAndView("greeting", model);
     }
 
     @GetMapping("/institutions")
-    public String institutions(Map<String, Object> model) {
+    public ModelAndView institutions() {
+        Map<String, Object> model = new HashMap<>();
         List<Institution> institutionStat = institutionStats.findAll();
         ArrayList<Institution> showingList = new ArrayList<>();
         for (int i = startInstitution; i < endInstitution; i++) {
             showingList.add(institutionStat.get(i));
         }
         model.put("institution", showingList);
-        return "institutions";
+        return new ModelAndView("institutions", model);
     }
 
     @GetMapping("/coaches")
-    public String coaches(Map<String, Object> model) {
+    public ModelAndView coaches() {
+        Map<String, Object> model = new HashMap<>();
         List<Coach> coachStat = coachStats.findAll();
         ArrayList<Coach> showingList = new ArrayList<>();
         for (int i = startCoach; i < endCoach; i++) {
             showingList.add(coachStat.get(i));
         }
         model.put("coach", showingList);
-        return "coaches";
+        return new ModelAndView("coaches", model);
     }
 
     @GetMapping("/races")
-    public String races(Map<String, Object> model) {
+    public ModelAndView races() {
         List<Race> raceStat = raceStats.findAll();
+        Map<String, Object> model = new HashMap<>();
         ArrayList<Race> showingList = new ArrayList<>();
         for (int i = startRace; i < endRace; i++) {
             showingList.add(raceStat.get(i));
         }
         model.put("race", showingList);
-        return "races";
+        return new ModelAndView("races", model);
     }
 
-    @GetMapping("/region")
-    public String region(Map<String, Object> model) {
+    @PostMapping("/goToRegion")
+    public ModelAndView region(@RequestParam(name = "idregion") Integer idregion) {
+        Map<String, Object> model = new HashMap<>();
         List<Region> regionStat = regionStats.findAll();
         ArrayList<Sportsman> showinglist = new ArrayList<>();
         for (Region region : regionStat) {
-            if (region.getIdregion() == this.idregion) {
+            if (region.getIdregion() == idregion) {
                 model.put("region", region);
                 List<Sportsman> sportsmansList = sportsmanStats.findAll();
                 for (Sportsman sportsman : sportsmansList) {
@@ -392,15 +401,16 @@ public class MainController {
                 break;
             }
         }
-        return "region";
+        return new ModelAndView("region", model);
     }
 
-    @GetMapping("/coach")
-    public String coach(Map<String, Object> model) {
+    @PostMapping("/goToCoach")
+    public ModelAndView coach(@RequestParam(name = "idcoach") Integer idcoach) {
+        Map<String, Object> model = new HashMap<>();
         List<Coach> coaches = coachStats.findAll();
         ArrayList<Coach> showinglist = new ArrayList<>();
         for (Coach coach : coaches) {
-            if (coach.getIdcoach() == this.idcoach) {
+            if (coach.getIdcoach() == idcoach) {
                 model.put("coach", coach);
                 List<Sportsman> sportsmansList = sportsmanStats.findAll();
                 model.put("sportsmans", showinglist);
@@ -410,7 +420,7 @@ public class MainController {
         List<Sportsman> sportsmen = sportsmanStats.findAll();
         List<SportsmanCoach> coachStat = sportsmanCoachStats.findAll();
         for(SportsmanCoach sportsmanCoach: coachStat) {
-            if (this.idcoach == sportsmanCoach.getIdCoach()) {
+            if (idcoach == sportsmanCoach.getIdCoach()) {
                 for (Sportsman sportsman: sportsmen) {
                     if (sportsmanCoach.getIdsportsman().equals(sportsman.getId_sportsman())) {
                         model.put("sportsman", sportsman);
@@ -418,14 +428,15 @@ public class MainController {
                 }
             }
         }
-        return "coach";
+        return new ModelAndView("coach", model);
     }
 
-    @GetMapping("/race")
-    public String race(Map<String, Object> model) {
+    @PostMapping("/goToRace")
+    public ModelAndView race(@RequestParam(name = "idrace") Integer idrace) {
+        Map<String, Object> model = new HashMap<>();
         List<Race> races = raceStats.findAll();
         for (Race race : races) {
-            if (race.getIdrace() == this.idrace) {
+            if (race.getIdrace() == idrace) {
                 model.put("race", race);
                 break;
             }
@@ -435,20 +446,21 @@ public class MainController {
         ArrayList<SportsmanRace> showinglist = new ArrayList<>();
 
         for (SportsmanRace sportsmanRace : sportsmanRaceStat) {
-            if (sportsmanRace.getIdrace() == this.idrace) {
+            if (sportsmanRace.getIdrace() == idrace) {
                 showinglist.add(sportsmanRace);
             }
         }
         model.put("sportsmanrace", showinglist);
-        return "race";
+        return new ModelAndView("race", model);
     }
 
-    @GetMapping("/institution")
-    public String institution(Map<String, Object> model) {
+    @PostMapping("/goToInstitution")
+    public ModelAndView institution(@RequestParam(name = "idinstitution") Integer idinstitution) {
+        Map<String, Object> model = new HashMap<>();
         List<Institution> institutionStat = institutionStats.findAll();
         ArrayList<Sportsman> showinglist = new ArrayList<>();
         for (Institution institution : institutionStat) {
-            if (institution.getIdinstitution() == this.idinstitution) {
+            if (institution.getIdinstitution() == idinstitution) {
                 model.put("institution", institution);
                 List<Sportsman> sportsmansList = sportsmanStats.findAll();
                 for (Sportsman sportsman : sportsmansList) {
@@ -461,15 +473,16 @@ public class MainController {
                 break;
             }
         }
-        return "institution";
+        return new ModelAndView("institution", model);
     }
 
-    @GetMapping("/sportsman")
-    public String sportsman(Map<String, Object> model) {
+    @PostMapping("/goToSportsman")
+    public ModelAndView sportsman(@RequestParam(name = "idsportsman") String idSportsman) {
+        Map<String, Object> model = new HashMap<>();
         List<SportsmanCoach> coachStat = sportsmanCoachStats.findAll();
         List<Coach> coaches = coachStats.findAll();
         for(SportsmanCoach sportsmanCoach: coachStat) {
-            if (this.idsportsman.equals(sportsmanCoach.getIdsportsman())) {
+            if (idSportsman.equals(sportsmanCoach.getIdsportsman())) {
                 for (Coach coach: coaches) {
                     if (sportsmanCoach.getIdCoach() == coach.getIdcoach()) {
                         model.put("coach", coach);
@@ -485,9 +498,9 @@ public class MainController {
         int standingAccuracy = 1;
         int raceNumber = 1;
         for (Sportsman stat : sportsmanStat) {
-            if (stat.getId_sportsman().equals(this.idsportsman)) {
+            if (stat.getId_sportsman().equals(idSportsman)) {
                 for (SportsmanRace statRace : sportsmanRaceStat) {
-                    if (Objects.equals(statRace.getIdsportsman(), this.idsportsman)) {
+                    if (Objects.equals(statRace.getIdsportsman(), idSportsman)) {
                         sportsmanInRaces.add(statRace);
                         layingAccuracy += statRace.getLayingaccuracy();
                         standingAccuracy += statRace.getStandingaccuracy();
@@ -505,94 +518,102 @@ public class MainController {
                 break;
             }
         }
-
-        return "sportsman";
+        return new ModelAndView("sportsman", model);
     }
 
     @GetMapping("/main")
-    public String main(Map<String, Object> model) {
+    public ModelAndView main() {
+        Map<String, Object> model = new HashMap<>();
         List<Region> regionStat = regionStats.findAll();
         ArrayList<Region> showingList = new ArrayList<>();
         for (int i = startRegion; i < endRegion; i++) {
             showingList.add(regionStat.get(i));
         }
         model.put("region", showingList);
-        return "main";
+        return new ModelAndView("main", model);
     }
 
     @GetMapping("/sportsmans")
-    public String sportsmans(Map<String, Object> model) {
+    public ModelAndView sportsmans(@RequestParam(required = false) Integer start, @RequestParam(required = false) Integer end) {
+       if (start == null) {
+           start = 0;
+       }
+        if (end == null) {
+            end = 20;
+        }
+        Map<String, Object> model = new HashMap<>();
         List<Sportsman> sportsmanStat = sportsmanStats.findAll();
         ArrayList<Sportsman> showingList = new ArrayList<>();
         for (int i = start; i < end; i++) {
             showingList.add(sportsmanStat.get(i));
         }
         model.put("sportsman", showingList);
-        return "sportsmans";
+        return new ModelAndView( "sportsmans", model);
     }
 
     @GetMapping("/regions")
-    public String regions(Map<String, Object> model) {
+    public ModelAndView regions() {
+        Map<String, Object> model = new HashMap<>();
         List<Region> regionStat = regionStats.findAll();
         ArrayList<Region> showingList = new ArrayList<>();
         for (int i = startRegion; i < endRegion; i++) {
             showingList.add(regionStat.get(i));
         }
         model.put("region", showingList);
-        return "regions";
+        return new ModelAndView("regions", model);
     }
 
     @GetMapping(value = "/institutionsRedirect")
-    public String institutionsRedirect() {
-        return "redirect:/institutions";
+    public ModelAndView institutionsRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("redirect:/institutions", model);
     }
 
     @GetMapping(value = "/mainRedirect")
-    public String mainRedirect() {
-        return "redirect:/main";
+    public ModelAndView mainRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("redirect:/main", model);
     }
 
     @GetMapping(value = "/regionsRedirect")
-    public String regionsRedirect() {
-        return "redirect:/regions";
+    public ModelAndView regionsRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("redirect:/regions", model);
     }
     @GetMapping(value = "/coachesRedirect")
-    public String coachesRedirect() {
-        return "redirect:/coaches";
+    public ModelAndView coachesRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("redirect:/coaches", model);
     }
 
     @GetMapping(value = "/racesRedirect")
-    public String racesRedirect() {
-        return "redirect:/races";
+    public ModelAndView racesRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/races", model);
     }
 
     @GetMapping(value = "/sportsmansRedirect")
-    public String sportsmansRedirect() {
-        return "redirect:/sportsmans";
+    public ModelAndView sportsmansRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/sportsmans", model);
     }
-
-    /*@GetMapping(value = "/registrationRedirect")
-    public String registrationRedirect() {
-        return "redirect:/registration";
-    }
-
-    @GetMapping(value = "/sighInRedirect")
-    public String sighInRedirect() {
-        return "redirect:/sighIn";
-    }*/
 
     @GetMapping(value = "/comparisonRedirect")
-    public String comparisonRedirect() {
-        return "redirect:/comparison";
+    public ModelAndView comparisonRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/comparison", model);
     }
 
-    @GetMapping(value = "/prevPage")
-    public String prevPage() {
+    @PostMapping(value = "/prevPage")
+    public ModelAndView prevPage() {
+        Map<String, Object> model = new HashMap<>();
+        int start = 0;
+        int end = 20;
         if (start != 0) {
             start -= 20;
             end -= 20;
         }
-        return "redirect:/sportsmans";
+        return new ModelAndView ("redirect:/sportsmans", model);
     }
 
     @GetMapping(value = "/nextPage")
@@ -679,27 +700,32 @@ public class MainController {
     }
 
     @GetMapping(value = "/sportsmanRedirect")
-    public String sportsmanRedirect() {
-        return "redirect:/sportsman";
+    public ModelAndView sportsmanRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/sportsman", model);
     }
 
     @GetMapping(value = "/regionRedirect")
-    public String regionRedirect() {
-        return "redirect:/region";
+    public ModelAndView regionRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/region", model);
     }
 
     @GetMapping(value = "/institutionRedirect")
-    public String institutionRedirect() {
-        return "redirect:/institution";
+    public ModelAndView institutionRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/institution", model);
     }
 
     @GetMapping(value = "/resultRaceRedirect")
-    public String resultRaceRedirect() {
-        return "redirect:/resultRace";
+    public ModelAndView resultRaceRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/resultRace", model);
     }
 
     @PostMapping("/sort")
-    public String sort(@RequestParam(name = "sort") String sort, Map<String, Object> model) {
+    public ModelAndView ModelAndView(@RequestParam(name = "sort") String sort) {
+        Map<String, Object> model = new HashMap<>();
         if (sort.equals("Я-А")){
             List<Sportsman> sportsmanStat = sportsmanStats.findAll(Sort.by(Sort.Direction.DESC, "name"));
             model.put("sportsmans", sportsmanStat);
@@ -707,12 +733,12 @@ public class MainController {
             List<Sportsman> sportsmanStat = sportsmanStats.findAll();
             model.put("sportsmans", sportsmanStat);
         }
-        return "redirect:/sportmans";
+        return new ModelAndView ("redirect:/sportmans", model);
     }
 
     @PostMapping("/addSportsman")
-    public String addSportsman(
-            @RequestParam(name = "idaddedsportsman") String idAddedSportsman) {
+    public ModelAndView addSportsman(@RequestParam(name = "idaddedsportsman") String idAddedSportsman) {
+        Map<String, Object> model = new HashMap<>();
         this.idAddedSportsman = idAddedSportsman;
         List<Sportsman> sportsmanStat = sportsmanStats.findAll();
         for (Sportsman sportsman : sportsmanStat) {
@@ -720,7 +746,7 @@ public class MainController {
                 this.addedSportsmans.add(sportsman);
             }
         }
-        return "redirect:/resultRace";
+        return new ModelAndView ("redirect:/resultRace", model);
     }
 
     @PostMapping("/deleteSportsman")
@@ -735,39 +761,5 @@ public class MainController {
         this.addedSportsmans.remove(indexRemoved);
         model.put("sportsman", addedSportsmans);
         return "redirect:/resultRace";
-    }
-
-    @PostMapping
-    public String goToStuff(@RequestParam(name = "idsportsman", required = false) String idsportsman,
-                            @RequestParam(name = "idsportsman1", required = false) String idsportsman1,
-                            @RequestParam(name = "idsportsman2", required = false) String idsportsman2,
-                            @RequestParam(name = "idregion", required = false) Integer idregion,
-                            @RequestParam(name = "idinstitution", required = false) Integer idinstitution,
-                            @RequestParam(name = "idcoach", required = false) Integer idcoach,
-                            @RequestParam(name = "idrace", required = false) Integer idrace) {
-        String goTo = "";
-        if (idsportsman != null) {
-            this.idsportsman = idsportsman;
-            goTo = "redirect:/sportsman";
-        } else if (idsportsman1 != null) {
-            this.idFirstSportsman = idsportsman1;
-            goTo = "redirect:/comparison";
-        } else if (idsportsman2 != null) {
-            this.idSecondSportsman = idsportsman2;
-            goTo = "redirect:/comparison";
-        } else if (idregion != null) {
-            this.idregion = idregion;
-            goTo = "redirect:/region";
-        } else if (idinstitution != null) {
-            this.idinstitution = idinstitution;
-            goTo = "redirect:/institution";
-        } else if (idcoach != null) {
-            this.idcoach = idcoach;
-            goTo = "redirect:/coach";
-        } else if (idrace != null) {
-            this.idrace = idrace;
-            goTo = "redirect:/race";
-        }
-        return goTo;
     }
 }

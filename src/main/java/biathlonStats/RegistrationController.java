@@ -12,88 +12,96 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+@RestController
 public class RegistrationController {
     @Autowired
     private UserRepo userRepo;
 
     @GetMapping("/redirectPersonalArea")
-    public String redirectPersonalArea() {
-        return "redirect:/personalArea";
+    public ModelAndView redirectPersonalArea() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("redirect:/personalArea", model);
     }
 
     @GetMapping("/personalArea")
-    public String personalArea(Map<String, Object> model) {
+    public ModelAndView personalArea() {
+        Map<String, Object> model = new HashMap<>();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         model.put("user", currentPrincipalName);
-        return "personalArea";
+        return new ModelAndView ("personalArea", model);
     }
 
     @GetMapping("/login")
-    public String login() {
-        return "login";
+    public ModelAndView login() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("login", model);
     }
 
     @GetMapping("/registration")
-    public String registration() {
-        return "registration";
+    public ModelAndView registration() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("registration", model);
     }
 
     @PostMapping("/logIn")
-    public String logIn(User user, Map<String, Object> model) {
+    public ModelAndView logIn(User user) {
+        Map<String, Object> model = new HashMap<>();
         User userFromDb = userRepo.findByUsername(user.getUsername());
 
-        if (userFromDb != null) {
+        if (userFromDb == null) {
             model.put("message", "Неправильно введенные данные, попробуйте еще раз");
-            return "login";
+            return new ModelAndView("login", model);
+        } else {
+            return new ModelAndView("redirect:/personalArea", model);
         }
-        return "personalArea";
     }
 
     @PostMapping("/logOut")
-    public String logOut() {
+    public ModelAndView logOut() {
+        Map<String, Object> model = new HashMap<>();
         SecurityContextHolder.clearContext();
-        return "/login";
+        return new ModelAndView("/login", model);
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
-            User userFromDb = userRepo.findByUsername(user.getUsername());
+    public ModelAndView addUser(User user) {
+        Map<String, Object> model = new HashMap<>();
+        User userFromDb = userRepo.findByUsername(user.getUsername());
 
-            if (userFromDb != null) {
-                model.put("message", "Пользователь существует!");
-                return "registration";
-            }
+        if (userFromDb != null) {
+            model.put("message", "Пользователь существует!");
+            return new ModelAndView("registration", model);
+        }
 
-            user.setActive(true);
-            user.setRoles(Collections.singleton(Role.ROLE_USER));
-            userRepo.save(user);
+        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.ROLE_USER));
+        userRepo.save(user);
 
-            return "redirect:/login";
+        return new ModelAndView("redirect:/login", model);
     }
 
     @GetMapping(value = "/registrationRedirect")
-    public String registrationRedirect() {
+    public ModelAndView registrationRedirect() {
+        Map<String, Object> model = new HashMap<>();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            return "redirect:/personalArea";
+            return new ModelAndView("redirect:/personalArea", model);
         } else {
-            return "redirect:/registration";
+            return new ModelAndView("redirect:/registration", model);
         }
     }
 
-    @GetMapping(value = "/sighInRedirect")
-    public String sighInRedirect() {
-        return "redirect:/sighIn";
-    }
-
     @GetMapping(value = "/personalAreaRedirect")
-    public String personalAreaRedirect() {
-        return "redirect:/personalArea";
+    public ModelAndView personalAreaRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("redirect:/personalArea", model);
     }
 }
