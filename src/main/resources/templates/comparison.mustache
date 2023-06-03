@@ -21,15 +21,15 @@
 </head>
 <body>
 <div class="row">
-    <a class="buttonBox col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
-    <a class="buttonBox col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
-    <a class="buttonBox col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
-    <a class="buttonBox col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
-    <a class="buttonBox col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
-    <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
+    <a class="bot2 col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
+    <a class="bot2 col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
+    <a class="bot2 col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
+    <a class="bot2 col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
+    <a class="bot2 col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
+    <a class="bot2 col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
     <a href="/registrationRedirect" ><img
             alt=""
-            class="mask  col-md"
+            class="bot2  col-md"
 
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
@@ -50,17 +50,8 @@
                 </div>
             </div>
         </div>
-        <div>
-            <form method="post">
-                <select name="idsportsman1">
-                    {{#sportsman}}
-                        <option value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
-                    {{/sportsman}}
-                </select>
-                <button type="submit">Выбрать</button>
-            </form>
-        </div>
     </div>
+
     <div class="flex-wrapper-two-sp2">
         <div class="picture">
             <div class="picture-big">
@@ -75,21 +66,40 @@
                 </div>
             </div>
         </div>
-        <div>
-            <form method="post">
-                <select name="idsportsman2">
-                    {{#sportsman}}
-                        <option value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
-                    {{/sportsman}}
-                </select>
-                <button type="submit">Выбрать</button>
-            </form>
-        </div>
     </div>
 </div>
 
 <table class="iksweb">
     <tbody>
+    <tr>
+        <div class="row">
+            <form method="post" action="/compare">
+                <td>
+                    <select name="idfirstsportsman">
+                        {{#sportsman}}
+                            <option name="idfirstsportsman" value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
+                        {{/sportsman}}
+                    </select>
+                </td>
+                <td>
+                    <div class="frame-8">
+                        <div class="input">
+                            <div class="button-two">
+                                <button type="submit">Сравнить</button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <select name="idsecondsportsman">
+                        {{#sportsman}}
+                            <option name="idsecondsportsman" value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
+                        {{/sportsman}}
+                    </select>
+                </td>
+            </form>
+        </div>
+    </tr>
     <tr>
         <div class="row">
             <td><h2 class="buttonTitle"></h2>{{#sportsman1}}{{name}} {{surname}}{{/sportsman1}}</td>

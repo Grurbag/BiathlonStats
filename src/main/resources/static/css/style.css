@@ -503,6 +503,36 @@ align-self: center;
 display: flex;
 
 }
+.buttonsBox1 {
+    FONT-WEIGHT: 600;
+    width: 100%;
+    background-color: rgb(40 135 174);
+    border-radius: 10px 10px 10px 10px;
+    width: auto;
+    height: 55px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
+    position: absolute;
+    overflow: hidden;
+    top: 0px;
+    left: 0px;
+}
+.bot2 {
+    margin:20px auto;
+    color: #FFFFFF;
+    display: block;
+    font:bold 12px arial;
+    height: 40px;
+    line-height: 35px;
+    text-align: center;
+    text-decoration: none;
+    width: 150px;
+        background: linear-gradient(to bottom, #209DCA, #0F84AF) repeat scroll 0 0 / 100% 200% rgba(0, 0, 0, 0);
+    transition: all 0.5s linear 0s;
+        border-bottom: 4px solid #ccc;
+}
+.bot2:hover,.bot2:focus{
+    background-position: 0 -102%;
+}
 .button-two {
 display:flex;
 flex-direction:row;
@@ -843,9 +873,33 @@ justify-content: center;
   font-weight: var(--link-weight);
   line-height: var(--link-line-height);
 }
+
 table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
 table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#0f65a3;}
 table.iksweb td{font-size:13px;color:#354251;}
 table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #0f65a3;}
 table.iksweb tr:hover{background-color:#f9fafb}
 table.iksweb tr:hover td{color:#354251;cursor:default;}
+
+table {
+font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+font-size: 14px;
+border-collapse: collapse;
+text-align: center;
+}
+th, td:first-child {
+background: #AFCDE7;
+color: white;
+padding: 10px 20px;
+}
+th, td {
+border-style: solid;
+border-width: 0 1px 1px 0;
+border-color: white;
+}
+td {
+background: #D8E6F3;
+}
+th:first-child, td:first-child {
+text-align: left;
+}

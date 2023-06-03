@@ -1,4 +1,4 @@
-package biathlonStats;
+package biathlonStats.config;
 
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.context.annotation.Bean;
@@ -15,6 +15,7 @@ package biathlonStats;
         import org.springframework.security.provisioning.UserDetailsManager;
         import org.springframework.security.web.SecurityFilterChain;
         import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+        import org.springframework.web.filter.CharacterEncodingFilter;
 
         import javax.sql.DataSource;
 
@@ -33,6 +34,14 @@ public class WebSecurityConfig  {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Bean
+    CharacterEncodingFilter characterEncodingFilter() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        return filter;
     }
 
     @Bean

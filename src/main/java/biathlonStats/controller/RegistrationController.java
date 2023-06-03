@@ -1,15 +1,12 @@
-package biathlonStats;
+package biathlonStats.controller;
 
 import biathlonStats.entity.Role;
 import biathlonStats.entity.User;
 import biathlonStats.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -81,9 +78,15 @@ public class RegistrationController {
             return new ModelAndView("registration", model);
         }
 
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.ROLE_USER));
-        userRepo.save(user);
+        if (user.getUsername() == null) {
+            user.setActive(true);
+            user.setRoles(Collections.singleton(Role.ROLE_USER));
+            userRepo.save(user);
+            model.put("message", "Ошибка ввода данных");
+            return new ModelAndView("registration", model);
+        }
+
+
 
         return new ModelAndView("redirect:/login", model);
     }

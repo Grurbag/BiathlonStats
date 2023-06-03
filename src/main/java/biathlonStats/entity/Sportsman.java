@@ -34,6 +34,18 @@ public class Sportsman {
     this.birthdate = birthDate;
   }
 
+  public Sportsman(String string) {
+    String[] parameters = string.split(";");
+    this.idsportsman = parameters[0];
+    this.name = parameters[1];
+    this.surname = parameters[2];
+    this.sex = parameters[3];
+    this.region = parameters[4];
+    this.institution = parameters[5];
+    this.rank = parameters[6];
+    this.birthdate = parameters[7];
+  }
+
   public String getId_sportsman() {
     return idsportsman;
   }
@@ -98,4 +110,8 @@ public class Sportsman {
     this.birthdate = birthdate;
   }
 
+  @Override
+    public  String toString() {
+      return idsportsman + ";" + name + ";" + surname + ";" + sex + ";" + region + ";" + institution + ";" + rank + ";" + birthdate;
+  }
 }
