@@ -19,4 +19,4 @@
 * [Код сервера](https://github.com/Grurbag/BiathlonStats/tree/develop/src/main/java/biathlonStats)
 * [Код клиента](https://github.com/Grurbag/BiathlonStats/tree/develop/src/main/resources)
 * [Ссылка на сайт](http://194.67.119.36:8070/registration)
-* [Ссылка на swagger] (http://194.67.119.36:8070/swagger-ui/index.html)
+* [Ссылка на swagger](http://194.67.119.36:8070/swagger-ui/index.html)
