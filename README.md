@@ -21,4 +21,5 @@
 * [Код клиента](https://github.com/Grurbag/BiathlonStats/tree/develop/src/main/resources)
 * [Ссылка на сайт](http://194.67.119.36:8070/registration)
 * [Ссылка на swagger](http://194.67.119.36:8070/swagger-ui/index.html)
+* [Видеообзор](https://drive.google.com/drive/folders/1Hsx7xd3PaXqh8C0jAfgT6QYs1s-NGtaz)
 
