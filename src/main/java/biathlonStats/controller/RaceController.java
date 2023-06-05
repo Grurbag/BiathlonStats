@@ -85,6 +85,8 @@ public class RaceController {
         return new ModelAndView("race", model);
     }
 
+
+
     @PostMapping("/predictResult")
     public ModelAndView predictResult( @RequestParam(name = "sportsman", required = false) String sportsmen) throws UnsupportedEncodingException  {
         Map<String, Object> model = new HashMap<>();
@@ -112,8 +114,26 @@ public class RaceController {
             int layingAccuracy = 1;
             int standingAccuracy = 1;
             int raceNumber = 1;
+            int placeNumber = 0;
+            int firstPlaceNumber = 0;
+            int secondPlaceNumber = 0;
+            int thirdPlaceNumber = 0;
             for (SportsmanRace statRace : sportsmanRaceIds) {
                 if (stat.getId_sportsman()==(statRace.getIdsportsman())) {
+                    switch (statRace.getPlacesportsman()) {
+                        case 1 -> {
+                            placeNumber++;
+                            firstPlaceNumber++;
+                        }
+                        case 2 -> {
+                            placeNumber++;
+                            secondPlaceNumber++;
+                        }
+                        case 3 -> {
+                            placeNumber++;
+                            thirdPlaceNumber++;
+                        }
+                    }
                     layingAccuracy += statRace.getLayingaccuracy();
                     standingAccuracy += statRace.getStandingaccuracy();
                     raceNumber++;
@@ -123,10 +143,14 @@ public class RaceController {
             layingAccuracy = layingAccuracy / raceNumber;
             accuracy = (standingAccuracy + layingAccuracy) / 2;
             raceNumber--;
-            MainController.Stat stat1 = new MainController.Stat(stat.getId_sportsman(), raceNumber, accuracy, standingAccuracy, layingAccuracy, 1, 1, 1, 1);
+            MainController.Stat stat1 = new MainController.Stat(stat.getId_sportsman(), raceNumber, accuracy, standingAccuracy, layingAccuracy, placeNumber, firstPlaceNumber, secondPlaceNumber, thirdPlaceNumber);
             addedSportsmansStats.add(stat1);
         }
-        boolean sorted = false;
+        //сортировка
+        Collections.sort(addedSportsmansStats);
+        Collections.reverse(addedSportsmansStats);
+
+        /*boolean sorted = false;
         MainController.Stat temp;
         while(!sorted) {
             sorted = true;
@@ -138,7 +162,7 @@ public class RaceController {
                     sorted = false;
                 }
             }
-        }
+        }*/
         //order(addedSportsmansStats);
         ArrayList<Sportsman> sortedSportsmans = new ArrayList<>();
         for (MainController.Stat addedSportsmansStat : addedSportsmansStats) {

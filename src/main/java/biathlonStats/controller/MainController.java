@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class MainController {
 
-    public static class Stat {
+    public static class Stat implements Comparable<Stat> {
         private long idsportsman;
         private int raceNumber;
         private int accuracy;
@@ -80,6 +80,62 @@ public class MainController {
 
         public void setIdsportsman(long idsportsman) {
             this.idsportsman = idsportsman;
+        }
+
+        public int getPlaceNumber() {
+            return placeNumber;
+        }
+
+        public void setPlaceNumber(int placeNumber) {
+            this.placeNumber = placeNumber;
+        }
+
+        public int getFirstPlaceNumber() {
+            return firstPlaceNumber;
+        }
+
+        public void setFirstPlaceNumber(int firstPlaceNumber) {
+            this.firstPlaceNumber = firstPlaceNumber;
+        }
+
+        public int getSecondPlaceNumber() {
+            return secondPlaceNumber;
+        }
+
+        public void setSecondPlaceNumber(int secondPlaceNumber) {
+            this.secondPlaceNumber = secondPlaceNumber;
+        }
+
+        public int getThirdPlaceNumber() {
+            return thirdPlaceNumber;
+        }
+
+        public void setThirdPlaceNumber(int thirdPlaceNumber) {
+            this.thirdPlaceNumber = thirdPlaceNumber;
+        }
+
+        @Override
+        public int compareTo(Stat o) {
+            int cmp = Integer.compare(this.getAccuracy(), (o.getAccuracy()));
+            if (cmp != 0) {
+                return cmp;
+            }
+
+            cmp = Integer.compare(this.getFirstPlaceNumber(), (o.getFirstPlaceNumber()));
+            if (cmp != 0) {
+                return cmp;
+            }
+
+            cmp = Integer.compare(this.getLayingAccuracy(), (o.getLayingAccuracy()));
+            if (cmp != 0) {
+                return cmp;
+            }
+
+            cmp = Integer.compare(this.getStandingAccuracy(), (o.getStandingAccuracy()));
+            if (cmp != 0) {
+                return cmp;
+            }
+            return Integer.compare(this.getLayingAccuracy(), o.getLayingAccuracy());
         }
     }
 
