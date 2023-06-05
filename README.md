@@ -22,6 +22,6 @@
 * [Ссылка на swagger](http://194.67.119.36:8070/swagger-ui/index.html)
 * [Видеообзор](https://drive.google.com/drive/folders/1Hsx7xd3PaXqh8C0jAfgT6QYs1s-NGtaz)
 # Данные для авторизации на сайте
-Администратор:
-Логин: admin
-Пароль: 123
+* Администратор:
+* Логин: admin
+* Пароль: 123
