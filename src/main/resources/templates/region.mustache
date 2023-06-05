@@ -1,20 +1,37 @@
 <html>
 <head>
+
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(93832836, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93832836" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="row">
-    <a class="buttonBox col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
-    <a class="buttonBox col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
-    <a class="buttonBox col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
-    <a class="buttonBox col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
-    <a class="buttonBox col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
-    <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
+    <a class="bot2 col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
+    <a class="bot2 col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
+    <a class="bot2 col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
+    <a class="bot2 col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
+    <a class="bot2 col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
+    <a class="bot2 col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
     <a href="/registrationRedirect" ><img
             alt=""
-            class="mask  col-md"
+            class="bot2  col-md"
 
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
@@ -22,12 +39,8 @@
 
 <div class="frame-8">
     {{#region}}
-    <p class="nazvanie-regiona">Название региона: {{name}}</p>
-    <div class="flex-wrapper-three">
-        <div class="rectangle-9">
-        {{/region}}
-        </div>
-    </div>
+    <p class="nazvanie-regiona">{{name}}</p>
+    {{/region}}
 </div>
 <table class="iksweb">
     <tbody>
@@ -47,7 +60,7 @@
                 <td>
                     <a >{{idsportsman}}</a>
                 </td>
-                <td><form method="post">
+                <td><form method="post" action = "/goToSportsman">
                     <p style="text-align: center"><button name="idsportsman" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
                 </form>
 

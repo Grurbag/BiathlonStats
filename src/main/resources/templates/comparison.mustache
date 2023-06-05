@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/select2/dist/css/select2.min.css">
     <script src="/jquery.min.js"></script>
@@ -18,18 +19,34 @@
 
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(93832836, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93832836" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="row">
-    <a class="buttonBox col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
-    <a class="buttonBox col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
-    <a class="buttonBox col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
-    <a class="buttonBox col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
-    <a class="buttonBox col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
-    <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
+    <a class="bot2 col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
+    <a class="bot2 col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
+    <a class="bot2 col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
+    <a class="bot2 col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
+    <a class="bot2 col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
+    <a class="bot2 col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
     <a href="/registrationRedirect" ><img
             alt=""
-            class="mask  col-md"
+            class="bot2  col-md"
 
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
@@ -50,17 +67,8 @@
                 </div>
             </div>
         </div>
-        <div>
-            <form method="post">
-                <select class="js-select2" name="idsportsman1">
-                    {{#sportsman}}
-                        <option value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
-                    {{/sportsman}}
-                </select>
-                <button type="submit">Выбрать</button>
-            </form>
-        </div>
     </div>
+
     <div class="flex-wrapper-two-sp2">
         <div class="picture">
             <div class="picture-big">
@@ -75,16 +83,6 @@
                 </div>
             </div>
         </div>
-        <div>
-            <form method="post">
-                <select name="idsportsman2">
-                    {{#sportsman}}
-                        <option value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
-                    {{/sportsman}}
-                </select>
-                <button type="submit">Выбрать</button>
-            </form>
-        </div>
     </div>
 </div>
 
@@ -92,9 +90,38 @@
     <tbody>
     <tr>
         <div class="row">
-            <td>{{#sportsman1}}{{name}} {{surname}}{{/sportsman1}}</td>
-            <td>Сравнение</td>
-            <td>{{#sportsman2}}{{name}} {{surname}}{{/sportsman2}}</td>
+            <form method="post" action="/compare">
+                <td>
+                    <select name="idfirstsportsman">
+                        {{#sportsman}}
+                            <option name="idfirstsportsman" value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
+                        {{/sportsman}}
+                    </select>
+                </td>
+                <td>
+                    <div class="frame-8">
+                        <div class="input">
+                            <div class="button-two">
+                                <button type="submit">Сравнить</button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <select name="idsecondsportsman">
+                        {{#sportsman}}
+                            <option name="idsecondsportsman" value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
+                        {{/sportsman}}
+                    </select>
+                </td>
+            </form>
+        </div>
+    </tr>
+    <tr>
+        <div class="row">
+            <td><h2 class="buttonTitle"></h2>{{#sportsman1}}{{name}} {{surname}}{{/sportsman1}}</td>
+            <td><h2 class="buttonTitle"></h2>Сравнение</td>
+            <td><h2 class="buttonTitle"></h2>{{#sportsman2}}{{name}} {{surname}}{{/sportsman2}}</td>
         </div>
     </tr>
         <tr>
@@ -158,7 +185,7 @@
         <div class="row">
             <td>
             {{#sportsmanStat1}}
-                <a >{{raceNumber}}</a>
+                <a >Гонки: {{raceNumber}}</a>
             {{/sportsmanStat1}}
             </td>
             <td>
@@ -169,6 +196,82 @@
             <td>
                 {{#sportsmanStat2}}
                     <a >Гонки: {{raceNumber}}</a>
+                {{/sportsmanStat2}}
+            </td>
+        </div>
+    </tr>
+    <tr>
+        <div class="row">
+            <td>
+                {{#sportsmanStat1}}
+                    <a >Количество призовых мест: {{placeNumber}}</a>
+                {{/sportsmanStat1}}
+            </td>
+            <td>
+                {{#comparison}}
+                    <a >{{placeNumber}}</a>
+                {{/comparison}}
+            </td>
+            <td>
+                {{#sportsmanStat2}}
+                    <a >Количество призовых мест: {{placeNumber}}</a>
+                {{/sportsmanStat2}}
+            </td>
+        </div>
+    </tr>
+    <tr>
+        <div class="row">
+            <td>
+                {{#sportsmanStat1}}
+                    <a >Количество первых мест: {{firstPlaceNumber}}</a>
+                {{/sportsmanStat1}}
+            </td>
+            <td>
+                {{#comparison}}
+                    <a >{{firstPlaceNumber}}</a>
+                {{/comparison}}
+            </td>
+            <td>
+                {{#sportsmanStat2}}
+                    <a >Количество первых мест: {{firstPlaceNumber}}</a>
+                {{/sportsmanStat2}}
+            </td>
+        </div>
+    </tr>
+    <tr>
+        <div class="row">
+            <td>
+                {{#sportsmanStat1}}
+                    <a >Количество вторых мест: {{secondPlaceNumber}}</a>
+                {{/sportsmanStat1}}
+            </td>
+            <td>
+                {{#comparison}}
+                    <a >{{secondPlaceNumber}}</a>
+                {{/comparison}}
+            </td>
+            <td>
+                {{#sportsmanStat2}}
+                    <a >Количество вторых мест:  {{secondPlaceNumber}}</a>
+                {{/sportsmanStat2}}
+            </td>
+        </div>
+    </tr>
+    <tr>
+        <div class="row">
+            <td>
+                {{#sportsmanStat1}}
+                    <a >Количество третьих мест: {{thirdPlaceNumber}}</a>
+                {{/sportsmanStat1}}
+            </td>
+            <td>
+                {{#comparison}}
+                    <a >{{thirdPlaceNumber}}</a>
+                {{/comparison}}
+            </td>
+            <td>
+                {{#sportsmanStat2}}
+                    <a >Количество третьих мест: {{thirdPlaceNumber}}</a>
                 {{/sportsmanStat2}}
             </td>
         </div>

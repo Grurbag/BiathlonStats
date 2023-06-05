@@ -1,20 +1,38 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th = "http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(93832836, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93832836" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="row">
-    <a class="buttonBox col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
-    <a class="buttonBox col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
-    <a class="buttonBox col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
-    <a class="buttonBox col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
-    <a class="buttonBox col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
-    <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
+    <a class="bot2 col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
+    <a class="bot2 col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
+    <a class="bot2 col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
+    <a class="bot2 col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
+    <a class="bot2 col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
+    <a class="bot2 col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
     <a href="/registrationRedirect" ><img
             alt=""
-            class="mask  col-md"
+            class="bot2  col-md"
 
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
@@ -23,89 +41,77 @@
 <div class="flex-wrapper-one">
     <a class="regiony">Спортсмены</a>
     <div class="button-two">
-        <a class="button" href="/comparisonRedirect"><h2 class="buttonTitle">Сравнение спортсменов</h2></a>
+        <a class="button" href="/comparisonRedirect"><h8>Сравнение спортсменов</h8></a>
     </div>
-    <div class="input">
-        <div class="dropdown">
-            <p>Сортировка по</p>
-            <form method="post" action = "/sort">
-                <select class="js-select2" name="sort">
-                    <option value="А-Я">Названию(А-Я)</option>
-                    <option value="Я-А">Названию(Я-А)</option>
-                    <!--{{#sportsmanadd}}
-                        <option value={{idsportsman}}>{{idsportsman}} {{name}} {{surname}}</option>
-                    {{/sportsmanadd}}-->
-                </select>
-                <button type="submit">Сортировать</button>
-            </form>
-            <!--<select class="dropdown" id="language" name="language">
-                <option value="name">Названию(А-Я)</option>
-                <option value="nameNo">Названию(Я-А)</option>
-            </select>-->
-        </div>
-        <div class="search">
-            <input class="search" placeholder="Поиск..." type="text">
-            <button type="submit"></button>
-        </div>
-    </div>
-
-    <table width="500" class="iksweb">
-        <tbody>
-        <tr>
-            <td>Код</td>
-            <td>Фио</td>
-            <td>Пол</td>
-            <td>Регион</td>
-            <td>Учреждение</td>
-            <td>Звание</td>
-            <td>Дата рождения</td>
-        </tr>
-        {{#sportsman}}
-        <tr>
-
-            <div class="row">
-                <td>
-                    <a >{{idsportsman}}</a>
-                </td>
-                <td><form method="post">
-                    <p style="text-align: center"><button name="idsportsman" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
-                </form>
-                </td>
-                <td>
-                   {{sex}}
-                </td>
-                <td>
-                    {{region}}
-                </td>
-                <td>
-                    {{institution}}
-                </td>
-                <td>
-                    {{rank}}
-                </td>
-                <td>
-                    {{birthdate}}
-                </td>
-
-            </div>
-
-        </tr>
-        {{/sportsman}}
-        </tbody>
-    </table>
 </div>
-<div class="row">
-    <div class="buttonDaySwitchBox col-xl">
-        <a href="/prevPage" class="buttonDaySwitchBox2">
-            <h2 class="buttonTitle">Предыдущая страница</h2>
-        </a>
-    </div>
-    <div class="row"></div>
-    <div class="buttonDaySwitchBox col-xl">
-        <a href="/nextPage" class="buttonDaySwitchBox2">
-            <h2 class="buttonTitle">Следующая страница</h2>
-        </a>
-    </div>
+
+<table class="iksweb">
+    <tbody>
+    <tr>
+        <td>Код</td>
+        <td>Фио</td>
+        <td>Пол</td>
+        <td>Регион</td>
+        <td>Учреждение</td>
+        <td>Звание</td>
+        <td>Дата рождения</td>
+    </tr>
+    {{#sportsman}}
+    <tr>
+        <div class="row">
+            <td>
+                <a >{{idsportsman}}</a>
+            </td>
+            <td>
+            <form method="post" action = "/goToSportsman">
+                <p style="text-align: center"><button name="idsportsman" value="{{idsportsman}}" type="submit">{{name}} {{surname}}</button>
+            </form>
+               <!-- <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <form method="post" action = "/deleteSportsman" >
+                    <input name="sportsman" value="{{sportsman}}" hidden>
+                    <p style="text-align: center"><button name="idremovedsportsman" value="{{idsportsman}}" type="submit">Удалить</button>
+                </form>
+                </div>-->
+            </td>
+            <td>
+               {{sex}}
+            </td>
+            <td>
+                {{region}}
+            </td>
+            <td>
+                {{institution}}
+            </td>
+            <td>
+                {{rank}}
+            </td>
+            <td>
+                {{birthdate}}
+            </td>
+
+        </div>
+
+    </tr>
+    {{/sportsman}}
+    </tbody>
+</table>
+
+<div class="flex-wrapper-three">
+    <form method="post" action="/prevPage">
+        <button type="submit" class="button-two" control-id="ControlID-12">
+            <input name="start" value="0" hidden="" control-id="ControlID-13">
+            <input name="end" value="11" hidden="">
+            <h7>Предыдущая страница</h7>
+        </button>
+    </form>
+
+    <form method="post" action="/nextPage">
+        <button type="submit" class="button-two" control-id="ControlID-14">
+            <input name="start" value="0" hidden="" control-id="ControlID-15">
+            <input name="end" value="11" hidden="">
+            <h7>Следующая страница</h7>
+        </button>
+    </form>
 </div>
 </body>
 </html>

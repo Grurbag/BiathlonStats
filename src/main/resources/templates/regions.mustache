@@ -1,20 +1,37 @@
 <html>
 <head>
+
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(93832836, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93832836" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="row">
-    <a class="buttonBox col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
-    <a class="buttonBox col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
-    <a class="buttonBox col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
-    <a class="buttonBox col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
-    <a class="buttonBox col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
-    <a class="buttonBox col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
+    <a class="bot2 col-md" href="/institutionsRedirect"><h2 class="buttonTitle">Спорткомплексы</h2></a>
+    <a class="bot2 col-md" href="/racesRedirect"><h2 class="buttonTitle">Соревнования</h2></a>
+    <a class="bot2 col-md" href="/regionsRedirect"><h2 class="buttonTitle">Регионы</h2></a>
+    <a class="bot2 col-md" href="/coachesRedirect"><h2 class="buttonTitle">Тренеры</h2></a>
+    <a class="bot2 col-md" href="/sportsmansRedirect"><h2 class="buttonTitle">Спортсмены</h2></a>
+    <a class="bot2 col-md" href="/mainRedirect"><h2 class="buttonTitle">Главная</h2></a>
     <a href="/registrationRedirect" ><img
             alt=""
-            class="mask  col-md"
+            class="bot2  col-md"
 
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
@@ -24,19 +41,6 @@
 
 <div class="flex-wrapper-one">
     <a class="regiony">Регионы</a>
-    <div class="input">
-        <div class="dropdown">
-            <p>Сортировка по</p>
-            <select class="dropdown" name="language" id="language">
-                <option value="name">Названию(А-Я)</option>
-                <option value="nameNo">Названию(Я-А)</option>
-            </select>
-        </div>
-        <div class="search">
-            <input class="search" type="text" placeholder="Искать здесь...">
-            <button type="submit"></button>
-        </div>
-    </div>
     <div>
     </div>
 
@@ -54,7 +58,7 @@
 
                     </td>
                     <td>
-                        <form method="post">
+                        <form method="post" action = "/goToRegion">
                             <p style="text-align: center"><button name="idregion" value="{{idregion}}" type="submit">{{name}}</button>
                         </form>
                     </td>
@@ -64,18 +68,22 @@
         </tbody>
     </table>
 </div>
-<div class="row">
-    <div class="buttonDaySwitchBox col-xl">
-        <a href="/prevPageRegion" class="buttonDaySwitchBox2">
-            <h2 class="buttonTitle">Предыдущая страница</h2>
-        </a>
-    </div>
-    <div class="col-xl-7"></div>
-    <div class="buttonDaySwitchBox col-xl">
-        <a href="/nextPageRegion" class="buttonDaySwitchBox2">
-            <h2 class="buttonTitle">Следующая страница</h2>
-        </a>
-    </div>
+<div class="flex-wrapper-three">
+    <form method="post" action="/prevPageRegion">
+    <button type="submit" class="button-two" control-id="ControlID-12">
+        <input name="start" value="0" hidden="" control-id="ControlID-13">
+        <input name="end" value="11" hidden="">
+        <h7>Предыдущая страница</h7>
+    </button>
+    </form>
+
+    <form method="post" action="/nextPageRegion">
+        <button type="submit" class="button-two" control-id="ControlID-14">
+            <input name="start" value="0" hidden="" control-id="ControlID-15">
+            <input name="end" value="11" hidden="">
+            <h7>Следующая страница</h7>
+        </button>
+    </form>
 </div>
 </body>
 </html>
