@@ -18,6 +18,15 @@ public class Institution {
   public Institution() {
   }
 
+  public Institution(String string) {
+    String[] parameters = string.split(";");
+    parameters[0] = parameters[0].replace("[","");
+    parameters[2] = parameters[2].replace("]","");
+    this.idinstitution = Integer.parseInt(parameters[0]);
+    this.name = parameters[1];
+    this.region = parameters[2];
+  }
+
   public Institution(long idinstitution, String name, String region) {
     this.idinstitution = idinstitution;
     this.name = name;

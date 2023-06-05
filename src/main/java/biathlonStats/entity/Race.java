@@ -19,6 +19,17 @@ public class Race {
     public Race() {
     }
 
+    public Race(String string) {
+        String[] parameters = string.split(";");
+        parameters[0] = parameters[0].replace("[","");
+        parameters[4] = parameters[4].replace("]","");
+        this.idrace = Integer.parseInt(parameters[0]);
+        this.name = parameters[1];
+        this.region = parameters[2];
+        this.date = parameters[3];
+        this.time = parameters[4];
+    }
+
     public Race(int idrace, String name, String region, String date, String time, int place) {
         this.idrace = idrace;
         this.name = name;

@@ -11,7 +11,7 @@ public class Sportsman {
   @Id
   @GenericGenerator(name = "increment", strategy = "increment")
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private String idsportsman;
+  private long idsportsman;
   private String name;
   private String surname;
   private String sex;
@@ -23,7 +23,7 @@ public class Sportsman {
   public Sportsman() {
   }
 
-  public Sportsman(String idSportsman, String name, String surname, String sex, String region, String institution, String rank, String birthDate) {
+  public Sportsman(long idSportsman, String name, String surname, String sex, String region, String institution, String rank, String birthDate) {
     this.idsportsman = idSportsman;
     this.name = name;
     this.surname = surname;
@@ -36,7 +36,10 @@ public class Sportsman {
 
   public Sportsman(String string) {
     String[] parameters = string.split(";");
-    this.idsportsman = parameters[0];
+    parameters[0] = parameters[0].replace("[","");
+    parameters[7] = parameters[7].replace("]","");
+    //String [] parameters1 = parameters[0].split("\\[");
+    this.idsportsman = Long.parseLong(parameters[0]);
     this.name = parameters[1];
     this.surname = parameters[2];
     this.sex = parameters[3];
@@ -46,7 +49,7 @@ public class Sportsman {
     this.birthdate = parameters[7];
   }
 
-  public String getId_sportsman() {
+  public long getId_sportsman() {
     return idsportsman;
   }
 
@@ -78,7 +81,7 @@ public class Sportsman {
     return birthdate;
   }
 
-  public void setId_sportsman(String id_sportsman) {
+  public void setId_sportsman(long id_sportsman) {
     this.idsportsman = id_sportsman;
   }
 

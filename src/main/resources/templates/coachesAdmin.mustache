@@ -1,6 +1,5 @@
-<html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -36,52 +35,76 @@
             src="https://static.overlay-tech.com/assets/8d69822d-f599-4e0a-9a18-48e1afc7a1a0.svg"
     /></a>
 </div>
-<div class="component-2">
-    {{#race}}
-        <p class="fio-trenera">{{name}}</p>
-    <div class="flex-wrapper-thr">
-    <div class="flex-wrapper-four">
-    <div class="flex-wrapper-six">
-    <div class="flex-wrapper-o">
-    <p class="trenery-sportsmena-trener-trener-trener">
-        Дата:{{date}}<br/>
-        Время старта:{{time}}<br/>
-    {{/race}}
-</p>
+
+<div class="flex-wrapper-one">
+    <a class="regiony">Панель управления таблицей: Тренеры</a>
 </div>
-</div>
-</div>
-</div>
-</div>
+<form method="post" action="/changeCoach">
 <table>
     <tbody>
+    <thead>
     <tr>
-        <td>Место</td>
-        <td>Спортсмен</td>
-        <td>Точность стоя</td>
-        <td>Точность лежа</td>
+        <td>Код</td>
+        <td>Имя</td>
+        <td>Регион</td>
+        <td>Спорткомплекс</td>
+        <td> </td>
     </tr>
-    {{#sportsmanrace}}
+    </thead>
+    <tr>
+        <td><input type="number" name="stats"></td>
+        <td><input name="stats"></td>
+        <td><input name="stats"></td>
+        <td><input name="stats"></td>
+        <td><button type="submit">Изменить запись</button></td>
+    </tr>
+    {{#coach}}
         <tr>
             <div class="row">
                 <td>
-                    {{placesportsman}}
+                   {{idcoach}}
+                    <div sec:authorize="hasRole('ROLE_ADMIN')">
+                        <form method="post" action = "/deleteCoachFromDatabase" >
+                            <input name="coach" value="{{coach}}" hidden>
+                            <p style="text-align: center"><button name="idremovedcoach" value="{{idcoach}}" type="submit">Удалить</button>
+                        </form>
+                    </div>
                 </td>
-                <td><form method="post" action = "/goToSportsman">
-                    <p style="text-align: center"><button name="idsportsman" value="{{idsportsman}}" type="submit">{{idsportsman}}</button>
+                <td>
+                <form method="post" action = "/goToCoach">
+                    <p style="text-align: center"><button name="idcoach" value="{{idcoach}}" type="submit">{{name}}</button>
                 </form>
+
                 </td>
                 <td>
-                    {{standingaccuracy}}
+                    {{region}}
                 </td>
                 <td>
-                    {{layingaccuracy}}
+                    {{institution}}
                 </td>
             </div>
         </tr>
-    {{/sportsmanrace}}
+    {{/coach}}
     </tbody>
 </table>
+</form>
 
+<div class="flex-wrapper-three">
+    <form method="post" action="/prevPageCoachAdmin">
+        <button type="submit" class="button-two">
+            <input name="start" value="{{start}}" hidden>
+            <input name="end" value="{{end}}" hidden>
+            <h7>Предыдущая страница</h7>
+        </button>
+    </form>
+
+    <form method="post" action="/nextPageCoachAdmin">
+        <button type="submit" class="button-two">
+            <input name="start" value="{{start}}" hidden>
+            <input name="end" value="{{end}}" hidden>
+            <h7>Следующая страница</h7>
+        </button>
+    </form>
+</div>
 </body>
 </html>

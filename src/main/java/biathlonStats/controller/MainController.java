@@ -7,8 +7,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
 
     public static class Stat {
-        private String idsportsman;
+        private long idsportsman;
         private int raceNumber;
         private int accuracy;
         private int standingAccuracy;
@@ -26,7 +30,7 @@ public class MainController {
         private int secondPlaceNumber;
         private int thirdPlaceNumber;
 
-        public Stat(String idsportsman, int raceNumber, int accuracy, int standingAccuracy, int layingAccuracy, int placeNumber, int firstPlaceNumber, int secondPlaceNumber, int thirdPlaceNumber) {
+        public Stat(long idsportsman, int raceNumber, int accuracy, int standingAccuracy, int layingAccuracy, int placeNumber, int firstPlaceNumber, int secondPlaceNumber, int thirdPlaceNumber) {
             this.idsportsman = idsportsman;
             this.raceNumber = raceNumber;
             this.accuracy = accuracy;
@@ -70,11 +74,11 @@ public class MainController {
             this.layingAccuracy = layingAccuracy;
         }
 
-        public String getIdsportsman() {
+        public long getIdsportsman() {
             return idsportsman;
         }
 
-        public void setIdsportsman(String idsportsman) {
+        public void setIdsportsman(long idsportsman) {
             this.idsportsman = idsportsman;
         }
     }
@@ -197,8 +201,8 @@ public class MainController {
    }
 
     @PostMapping("/compare")
-    public ModelAndView comparison(@RequestParam(name = "idfirstsportsman", required = false) String idfirstsportsman,
-                                   @RequestParam(name = "idsecondsportsman", required = false) String idsecondsportsman) {
+    public ModelAndView comparison(@RequestParam(name = "idfirstsportsman", required = false) long idfirstsportsman,
+                                   @RequestParam(name = "idsecondsportsman", required = false) long idsecondsportsman) {
         Map<String, Object> model = new HashMap<>();
         List<Sportsman> sportsmanStat = sportsmanStats.findAll();
 
@@ -221,7 +225,7 @@ public class MainController {
         int thirdPlaceNumberSecond = 0;
 
         for (Sportsman stat : sportsmanStat) {
-            if (stat.getId_sportsman().equals(idfirstsportsman)) {
+            if (stat.getId_sportsman() == (idfirstsportsman)) {
                 for (SportsmanRace statRace : sportsmanRaceStat) {
                     if (Objects.equals(
                             statRace.getIdsportsman(),idfirstsportsman)) {
@@ -252,7 +256,7 @@ public class MainController {
                 model.put("sportsman1", stat);
                 model.put("sportsmanStat1", stat1);
             }
-            if (stat.getId_sportsman().equals(idsecondsportsman)) {
+            if (stat.getId_sportsman() == (idsecondsportsman)) {
                 for (SportsmanRace statRace : sportsmanRaceStat) {
                     if (Objects.equals(statRace.getIdsportsman(),
                             idsecondsportsman)) {
@@ -287,7 +291,7 @@ public class MainController {
         }
 
         ComparisonStat comparisonStat = new ComparisonStat("", "", "", "","","","","");
-        Stat comparison = new Stat("100000",1, 1, 1, 1, 1, 1, 1, 1);
+        Stat comparison = new Stat(100000,1, 1, 1, 1, 1, 1, 1, 1);
         if (accuracyFirst > accuracySecond) {
             comparisonStat.accuracy =
                     "<" + (accuracyFirst - accuracySecond) + "%";
@@ -381,12 +385,12 @@ public class MainController {
     }
 
     @PostMapping("/goToSportsman")
-    public ModelAndView sportsman(@RequestParam(name = "idsportsman") String idSportsman) {
+    public ModelAndView sportsman(@RequestParam(name = "idsportsman") long idSportsman) {
         Map<String, Object> model = new HashMap<>();
         List<SportsmanCoach> coachStat = sportsmanCoachStats.findAll();
         List<Coach> coaches = coachStats.findAll();
         for(SportsmanCoach sportsmanCoach: coachStat) {
-            if (idSportsman.equals(sportsmanCoach.getIdsportsman())) {
+            if (idSportsman==(sportsmanCoach.getIdsportsman())) {
                 for (Coach coach: coaches) {
                     if (sportsmanCoach.getIdCoach() == coach.getIdcoach()) {
                         model.put("coach", coach);
@@ -406,7 +410,7 @@ public class MainController {
         int secondPlaceNumber = 0;
         int thirdPlaceNumber = 0;
         for (Sportsman stat : sportsmanStat) {
-            if (stat.getId_sportsman().equals(idSportsman)) {
+            if (stat.getId_sportsman()==(idSportsman)) {
                 for (SportsmanRace statRace : sportsmanRaceStat) {
                     if (Objects.equals(statRace.getIdsportsman(), idSportsman)) {
                         sportsmanInRaces.add(statRace);
@@ -458,6 +462,7 @@ public class MainController {
         for (int i = start; i < end; i++) {
             showingList.add(sportsmanStat.get(i));
         }
+
         model.put("start", start);
         model.put("end", end);
 
@@ -475,6 +480,33 @@ public class MainController {
     public ModelAndView sportsmansRedirect() {
         Map<String, Object> model = new HashMap<>();
         return new ModelAndView ("redirect:/sportsmans", model);
+    }
+
+    @GetMapping(value = "/sportsmansAdminRedirect")
+    public ModelAndView sportsmansAdminRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/sportsmansAdmin", model);
+    }
+
+    @GetMapping(value = "/sportsmansAdmin")
+    public ModelAndView sportsmansAdmin(@RequestParam(name = "start", required = false) Integer start, @RequestParam(name = "end", required = false)  Integer end) {
+        if (start == null) {
+            start = 0;
+        }
+        if (end == null) {
+            end = 15;
+        }
+        Map<String, Object> model = new HashMap<>();
+        List<Sportsman> sportsmanStat = sportsmanStats.findAll();
+        ArrayList<Sportsman> showingList = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            showingList.add(sportsmanStat.get(i));
+        }
+        model.put("start", start);
+        model.put("end", end);
+
+        model.put("sportsman", showingList);
+        return new ModelAndView ("sportsmansAdmin", model);
     }
 
     @GetMapping(value = "/comparison")
@@ -534,6 +566,49 @@ public class MainController {
         return this.sportsmans(start, end);
     }
 
+    @PostMapping(value = "/prevPageAdmin")
+    public ModelAndView prevPageAdmin(HttpServletRequest request) {
+        Map<String, Object> model = new HashMap<>();
+        int start = Integer.parseInt(request.getParameter("start"));
+        int end = Integer.parseInt(request.getParameter("end"));
+        if (request.getParameter("start") != null) {
+            start -= 20;
+        }
+        if (request.getParameter("start") != null) {
+            end -= 20;
+        }
+        if (start <= 0 ) {
+            start = 0;
+        }
+        if (end <= 15) {
+            end = 15;
+        }
+        return this.sportsmansAdmin(start, end);
+    }
+
+    @PostMapping(value = "/nextPageAdmin")
+    public ModelAndView nextPageAdmin(HttpServletRequest request) {
+        Map<String, Object> model = new HashMap<>();
+        int start = Integer.parseInt(request.getParameter("start"));
+        int end = Integer.parseInt(request.getParameter("end"));
+        if (request.getParameter("start") != null) {
+            start += 15;
+        }
+        if (request.getParameter("start") != null) {
+            end += 15;
+        } if (end >= Math.toIntExact(sportsmanStats.count())) {
+            end = Math.toIntExact(sportsmanStats.count());
+            start = Math.toIntExact(sportsmanStats.count()) - 20;
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
+            end = 20;
+        }
+        return this.sportsmansAdmin(start, end);
+    }
+
     @GetMapping(value = "/sportsmanRedirect")
     public ModelAndView sportsmanRedirect() {
         Map<String, Object> model = new HashMap<>();
@@ -555,7 +630,7 @@ public class MainController {
     }
 
     @PostMapping("/addSportsman")
-    public ModelAndView addSportsman(@RequestParam(name = "idaddedsportsman") String idAddedSportsman, @RequestParam(name = "sportsman", required = false) String sportsmen) throws UnsupportedEncodingException {
+    public ModelAndView addSportsman(@RequestParam(name = "idaddedsportsman") long idAddedSportsman, @RequestParam(name = "sportsman", required = false) String sportsmen) throws UnsupportedEncodingException {
        Map<String, Object> model = new HashMap<>();
        String encodedWithISO88591 = sportsmen;
        sportsmen = new String(encodedWithISO88591.getBytes("ISO-8859-1"), "UTF-8");
@@ -569,7 +644,7 @@ public class MainController {
 
        List<Sportsman> sportsmanStat = sportsmanStats.findAll();
        for (Sportsman sportsman : sportsmanStat) {
-           if (sportsman.getId_sportsman().equals(idAddedSportsman)) {
+           if (sportsman.getId_sportsman()==(idAddedSportsman)) {
                addedSportsmans.add(sportsman);
                break;
            }
@@ -580,7 +655,7 @@ public class MainController {
     }
 
     @PostMapping("/deleteSportsman")
-    public ModelAndView deleteSportsman(@RequestParam(name = "idremovedsportsman") String idRemovedSportsman,@RequestParam(name = "sportsman", required = false) String sportsmen) throws UnsupportedEncodingException {
+    public ModelAndView deleteSportsman(@RequestParam(name = "idremovedsportsman") long idRemovedSportsman,@RequestParam(name = "sportsman", required = false) String sportsmen) throws UnsupportedEncodingException {
         Map<String, Object> model = new HashMap<>();
         String encodedWithISO88591 = sportsmen;
         sportsmen = new String(encodedWithISO88591.getBytes("ISO-8859-1"), "UTF-8");
@@ -593,7 +668,7 @@ public class MainController {
         }
         int indexRemoved = 0;
         for (int i = 0; i < addedSportsmans.size(); i++) {
-            if (addedSportsmans.get(i).getId_sportsman().equals(idRemovedSportsman)) {
+            if (addedSportsmans.get(i).getId_sportsman()==(idRemovedSportsman)) {
                 indexRemoved = i;
                 break;
             }
@@ -603,5 +678,50 @@ public class MainController {
         model.put("sportsmanadd", sportsmanStat);
         model.put("sportsman", addedSportsmans);
         return new ModelAndView ("resultRace", model);
+    }
+
+    @Transactional
+    @PostMapping("/changeSportsman")
+    public ModelAndView changeSportsman(HttpServletRequest request, @RequestParam String stats) throws UnsupportedEncodingException {
+        String encodedWithISO88591 = stats;
+        stats = new String(encodedWithISO88591.getBytes("ISO-8859-1"), "UTF-8");
+        try {
+            stats = stats.replace(",",";");
+            Sportsman stat = new Sportsman(stats);
+            sportsmanStats.save(stat);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int start = 0;
+        int end = 15;
+
+        if (!(request.getParameter("start") == null)) {
+            start = Integer.parseInt(request.getParameter("start"));
+        }
+
+        if (!(request.getParameter("end") == null)) {
+            end = Integer.parseInt(request.getParameter("end"));
+        }
+        return sportsmansAdmin(start, end);
+    }
+
+    @Transactional
+    @PostMapping("/deleteSportsmanFromDatabase")
+    public ModelAndView deleteSportsmanFromDatabase(HttpServletRequest request, @RequestParam(name = "idremovedsportsman") String idRemovedSportsman, @RequestParam(name = "sportsman", required = false) String sportsmen) throws UnsupportedEncodingException {
+        //System.out.println(statId);
+
+        sportsmanStats.deleteById(Long.valueOf(idRemovedSportsman));
+        int start = 0;
+        int end = 15;
+        if (!(request.getParameter("start") == null)) {
+            start = Integer.parseInt(request.getParameter("start"));
+        }
+
+        if (!(request.getParameter("end") == null)) {
+            end = Integer.parseInt(request.getParameter("end"));
+        }
+
+        return sportsmansAdmin(start, end);
     }
 }

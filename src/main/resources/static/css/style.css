@@ -1696,6 +1696,7 @@ font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 font-size: 14px;
 border-collapse: collapse;
 text-align: center;
+margin: auto;
 }
 th, td:first-child {
 background: #AFCDE7;
@@ -1712,4 +1713,11 @@ background: #D8E6F3;
 }
 th:first-child, td:first-child {
 text-align: left;
+}
+
+.bluebackgroud {
+  background-image: url("/image/background2.png");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-size:cover;
 }

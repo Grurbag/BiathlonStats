@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,6 +40,26 @@ public class RaceController {
         model.put("end", end);
         model.put("race", showingList);
         return new ModelAndView("races", model);
+    }
+
+    @GetMapping("/racesAdmin")
+    public ModelAndView racesAdmin(@RequestParam(name = "start", required = false) Integer start, @RequestParam(name = "end", required = false) Integer end) {
+        if (start == null) {
+            start = 0;
+        }
+        if (end == null) {
+            end = 20;
+        }
+        List<Race> raceStat = raceStats.findAll();
+        Map<String, Object> model = new HashMap<>();
+        ArrayList<Race> showingList = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            showingList.add(raceStat.get(i));
+        }
+        model.put("start", start);
+        model.put("end", end);
+        model.put("race", showingList);
+        return new ModelAndView("racesAdmin", model);
     }
 
     @PostMapping("/goToRace")
@@ -80,7 +101,7 @@ public class RaceController {
         ArrayList<SportsmanRace> sportsmanRaceIds = new ArrayList<>();
         for (SportsmanRace sportsmanRace : sportsmanRaceStat) {
             for (Sportsman sportsman : addedSportsmans) {
-                if (sportsman.getId_sportsman().equals(sportsmanRace.getIdsportsman())) {
+                if (sportsman.getId_sportsman()==(sportsmanRace.getIdsportsman())) {
                     sportsmanRaceIds.add(sportsmanRace);
                 }
             }
@@ -92,7 +113,7 @@ public class RaceController {
             int standingAccuracy = 1;
             int raceNumber = 1;
             for (SportsmanRace statRace : sportsmanRaceIds) {
-                if (stat.getId_sportsman().equals(statRace.getIdsportsman())) {
+                if (stat.getId_sportsman()==(statRace.getIdsportsman())) {
                     layingAccuracy += statRace.getLayingaccuracy();
                     standingAccuracy += statRace.getStandingaccuracy();
                     raceNumber++;
@@ -122,7 +143,7 @@ public class RaceController {
         ArrayList<Sportsman> sortedSportsmans = new ArrayList<>();
         for (MainController.Stat addedSportsmansStat : addedSportsmansStats) {
             for (Sportsman addedSportsman : addedSportsmans) {
-                if (addedSportsmansStat.getIdsportsman().equals(addedSportsman.getId_sportsman())) {
+                if (addedSportsmansStat.getIdsportsman()==(addedSportsman.getId_sportsman())) {
                     sortedSportsmans.add(addedSportsman);
                 }
             }
@@ -147,6 +168,12 @@ public class RaceController {
     public ModelAndView racesRedirect() {
         Map<String, Object> model = new HashMap<>();
         return new ModelAndView ("redirect:/races", model);
+    }
+
+    @GetMapping(value = "/racesAdminRedirect")
+    public ModelAndView racesAdminRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/racesAdmin", model);
     }
 
     @GetMapping(value = "/resultRaceRedirect")
@@ -197,5 +224,92 @@ public class RaceController {
             end = 20;
         }
         return this.races(start, end);
+    }
+    @PostMapping(value = "/prevPageRaceAdmin")
+    public ModelAndView prevPageRaceAdmin(HttpServletRequest request) {
+        Map<String, Object> model = new HashMap<>();
+        int start = Integer.parseInt(request.getParameter("start"));
+        int end = Integer.parseInt(request.getParameter("end"));
+        if (request.getParameter("start") != null) {
+            start -= 20;
+        }
+
+        if (request.getParameter("start") != null) {
+            end -= 20;
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
+            end = 20;
+        }
+        return this.racesAdmin(start, end);
+    }
+
+    @PostMapping(value = "/nextPageRaceAdmin")
+    public ModelAndView nextPageRaceAdmin(HttpServletRequest request) {
+        Map<String, Object> model = new HashMap<>();
+        int start = Integer.parseInt(request.getParameter("start"));
+        int end = Integer.parseInt(request.getParameter("end"));
+        if (request.getParameter("start") != null) {
+            start += 20;
+        }
+        if (request.getParameter("start") != null) {
+            end += 20;
+        } if (end >= Math.toIntExact(raceStats.count())) {
+            end = Math.toIntExact(raceStats.count());
+            start = Math.toIntExact(raceStats.count()) - 20;
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
+            end = 20;
+        }
+        return this.racesAdmin(start, end);
+    }
+    @Transactional
+    @PostMapping("/deleteRaceFromDatabase")
+    public ModelAndView deleteRaceFromDatabase(HttpServletRequest request, @RequestParam(name = "idremovedrace") int idRemovedRace) throws UnsupportedEncodingException {
+        //System.out.println(statId);
+
+        raceStats.deleteById(String.valueOf(idRemovedRace));
+        int start = 0;
+        int end = 15;
+        if (!(request.getParameter("start") == null)) {
+            start = Integer.parseInt(request.getParameter("start"));
+        }
+
+        if (!(request.getParameter("end") == null)) {
+            end = Integer.parseInt(request.getParameter("end"));
+        }
+
+        return racesAdmin(start, end);
+    }
+
+    @Transactional
+    @PostMapping("/changeRace")
+    public ModelAndView changeRace(HttpServletRequest request, @RequestParam String stats) throws UnsupportedEncodingException {
+        String encodedWithISO88591 = stats;
+        stats = new String(encodedWithISO88591.getBytes("ISO-8859-1"), "UTF-8");
+        try {
+            stats = stats.replace(",",";");
+            Race stat = new Race(stats);
+            raceStats.save(stat);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int start = 0;
+        int end = 15;
+
+        if (!(request.getParameter("start") == null)) {
+            start = Integer.parseInt(request.getParameter("start"));
+        }
+
+        if (!(request.getParameter("end") == null)) {
+            end = Integer.parseInt(request.getParameter("end"));
+        }
+        return racesAdmin(start, end);
     }
 }

@@ -22,6 +22,14 @@ public class Region {
         this.name = name;
     }
 
+    public Region(String string) {
+        String[] parameters = string.split(";");
+        parameters[0] = parameters[0].replace("[","");
+        parameters[1] = parameters[1].replace("]","");
+        this.idregion = Integer.parseInt(parameters[0]);
+        this.name = parameters[1];
+    }
+
     public int getIdregion() {
         return idregion;
     }

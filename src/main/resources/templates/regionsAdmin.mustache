@@ -1,4 +1,4 @@
-<html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
     <meta charset="utf-8" />
@@ -40,22 +40,35 @@
 
 
 <div class="flex-wrapper-one">
-    <a class="regiony">Регионы</a>
+    <a class="regiony">Панель управления таблицей: Регионы</a>
     <div>
     </div>
-
+    <form method="post" action="/changeRegion">
     <table>
         <tbody>
+        <thead>
         <tr>
             <td>Код</td>
             <td>Название</td>
+            <td> </td>
+        </tr>
+        </thead>
+        <tr>
+            <td><input type="number" name="stats"></td>
+            <td><input name="stats"></td>
+            <td><button type="submit">Изменить запись</button></td>
         </tr>
         {{#region}}
             <tr>
                 <div class="row">
                     <td>
                         {{idregion}}
-
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <form method="post" action = "/deleteRegionFromDatabase" >
+                                <input name="region" value="{{region}}" hidden>
+                                <p style="text-align: center"><button name="idremovedregion" value="{{idregion}}" type="submit">Удалить</button>
+                            </form>
+                        </div>
                     </td>
                     <td>
                         <form method="post" action = "/goToRegion">
@@ -67,9 +80,10 @@
         {{/region}}
         </tbody>
     </table>
+    </form>
 </div>
 <div class="flex-wrapper-three">
-    <form method="post" action="/prevPageRegion">
+    <form method="post" action="/prevPageRegionAdmin">
     <button type="submit" class="button-two">
         <input name="start" value="{{start}}" hidden>
         <input name="end" value="{{end}}" hidden>
@@ -77,16 +91,13 @@
     </button>
     </form>
 
-    <form method="post" action="/nextPageRegion">
+    <form method="post" action="/nextPageRegionAdmin">
         <button type="submit" class="button-two">
             <input name="start" value="{{start}}" hidden>
             <input name="end" value="{{end}}" hidden>
             <h7>Следующая страница</h7>
         </button>
     </form>
-</div>
-<div class="button-two">
-    <a class="button" href="/regionsAdminRedirect"><h8>Панель управления</h8></a>
 </div>
 </body>
 </html>

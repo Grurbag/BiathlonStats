@@ -1,4 +1,4 @@
-<html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
     <meta charset="utf-8" />
@@ -37,47 +37,63 @@
     /></a>
 </div>
 
-
-
 <div class="flex-wrapper-one">
-    <a class="regiony">Регионы</a>
-    <div>
-    </div>
-
+    <a class="regiony">Панель управления таблицей: Спорткомплексы</a>
+</div>
+    <form method="post" action="/changeRace">
     <table>
         <tbody>
+        <thead>
         <tr>
             <td>Код</td>
             <td>Название</td>
+            <td>Регион</td>
+            <td> </td>
         </tr>
-        {{#region}}
+        </thead>
+        <tr>
+            <td><input type="number" name="stats"></td>
+            <td><input name="stats"></td>
+            <td><input name="stats"></td>
+            <td><button type="submit">Изменить запись</button></td>
+        </tr>
+        {{#institution}}
             <tr>
                 <div class="row">
                     <td>
-                        {{idregion}}
-
+                        {{idinstitution}}
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <form method="post" action = "/deleteInstitutionFromDatabase" >
+                                <input name="institution" value="{{institution}}" hidden>
+                                <p style="text-align: center"><button name="idremovedinstitution" value="{{idinstitution}}" type="submit">Удалить</button>
+                            </form>
+                        </div>
                     </td>
                     <td>
-                        <form method="post" action = "/goToRegion">
-                            <p style="text-align: center"><button name="idregion" value="{{idregion}}" type="submit">{{name}}</button>
+                        <form method="post" action = "/goToInstitution">
+                            <p style="text-align: center"><button name="idinstitution" value="{{idinstitution}}" type="submit">{{name}}</button>
                         </form>
+                    </td>
+                    <td>
+                        {{region}}
                     </td>
                 </div>
             </tr>
-        {{/region}}
+        {{/institution}}
         </tbody>
     </table>
-</div>
-<div class="flex-wrapper-three">
-    <form method="post" action="/prevPageRegion">
-    <button type="submit" class="button-two">
-        <input name="start" value="{{start}}" hidden>
-        <input name="end" value="{{end}}" hidden>
-        <h7>Предыдущая страница</h7>
-    </button>
     </form>
 
-    <form method="post" action="/nextPageRegion">
+<div class="flex-wrapper-three">
+    <form method="post" action="/prevPageInstitutionAdmin">
+        <button type="submit" class="button-two">
+            <input name="start" value="{{start}}" hidden>
+            <input name="end" value="{{end}}" hidden>
+            <h7>Предыдущая страница</h7>
+        </button>
+    </form>
+
+    <form method="post" action="/nextPageInstitutionAdmin">
         <button type="submit" class="button-two">
             <input name="start" value="{{start}}" hidden>
             <input name="end" value="{{end}}" hidden>
@@ -85,8 +101,6 @@
         </button>
     </form>
 </div>
-<div class="button-two">
-    <a class="button" href="/regionsAdminRedirect"><h8>Панель управления</h8></a>
-</div>
+
 </body>
 </html>

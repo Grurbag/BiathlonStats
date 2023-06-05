@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class SportsmanRaceId implements Serializable {
 
     private int idrace;
-    private String idsportsman;
+    private long idsportsman;
 
     public SportsmanRaceId() {
     }
 
-    public SportsmanRaceId(int idrace, String idsportsman) {
+    public SportsmanRaceId(int idrace, long idsportsman) {
         this.idrace = idrace;
         this.idsportsman = idsportsman;
     }
@@ -23,11 +23,11 @@ public class SportsmanRaceId implements Serializable {
         this.idrace = idrace;
     }
 
-    public String getIdsportsman() {
+    public long getIdsportsman() {
         return idsportsman;
     }
 
-    public void setIdsportsman(String idsportsman) {
+    public void setIdsportsman(long idsportsman) {
         this.idsportsman = idsportsman;
     }
 

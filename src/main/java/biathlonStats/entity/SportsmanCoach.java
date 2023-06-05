@@ -12,14 +12,14 @@ public class SportsmanCoach implements Serializable {
     @Id
     @GenericGenerator(name = "increment", strategy = "increment")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private String idsportsman;
+    private long idsportsman;
     private int idcoach;
 
 
     public SportsmanCoach() {
     }
 
-    public SportsmanCoach(String idsportsman, int idcoach) {
+    public SportsmanCoach(long idsportsman, int idcoach) {
         this.idcoach = idcoach;
         this.idsportsman = idsportsman;
     }
@@ -32,11 +32,11 @@ public class SportsmanCoach implements Serializable {
         this.idcoach = idcoach;
     }
 
-    public String getIdsportsman() {
+    public long getIdsportsman() {
         return idsportsman;
     }
 
-    public void setIdsportsman(String idsportsman) {
+    public void setIdsportsman(long idsportsman) {
         this.idsportsman = idsportsman;
     }
 

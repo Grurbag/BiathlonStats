@@ -49,6 +49,11 @@ public class WebSecurityConfig  {
         return http
                 .csrf().disable()
                 .authorizeHttpRequests()
+                .requestMatchers(new AntPathRequestMatcher("/coachesAdmin")).hasRole("ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/institutionsAdmin")).hasRole("ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/racesAdmin")).hasRole("ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/regionsAdmin")).hasRole("ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/sportsmansAdmin")).hasRole("ADMIN")
                 .requestMatchers(new AntPathRequestMatcher("/comparison")).hasAnyRole("USER","ADMIN")
                 .requestMatchers(new AntPathRequestMatcher("/resultRace")).hasAnyRole("USER","ADMIN")
                 .requestMatchers("/**").permitAll()

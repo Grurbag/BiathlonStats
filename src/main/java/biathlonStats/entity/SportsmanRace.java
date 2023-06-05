@@ -14,7 +14,7 @@ public class SportsmanRace {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int idrace;
     @Id
-    private String idsportsman;
+    private long idsportsman;
     private String place;
     private String datetime;
     private int standingaccuracy;
@@ -24,7 +24,7 @@ public class SportsmanRace {
     public SportsmanRace() {
     }
 
-    public SportsmanRace(int idrace, String idsportsman, String place, String datetime, int stadingaccuracy, int layingaccuracy, int placesportsman) {
+    public SportsmanRace(int idrace, long idsportsman, String place, String datetime, int stadingaccuracy, int layingaccuracy, int placesportsman) {
         this.idrace = idrace;
         this.idsportsman = idsportsman;
         this.place = place;
@@ -38,7 +38,7 @@ public class SportsmanRace {
         return idrace;
     }
 
-    public String getIdsportsman() {
+    public long getIdsportsman() {
         return idsportsman;
     }
 
@@ -58,7 +58,7 @@ public class SportsmanRace {
         this.idrace = idrace;
     }
 
-    public void setIdsportsman(String idsportsman) {
+    public void setIdsportsman(long idsportsman) {
         this.idsportsman = idsportsman;
     }
 
