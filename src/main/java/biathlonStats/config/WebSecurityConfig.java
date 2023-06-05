@@ -49,7 +49,8 @@ public class WebSecurityConfig  {
         return http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers(new AntPathRequestMatcher("/admin")).hasRole("ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/comparison")).hasAnyRole("USER","ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/resultRace")).hasAnyRole("USER","ADMIN")
                 .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

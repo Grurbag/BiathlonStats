@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "region", schema = "biathlonstats")
+@Table(name = "region", schema = "biathlonstats1")
 public class Region {
 
     @Id

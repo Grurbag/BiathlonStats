@@ -21,13 +21,21 @@ public class MainController {
         private int accuracy;
         private int standingAccuracy;
         private int layingAccuracy;
+        private int placeNumber;
+        private int firstPlaceNumber;
+        private int secondPlaceNumber;
+        private int thirdPlaceNumber;
 
-        public Stat(String idsportsman, int raceNumber, int accuracy, int standingAccuracy, int layingAccuracy) {
+        public Stat(String idsportsman, int raceNumber, int accuracy, int standingAccuracy, int layingAccuracy, int placeNumber, int firstPlaceNumber, int secondPlaceNumber, int thirdPlaceNumber) {
             this.idsportsman = idsportsman;
             this.raceNumber = raceNumber;
             this.accuracy = accuracy;
             this.standingAccuracy = standingAccuracy;
             this.layingAccuracy = layingAccuracy;
+            this.placeNumber = placeNumber;
+            this.firstPlaceNumber = firstPlaceNumber;
+            this.secondPlaceNumber = secondPlaceNumber;
+            this.thirdPlaceNumber = thirdPlaceNumber;
         }
 
         public int getRaceNumber() {
@@ -76,13 +84,23 @@ public class MainController {
         String standingAccuracy;
         String layingAccuracy;
         String raceNumber;
+        String placeNumber;
+        String firstPlaceNumber;
+        String secondPlaceNumber;
+        String thirdPlaceNumber;
 
         public ComparisonStat(String accuracy, String standingAccuracy,
-                              String layingAccuracy, String raceNumber) {
+                              String layingAccuracy, String raceNumber,
+                              String placeNumber, String firstPlaceNumber,
+                              String secondPlaceNumber,String thirdPlaceNumber ) {
             this.accuracy = accuracy;
             this.standingAccuracy = standingAccuracy;
             this.layingAccuracy = layingAccuracy;
             this.raceNumber = raceNumber;
+            this.placeNumber = placeNumber;
+            this.firstPlaceNumber = firstPlaceNumber;
+            this.secondPlaceNumber = secondPlaceNumber;
+            this.thirdPlaceNumber = thirdPlaceNumber;
         }
 
         public String getAccuracy() {
@@ -116,6 +134,38 @@ public class MainController {
         public void setRaceNumber(String raceNumber) {
             this.raceNumber = raceNumber;
         }
+
+        public String getPlaceNumber() {
+            return placeNumber;
+        }
+
+        public void setPlaceNumber(String placeNumber) {
+            this.placeNumber = placeNumber;
+        }
+
+        public String getFirstPlaceNumber() {
+            return firstPlaceNumber;
+        }
+
+        public void setFirstPlaceNumber(String firstPlaceNumber) {
+            this.firstPlaceNumber = firstPlaceNumber;
+        }
+
+        public String getSecondPlaceNumber() {
+            return secondPlaceNumber;
+        }
+
+        public void setSecondPlaceNumber(String secondPlaceNumber) {
+            this.secondPlaceNumber = secondPlaceNumber;
+        }
+
+        public String getThirdPlaceNumber() {
+            return thirdPlaceNumber;
+        }
+
+        public void setThirdPlaceNumber(String thirdPlaceNumber) {
+            this.thirdPlaceNumber = thirdPlaceNumber;
+        }
     }
 
     private ArrayList<Sportsman> addedSportsmans = new ArrayList<>();
@@ -134,6 +184,12 @@ public class MainController {
 
     @Autowired private RaceStatRepo raceStats;
 
+    @GetMapping("/main")
+    public ModelAndView main() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("main", model);
+    }
+
    @GetMapping("/")
    public ModelAndView greeting() {
        Map<String, Object> model = new HashMap<>();
@@ -151,16 +207,38 @@ public class MainController {
         int layingAccuracyFirst = 1;
         int standingAccuracyFirst = 1;
         int raceNumberFirst = 1;
+        int placeNumberFirst = 0;
+        int firstPlaceNumberFirst = 0;
+        int secondPlaceNumberFirst = 0;
+        int thirdPlaceNumberFirst = 0;
         int accuracySecond = 1;
         int layingAccuracySecond = 1;
         int standingAccuracySecond = 1;
         int raceNumberSecond = 1;
+        int placeNumberSecond = 0;
+        int firstPlaceNumberSecond = 0;
+        int secondPlaceNumberSecond = 0;
+        int thirdPlaceNumberSecond = 0;
 
         for (Sportsman stat : sportsmanStat) {
             if (stat.getId_sportsman().equals(idfirstsportsman)) {
                 for (SportsmanRace statRace : sportsmanRaceStat) {
                     if (Objects.equals(
                             statRace.getIdsportsman(),idfirstsportsman)) {
+                        switch (statRace.getPlacesportsman()) {
+                            case 1 -> {
+                                placeNumberFirst++;
+                                firstPlaceNumberFirst++;
+                            }
+                            case 2 -> {
+                                placeNumberFirst++;
+                                secondPlaceNumberFirst++;
+                            }
+                            case 3 -> {
+                                placeNumberFirst++;
+                                thirdPlaceNumberFirst++;
+                            }
+                        }
                         layingAccuracyFirst += statRace.getLayingaccuracy();
                         standingAccuracyFirst += statRace.getStandingaccuracy();
                         raceNumberFirst++;
@@ -170,7 +248,7 @@ public class MainController {
                 layingAccuracyFirst = layingAccuracyFirst / raceNumberFirst;
                 accuracyFirst = (standingAccuracyFirst + layingAccuracyFirst) / 2;
                 raceNumberFirst--;
-                Stat stat1 = new Stat(stat.getId_sportsman(),raceNumberFirst, accuracyFirst, standingAccuracyFirst, layingAccuracyFirst);
+                Stat stat1 = new Stat(stat.getId_sportsman(),raceNumberFirst, accuracyFirst, standingAccuracyFirst, layingAccuracyFirst, placeNumberFirst, firstPlaceNumberFirst, secondPlaceNumberFirst, thirdPlaceNumberFirst);
                 model.put("sportsman1", stat);
                 model.put("sportsmanStat1", stat1);
             }
@@ -178,6 +256,20 @@ public class MainController {
                 for (SportsmanRace statRace : sportsmanRaceStat) {
                     if (Objects.equals(statRace.getIdsportsman(),
                             idsecondsportsman)) {
+                        switch (statRace.getPlacesportsman()) {
+                            case 1 -> {
+                                placeNumberSecond++;
+                                firstPlaceNumberSecond++;
+                            }
+                            case 2 -> {
+                                placeNumberSecond++;
+                                secondPlaceNumberSecond++;
+                            }
+                            case 3 -> {
+                                placeNumberSecond++;
+                                thirdPlaceNumberSecond++;
+                            }
+                        }
                         layingAccuracySecond += statRace.getLayingaccuracy();
                         standingAccuracySecond +=
                                 statRace.getStandingaccuracy();
@@ -188,14 +280,14 @@ public class MainController {
                 layingAccuracySecond = layingAccuracySecond / raceNumberSecond;
                 accuracySecond = (standingAccuracySecond + layingAccuracySecond) / 2;
                 raceNumberSecond--;
-                Stat stat1 = new Stat(stat.getId_sportsman(),raceNumberSecond, accuracySecond, standingAccuracySecond, layingAccuracySecond);
+                Stat stat1 = new Stat(stat.getId_sportsman(),raceNumberSecond, accuracySecond, standingAccuracySecond, layingAccuracySecond, placeNumberSecond, firstPlaceNumberSecond, secondPlaceNumberSecond, thirdPlaceNumberSecond);
                 model.put("sportsman2", stat);
                 model.put("sportsmanStat2", stat1);
             }
         }
 
-        ComparisonStat comparisonStat = new ComparisonStat("", "", "", "");
-        Stat comparison = new Stat("100000",1, 1, 1, 1);
+        ComparisonStat comparisonStat = new ComparisonStat("", "", "", "","","","","");
+        Stat comparison = new Stat("100000",1, 1, 1, 1, 1, 1, 1, 1);
         if (accuracyFirst > accuracySecond) {
             comparisonStat.accuracy =
                     "<" + (accuracyFirst - accuracySecond) + "%";
@@ -235,6 +327,46 @@ public class MainController {
         } else {
             comparisonStat.raceNumber = "=";
         }
+
+        if (placeNumberFirst > placeNumberSecond) {
+            comparisonStat.placeNumber =
+                    "<" + (placeNumberFirst - placeNumberSecond);
+        } else if (placeNumberFirst < placeNumberSecond) {
+            comparisonStat.placeNumber =
+                    (placeNumberSecond - placeNumberFirst) + ">";
+        } else {
+            comparisonStat.placeNumber = "=";
+        }
+
+        if (firstPlaceNumberFirst > firstPlaceNumberSecond) {
+            comparisonStat.firstPlaceNumber =
+                    "<" + (firstPlaceNumberFirst - firstPlaceNumberSecond);
+        } else if (firstPlaceNumberFirst < firstPlaceNumberSecond) {
+            comparisonStat.firstPlaceNumber =
+                    (firstPlaceNumberSecond - firstPlaceNumberFirst) + ">";
+        } else {
+            comparisonStat.firstPlaceNumber = "=";
+        }
+
+        if (secondPlaceNumberFirst > secondPlaceNumberSecond) {
+            comparisonStat.secondPlaceNumber =
+                    "<" + (secondPlaceNumberFirst - secondPlaceNumberSecond);
+        } else if (secondPlaceNumberFirst < secondPlaceNumberSecond) {
+            comparisonStat.secondPlaceNumber =
+                    (secondPlaceNumberSecond - secondPlaceNumberFirst) + ">";
+        } else {
+            comparisonStat.secondPlaceNumber = "=";
+        }
+
+        if (thirdPlaceNumberFirst > thirdPlaceNumberSecond) {
+            comparisonStat.thirdPlaceNumber =
+                    "<" + (thirdPlaceNumberFirst - thirdPlaceNumberSecond);
+        } else if (thirdPlaceNumberFirst < thirdPlaceNumberSecond) {
+            comparisonStat.thirdPlaceNumber =
+                    (thirdPlaceNumberSecond - thirdPlaceNumberFirst) + ">";
+        } else {
+            comparisonStat.thirdPlaceNumber = "=";
+        }
         model.put("sportsman", sportsmanStat);
         model.put("comparison", comparisonStat);
         return new ModelAndView("comparison", model);
@@ -269,11 +401,29 @@ public class MainController {
         int layingAccuracy = 1;
         int standingAccuracy = 1;
         int raceNumber = 1;
+        int placeNumber = 0;
+        int firstPlaceNumber = 0;
+        int secondPlaceNumber = 0;
+        int thirdPlaceNumber = 0;
         for (Sportsman stat : sportsmanStat) {
             if (stat.getId_sportsman().equals(idSportsman)) {
                 for (SportsmanRace statRace : sportsmanRaceStat) {
                     if (Objects.equals(statRace.getIdsportsman(), idSportsman)) {
                         sportsmanInRaces.add(statRace);
+                        switch (statRace.getPlace()) {
+                            case "1" -> {
+                                placeNumber++;
+                                firstPlaceNumber++;
+                            }
+                            case "2" -> {
+                                placeNumber++;
+                                secondPlaceNumber++;
+                            }
+                            case "3" -> {
+                                placeNumber++;
+                                thirdPlaceNumber++;
+                            }
+                        }
                         layingAccuracy += statRace.getLayingaccuracy();
                         standingAccuracy += statRace.getStandingaccuracy();
                         raceNumber++;
@@ -283,7 +433,7 @@ public class MainController {
                 layingAccuracy = layingAccuracy / raceNumber;
                 accuracy = (standingAccuracy + layingAccuracy) / 2;
                 raceNumber--;
-                Stat stat1 = new Stat(stat.getId_sportsman(), raceNumber, accuracy, standingAccuracy, layingAccuracy);
+                Stat stat1 = new Stat(stat.getId_sportsman(), raceNumber, accuracy, standingAccuracy, layingAccuracy, placeNumber, firstPlaceNumber, secondPlaceNumber, thirdPlaceNumber);
                 model.put("race", sportsmanInRaces);
                 model.put("sportsman", stat);
                 model.put("sportsmanStat", stat1);
@@ -327,12 +477,18 @@ public class MainController {
         return new ModelAndView ("redirect:/sportsmans", model);
     }
 
-    @GetMapping(value = "/comparisonRedirect")
-    public ModelAndView comparisonRedirect() {
+    @GetMapping(value = "/comparison")
+    public ModelAndView comparison() {
         Map<String, Object> model = new HashMap<>();
         List<Sportsman> sportsmen = sportsmanStats.findAll();
         model.put("sportsman", sportsmen);
         return new ModelAndView ("comparison", model);
+    }
+
+    @GetMapping(value = "/comparisonRedirect")
+    public ModelAndView comparisonRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView ("redirect:/comparison", model);
     }
 
     @PostMapping(value = "/prevPage")
@@ -346,6 +502,12 @@ public class MainController {
         if (request.getParameter("start") != null) {
             end -= 20;
         }
+        if (start <= 0 ) {
+            start = 0;
+        }
+        if (end <= 15) {
+            end = 15;
+        }
         return this.sportsmans(start, end);
     }
 
@@ -357,11 +519,17 @@ public class MainController {
         if (request.getParameter("start") != null) {
             start += 15;
         }
-        if (start <= 0){
-            start = 0;
-        }
         if (request.getParameter("start") != null) {
             end += 15;
+        } if (end >= Math.toIntExact(sportsmanStats.count())) {
+            end = Math.toIntExact(sportsmanStats.count());
+            start = Math.toIntExact(sportsmanStats.count()) - 20;
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
+            end = 20;
         }
         return this.sportsmans(start, end);
     }

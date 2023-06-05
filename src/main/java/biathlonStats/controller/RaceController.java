@@ -27,7 +27,7 @@ public class RaceController {
             start = 0;
         }
         if (end == null) {
-            end = 11;
+            end = 20;
         }
         List<Race> raceStat = raceStats.findAll();
         Map<String, Object> model = new HashMap<>();
@@ -102,7 +102,7 @@ public class RaceController {
             layingAccuracy = layingAccuracy / raceNumber;
             accuracy = (standingAccuracy + layingAccuracy) / 2;
             raceNumber--;
-            MainController.Stat stat1 = new MainController.Stat(stat.getId_sportsman(), raceNumber, accuracy, standingAccuracy, layingAccuracy);
+            MainController.Stat stat1 = new MainController.Stat(stat.getId_sportsman(), raceNumber, accuracy, standingAccuracy, layingAccuracy, 1, 1, 1, 1);
             addedSportsmansStats.add(stat1);
         }
         boolean sorted = false;
@@ -162,12 +162,15 @@ public class RaceController {
         int end = Integer.parseInt(request.getParameter("end"));
         if (request.getParameter("start") != null) {
             start -= 20;
-        } if (start <= 0) {
-            start = 0;
         }
+
         if (request.getParameter("start") != null) {
             end -= 20;
-        } if (end <= 20) {
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
             end = 20;
         }
         return this.races(start, end);
@@ -180,13 +183,18 @@ public class RaceController {
         int end = Integer.parseInt(request.getParameter("end"));
         if (request.getParameter("start") != null) {
             start += 20;
-        } if (start <= 0) {
-            start = 0;
         }
         if (request.getParameter("start") != null) {
             end += 20;
-        } if (end >= 11) {
-            end = 11;
+        } if (end >= Math.toIntExact(raceStats.count())) {
+            end = Math.toIntExact(raceStats.count());
+            start = Math.toIntExact(raceStats.count()) - 20;
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
+            end = 20;
         }
         return this.races(start, end);
     }

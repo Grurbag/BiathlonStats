@@ -1,8 +1,25 @@
 <html>
 <head>
+
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(93832836, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93832836" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="row">
@@ -50,31 +67,22 @@
         </tbody>
     </table>
 </div>
-<div class="flex-wrapper-one">
-    <table width="400">
-        <tbody>
-        <tr>
-            <td>
-                <form method="post" action="/prevPageInstitution">
-                    <button type="submit" class="button-two">
-                        <input name="start" value="{{start}}" hidden>
-                        <input name="end" value="{{end}}" hidden>
-                        <h2>Предыдущая страница</h2>
-                    </button>
-                </form>
-            </td>
-            <td>
-                <form method="post" action="/nextPageInstitution">
-                    <button type="submit" class="button-two">
-                        <input name="start" value="{{start}}" hidden>
-                        <input name="end" value="{{end}}" hidden>
-                        <h2>Следующая страница</h2>
-                    </button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="flex-wrapper-three">
+    <form method="post" action="/prevPageInstitution">
+        <button type="submit" class="button-two" control-id="ControlID-12">
+            <input name="start" value="0" hidden="" control-id="ControlID-13">
+            <input name="end" value="11" hidden="">
+            <h7>Предыдущая страница</h7>
+        </button>
+    </form>
+
+    <form method="post" action="/nextPageInstitution">
+        <button type="submit" class="button-two" control-id="ControlID-14">
+            <input name="start" value="0" hidden="" control-id="ControlID-15">
+            <input name="end" value="11" hidden="">
+            <h7>Следующая страница</h7>
+        </button>
+    </form>
 </div>
 </body>
 </html>

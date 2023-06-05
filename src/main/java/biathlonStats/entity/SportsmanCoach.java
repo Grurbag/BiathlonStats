@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "sportsmancoach", schema = "biathlonstats")
+@Table(name = "sportsmancoach", schema = "biathlonstats1")
 public class SportsmanCoach implements Serializable {
 
     @Id

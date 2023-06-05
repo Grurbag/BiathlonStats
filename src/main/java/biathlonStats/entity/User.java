@@ -4,14 +4,18 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "usr")
+@Table(name = "usr", schema = "biathlonstats1")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
     private boolean active;
+
+    public User() {
+
+    }
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "userrole", joinColumns = @JoinColumn(name = "userid"))

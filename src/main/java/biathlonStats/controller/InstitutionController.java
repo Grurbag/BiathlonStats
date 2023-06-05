@@ -72,12 +72,15 @@ public class InstitutionController {
         int end = Integer.parseInt(request.getParameter("end"));
         if (request.getParameter("start") != null) {
             start -= 20;
-        } else if (start == 0) {
-            start = 0;
         }
+
         if (request.getParameter("start") != null) {
             end -= 20;
-        } else if (end == 20) {
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
             end = 20;
         }
         return this.institutions(start, end);
@@ -90,13 +93,19 @@ public class InstitutionController {
         int end = Integer.parseInt(request.getParameter("end"));
         if (request.getParameter("start") != null) {
             start += 20;
-        } if (start <= 0) {
-            start = 0;
         }
+
         if (request.getParameter("start") != null) {
             end += 20;
-        } if (end >= 60) {
-            end = 78;
+        } if (end >= Math.toIntExact(institutionStats.count())) {
+            end = Math.toIntExact(institutionStats.count());
+            start = Math.toIntExact(institutionStats.count()) - 20;
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
+            end = 20;
         }
         return this.institutions(start, end);
     }

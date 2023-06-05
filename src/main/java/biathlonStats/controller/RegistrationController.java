@@ -3,6 +3,9 @@ package biathlonStats.controller;
 import biathlonStats.entity.Role;
 import biathlonStats.entity.User;
 import biathlonStats.repo.UserRepo;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +21,7 @@ import java.util.Map;
 
 @RestController
 public class RegistrationController {
+
     @Autowired
     private UserRepo userRepo;
 
@@ -32,7 +36,14 @@ public class RegistrationController {
         Map<String, Object> model = new HashMap<>();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
+        String role = String.valueOf(authentication.getAuthorities());
+        if (role.equals("[ROLE_ADMIN]")) {
+            role = "Администратор";
+        } else {
+            role = "Пользователь";
+        }
         model.put("user", currentPrincipalName);
+        model.put("role", role);
         return new ModelAndView ("personalArea", model);
     }
 
@@ -40,6 +51,12 @@ public class RegistrationController {
     public ModelAndView login() {
         Map<String, Object> model = new HashMap<>();
         return new ModelAndView("login", model);
+    }
+
+    @GetMapping("/loginRedirect")
+    public ModelAndView loginRedirect() {
+        Map<String, Object> model = new HashMap<>();
+        return new ModelAndView("redirect:/login", model);
     }
 
     @GetMapping("/registration")
@@ -62,12 +79,13 @@ public class RegistrationController {
     }
 
     @PostMapping("/logOut")
-    public ModelAndView logOut() {
+    public ModelAndView logOut(HttpServletRequest request) throws ServletException {
         Map<String, Object> model = new HashMap<>();
-        SecurityContextHolder.clearContext();
-        return new ModelAndView("/login", model);
+        request.logout();
+        return new ModelAndView("login", model);
     }
 
+    @Transactional
     @PostMapping("/registration")
     public ModelAndView addUser(User user) {
         Map<String, Object> model = new HashMap<>();
@@ -79,16 +97,14 @@ public class RegistrationController {
         }
 
         if (user.getUsername() == null) {
-            user.setActive(true);
-            user.setRoles(Collections.singleton(Role.ROLE_USER));
-            userRepo.save(user);
             model.put("message", "Ошибка ввода данных");
             return new ModelAndView("registration", model);
         }
 
-
-
-        return new ModelAndView("redirect:/login", model);
+        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.ROLE_USER));
+        userRepo.save(user);
+        return new ModelAndView("login", model);
     }
 
     @GetMapping(value = "/registrationRedirect")

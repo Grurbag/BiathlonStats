@@ -1,8 +1,25 @@
 <html>
 <head>
+
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="styles/css/style.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(93832836, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/93832836" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="row">
@@ -20,57 +37,34 @@
     /></a>
 </div>
 
-<div class="flex-wrapper-one">
-    <a class="regiony">Регионы</a>
-    <div class="input">
-        <div class="dropdown">
-            <p>Сортировка по</p>
-            <select class="dropdown" name="language" id="language">
-                <option value="name">Названию(А-Я)</option>
-                <option value="nameNo">Названию(Я-А)</option>
-            </select>
-        </div>
-        <div class="search">
-            <input class="search" type="text" placeholder="Искать здесь...">
-            <button type="submit"></button>
-        </div>
-    </div>
-    <div>
-    </div>
-    <table class="iksweb">
-        <tbody>
-        <tr>
-            <td>Код</td>
-            <td>Название</td>
-        </tr>
-        {{#region}}
-            <tr>
-                <div class="row">
-                    <td><form method="post" action = "/goToRegion">
-                        <p style="text-align: center"><button name="idregion" value="{{idregion}}" type="submit">{{idregion}}</button>
-                    </form>
-                    </td>
-                    <td>
-                        {{name}}
-                    </td>
+<div class="component-2">
+    <p class="fio-trenera">Главная</p>
+    <div class="flex-wrapper-thr">
+        <div class="flex-wrapper-four">
+            <div class="flex-wrapper-six">
+                <div class="picture-icon">
+                    <div class="icon-mountains">
+                        <img
+                                alt=""
+                                src="https://sun6-21.userapi.com/s/v1/ig2/RSLGnika86x3iBKf5rPJIJeKZsx9TyfovIL5oRm9o4ZXx8P4xBGXVASBQ32CspRZeNaxGt_ofQw0I1beLj8gFWx8.jpg?size=2129x2129&quality=96&crop=19,10,2129,2129&ava=1"
+                                height="200px"
+                        />
+                    </div>
                 </div>
-            </tr>
-        {{/region}}
-        </tbody>
-    </table>
-</div>
-    <div class="row">
-        <div class="buttonDaySwitchBox col-xl">
-            <a href="/prevPageRegion" class="buttonDaySwitchBox2">
-                <h2 class="buttonTitle">Предыдущая страница</h2>
-            </a>
-        </div>
-        <div class="col-xl-7"></div>
-        <div class="buttonDaySwitchBox col-xl">
-            <a href="/nextPageRegion" class="buttonDaySwitchBox2">
-                <h2 class="buttonTitle">Следующая страница</h2>
-            </a>
+                <div class="flex-wrapper-five">
+                    <p class="trenery-sportsmena-trener-trener-trener">
+                        Данный сайт позволяет вести учет
+                        статистики соревнований по биатлону </br>
+                        Создатели:<br/>
+                        Тимошинов Иван<br/>
+                        Беликова Дина</br>
+                        Мырадов Ораз
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
 </body>
 </html>

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @IdClass(SportsmanRaceId.class)
-@Table(name = "racesportsman", schema = "biathlonstats")
+@Table(name = "racesportsman", schema = "biathlonstats1")
 public class SportsmanRace {
 
     @Id

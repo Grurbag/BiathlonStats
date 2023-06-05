@@ -73,12 +73,15 @@ public class CoachController {
         int end = Integer.parseInt(request.getParameter("end"));
         if (request.getParameter("start") != null) {
             start -= 20;
-        } if (start <= 0) {
-            start = 0;
         }
+
         if (request.getParameter("start") != null) {
             end -= 20;
-        } if (end <= 20) {
+        }
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
             end = 20;
         }
         return this.coaches(start, end);
@@ -92,14 +95,18 @@ public class CoachController {
         if (request.getParameter("start") != null) {
             start += 20;
         }
-        if (start <= 0){
-            start = 0;
-        }
+
         if (request.getParameter("start") != null) {
             end += 20;
+        } if (end >= Math.toIntExact(coachStats.count())) {
+            end = Math.toIntExact(coachStats.count());
+            start = Math.toIntExact(coachStats.count()) - 20;
         }
-        if (end >= 100) {
-            end = 100;
+        if (start <= 0) {
+            start = 0;
+        }
+        if (end <= 0) {
+            end = 20;
         }
         return this.coaches(start, end);
     }
